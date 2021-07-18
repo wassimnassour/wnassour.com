@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["wassim"]
+  "cSpell.words": ["wassim"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
