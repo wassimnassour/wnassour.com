@@ -7,8 +7,19 @@ import { Theme } from 'theme-ui'
 
 const makeTheme = <T extends Theme>(t: T) => t
 
-export const theme = makeTheme<any>({
+export const theme = makeTheme({
   ...roboto,
+  fonts: {
+    ...roboto.fonts,
+    body: 'Quicksand,system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: 'Quicksand',
+    monospace: 'Quicksand ,Menlo, monospace',
+  },
+  colors: {
+    ...roboto.colors,
+    primary: '#0E1630',
+    secondary: '#EB4A4A',
+  },
   containers: {
     card: {
       boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
