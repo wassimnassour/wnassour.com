@@ -1,8 +1,14 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
-import { About, Blog, Hero } from 'components'
+import { About, Blog, Contact, Hero } from 'components'
+import { GetStaticProps } from 'next'
+import { getFeaturedPosts } from '../lib'
+import { IPost } from '../types/post'
 
-export default function Home() {
+interface Props {
+  featuredPosts: IPost[]
+}
+export default function Home({ featuredPosts }: Props) {
   return (
     <div
       sx={{
@@ -12,7 +18,17 @@ export default function Home() {
     >
       <Hero />
       <About />
-      <Blog />
+      <Blog Posts={featuredPosts} />
+      <Contact />
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const featuredPosts = getFeaturedPosts()
+  return {
+    props: {
+      featuredPosts,
+    },
+  }
 }
