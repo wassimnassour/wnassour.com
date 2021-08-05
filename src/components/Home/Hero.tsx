@@ -12,7 +12,7 @@ export const Hero = () => {
     >
       <div
         sx={{
-          width: ['80%', '70%', '60%'],
+          width: ['90%', '80%', '75%', '60%'],
           mx: 'auto',
           height: '100%',
           display: 'flex',

@@ -1,3 +1,5 @@
 export * from './Hero'
 export * from './Blog'
+// export * from './About2'
+export * from './Contact'
 export * from './About'
