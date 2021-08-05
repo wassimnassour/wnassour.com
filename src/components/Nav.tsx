@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { Container, jsx } from 'theme-ui'
+import { jsx } from 'theme-ui'
 import { Box } from 'theme-ui'
 import Link from 'next/link'
 export const Nav = () => {
@@ -37,16 +37,28 @@ export const Nav = () => {
             </Link>
           </li>
           <li sx={styles.item}>
-            <Link href="/About">
-              <a sx={{ color: 'whitesmoke', my: 3, display: 'block' }}>
-                About Me
+            <Link href="/#contactMe">
+              <a
+                sx={{
+                  color: 'whitesmoke',
+                  my: 3,
+                  display: 'block',
+                }}
+              >
+                Contact Me
               </a>
             </Link>
           </li>
           <li sx={styles.item}>
-            <Link href="/contact">
-              <a sx={{ color: 'whitesmoke', my: 3, display: 'block' }}>
-                Contact Me
+            <Link href="/#about">
+              <a
+                sx={{
+                  color: 'whitesmoke',
+                  my: 3,
+                  display: 'block',
+                }}
+              >
+                About
               </a>
             </Link>
           </li>
