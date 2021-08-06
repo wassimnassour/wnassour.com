@@ -6,8 +6,8 @@ import { GetStaticProps } from 'next'
 import { getAllPosts } from '../lib/mdxUtils'
 import { IPost } from '../types/post'
 import Link from 'next/link'
+import Head from 'next/head'
 import { Meta } from 'components'
-
 interface Props {
   posts: IPost[]
 }
@@ -73,7 +73,8 @@ const ArticleCard = ({
 
 const Blog = ({ posts }: Props) => {
   return (
-    <Meta pageTitle="Blog">
+    <>
+      <Meta pageTitle="Blog" />
       <div sx={{ width: ['90%', '95%', '94%', '960px'], mx: 'auto' }}>
         <h1 sx={{ color: 'white', ml: [1], fontSize: 50 }}>Blog</h1>
         <div
@@ -97,7 +98,7 @@ const Blog = ({ posts }: Props) => {
           ))}
         </div>
       </div>
-    </Meta>
+    </>
   )
 }
 
