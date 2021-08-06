@@ -20,9 +20,13 @@ export const Nav = () => {
       }}
     >
       <div>
-        <h1 sx={{ color: 'white' }}>
-          <span sx={{ color: 'secondary' }}>W</span>N
-        </h1>
+        <Link href="/">
+          <a>
+            <h1 sx={{ color: 'white' }}>
+              <span sx={{ color: 'secondary' }}>W</span>N
+            </h1>
+          </a>
+        </Link>
       </div>
       <nav>
         <ul sx={{ display: 'flex', flexDirection: 'row' }}>
