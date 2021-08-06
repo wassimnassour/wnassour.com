@@ -5,9 +5,7 @@
 import { roboto } from '@theme-ui/presets'
 import { Theme } from 'theme-ui'
 
-const makeTheme = <T extends Theme>(t: T) => t
-
-export const theme = makeTheme({
+export const theme = {
   ...roboto,
   fonts: {
     ...roboto.fonts,
@@ -38,5 +36,5 @@ export const theme = makeTheme({
   styles: {
     ...roboto.styles,
   },
-})
+}
 export type ExactTheme = typeof theme
