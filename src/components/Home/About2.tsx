@@ -26,6 +26,7 @@ export const About = () => {
         <div sx={{ display: 'flex' }}>
           {[{}, {}, {}].map((el) => (
             <div
+              key={new Date() + 'section'}
               sx={{
                 flex: [1, 1 / 3],
                 bg: 'secondary',

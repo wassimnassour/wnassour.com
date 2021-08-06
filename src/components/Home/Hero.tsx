@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
 
@@ -38,7 +39,7 @@ export const Hero = () => {
           Code, by using current best practices in web development
         </p>
         <p sx={{ color: 'white', borderBottom: '1px solid red' }}>
-          Let's have Chat{' '}
+          Let's have Chat
         </p>
       </div>
     </div>

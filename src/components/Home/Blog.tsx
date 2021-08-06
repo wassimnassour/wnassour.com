@@ -36,6 +36,7 @@ export const Blog = ({ Posts }: Props) => {
         >
           {Posts.map((post) => (
             <div
+              key={post.title}
               sx={{
                 flex: [1, 1 / 2, 1 / 3],
                 mr: [0, 0, 3, 4],

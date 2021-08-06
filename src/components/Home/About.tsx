@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /** @jsxImportSource theme-ui */
 
 import Link from 'next/link'

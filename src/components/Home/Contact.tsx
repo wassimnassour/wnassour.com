@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /** @jsxImportSource theme-ui */
 import Link from 'next/link'
 import { jsx } from 'theme-ui'
