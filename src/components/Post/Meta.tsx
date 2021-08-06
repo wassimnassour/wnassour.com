@@ -6,6 +6,7 @@ import { SITE_URL, SITE_NAME, TWITTER_USERNAME } from '../../../utils/constants'
 
 type Props = {
   pageTitle?: string
+  description?: string | undefined
 }
 
 const meta = {
@@ -13,16 +14,19 @@ const meta = {
   ogImagePath: '/assets/WN.png',
 }
 
-export const Meta: React.FC<Props> = ({ pageTitle }: Props) => {
+export const Meta: React.FC<Props> = ({ pageTitle, description }: Props) => {
   const router = useRouter()
   const ogUrl = SITE_URL + router.asPath
   const ogType = router.pathname === '/' ? 'website' : 'article'
-  const ogTitle = pageTitle ? pageTitle : 'Wassim'
+  const ogTitle = pageTitle ? pageTitle : 'Wassim | Home'
   const ogImage = SITE_URL + meta.ogImagePath
+  const ogDescription = description
+    ? description
+    : 'Hi my name is wassim ,im front-end developer '
 
   return (
     <Head>
-      <title>{`${pageTitle} | ${SITE_NAME}`}</title>
+      <title>{pageTitle}</title>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -51,14 +55,14 @@ export const Meta: React.FC<Props> = ({ pageTitle }: Props) => {
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#fff" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-      <meta name="description" content={meta.description} key="description" />
+      <meta name="description" content={ogDescription} key="description" />
       <meta property="og:url" content={ogUrl} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={ogTitle} />
       <meta
         property="og:description"
-        content={meta.description}
+        content={ogDescription}
         key="ogDescription"
       />
       <meta property="og:image" content={ogImage} key="ogImage" />
