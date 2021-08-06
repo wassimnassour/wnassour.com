@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
 import { GetStaticProps } from 'next'
-import React from 'react'
-import { getFeaturedPosts } from '../lib'
 import { getAllPosts } from '../lib/mdxUtils'
 import { IPost } from '../types/post'
 import Link from 'next/link'
@@ -55,13 +55,11 @@ const ArticleCard = ({
           src="https://picsum.photos/400/400"
           alt="A photograph of sliced kiwifruit on a while plate"
         />
-
         <span sx={{ color: 'gainsboro', mb: [0.6, 1, 1] }}>{date}</span>
         <h1 sx={{ fontSize: 22, color: 'white' }}>{title}</h1>
         <p sx={{ mb: 3, fontSize: [14, 14, 16], color: 'whitesmoke' }}>
           {excerpt}
         </p>
-
         <span
           sx={{ color: 'white', mb: 1, fontWeight: 700, cursor: 'pointer' }}
         >
@@ -88,6 +86,7 @@ const Blog = ({ posts }: Props) => {
       >
         {posts.map((post) => (
           <ArticleCard
+            key={post.title + post.slug}
             title={post.title}
             excerpt={post.excerpt}
             date={post.date}
