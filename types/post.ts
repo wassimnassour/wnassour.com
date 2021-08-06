@@ -9,5 +9,8 @@ export interface IPost {
   ingredients: string[]
   directions: string[]
   tips: string[]
-  author: string
+  author: {
+    name: string
+    image: string
+  }
 }
