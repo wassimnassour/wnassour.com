@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next'
 import { getAllPosts } from '../lib/mdxUtils'
 import { IPost } from '../types/post'
 import Link from 'next/link'
+import { Meta } from 'components'
 
 interface Props {
   posts: IPost[]
@@ -72,29 +73,31 @@ const ArticleCard = ({
 
 const Blog = ({ posts }: Props) => {
   return (
-    <div sx={{ width: ['90%', '95%', '94%', '960px'], mx: 'auto' }}>
-      <h1 sx={{ color: 'white', ml: [1], fontSize: 50 }}>Blog</h1>
-      <div
-        sx={{
-          display: ['flex'],
-          flexWrap: ['wrap'],
-          alignItems: 'center',
-          justifyContent: ['center', 'center', 'flex-start'],
-          mx: 'auto',
-          width: '100%',
-        }}
-      >
-        {posts.map((post) => (
-          <ArticleCard
-            key={post.title + post.slug}
-            title={post.title}
-            excerpt={post.excerpt}
-            date={post.date}
-            slug={post.slug}
-          />
-        ))}
+    <Meta pageTitle="Blog">
+      <div sx={{ width: ['90%', '95%', '94%', '960px'], mx: 'auto' }}>
+        <h1 sx={{ color: 'white', ml: [1], fontSize: 50 }}>Blog</h1>
+        <div
+          sx={{
+            display: ['flex'],
+            flexWrap: ['wrap'],
+            alignItems: 'center',
+            justifyContent: ['center', 'center', 'flex-start'],
+            mx: 'auto',
+            width: '100%',
+          }}
+        >
+          {posts.map((post) => (
+            <ArticleCard
+              key={post.title + post.slug}
+              title={post.title}
+              excerpt={post.excerpt}
+              date={post.date}
+              slug={post.slug}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </Meta>
   )
 }
 
