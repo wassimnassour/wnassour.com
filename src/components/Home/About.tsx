@@ -4,6 +4,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { jsx } from 'theme-ui'
+import { ABOUT } from '../../../utils'
+import ProfilePicture from '../../../assets/wassim.jpg'
 
 export const About = () => {
   return (
@@ -18,7 +20,7 @@ export const About = () => {
     >
       <div
         sx={{
-          width: ['90%', '87%', '87%', '65%'],
+          width: ['90%', '90%', 800, 1000],
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -50,18 +52,13 @@ export const About = () => {
               display: ['none', 'block'],
               width: [140, 200],
               height: [140, 200],
+              objectFit: 'cover',
             }}
-            src="https://picsum.photos/400/400"
-            alt="A photograph of sliced kiwifruit on a while plate"
+            src="/wassim.jpg"
+            alt="wassim portfolio"
           />
 
-          <p sx={{ color: 'white', ml: [0, 4] }}>
-            This is kiwifruit: originally called “yang tao”, “melonette” and
-            Chinese gooseberry. Cultivaed in its fuzzy variety from Chinese
-            imports, the fruit proved popular with American military servicemen
-            stationed in New Zealand during World War II, with commercial export
-            to the United States starting after the end of the war.
-          </p>
+          <p sx={{ color: 'white', ml: [0, 4] }}>{ABOUT}</p>
         </div>
       </div>
     </div>
