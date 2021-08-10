@@ -7,22 +7,27 @@ import { SITE_URL, SITE_NAME, TWITTER_USERNAME } from '../../../utils/constants'
 type Props = {
   pageTitle?: string
   description?: string | undefined
+  imagePath?: string
 }
 
 const meta = {
   description: `${SITE_NAME} `,
-  ogImagePath: '/assets/WN.png',
+  ogImagePath: '/wassim.jpg',
 }
 
-export const Meta: React.FC<Props> = ({ pageTitle, description }: Props) => {
+export const Meta: React.FC<Props> = ({
+  imagePath,
+  pageTitle,
+  description,
+}: Props) => {
   const router = useRouter()
   const ogUrl = SITE_URL + router.asPath
   const ogType = router.pathname === '/' ? 'website' : 'article'
   const ogTitle = pageTitle ? pageTitle : 'Wassim | Home'
-  const ogImage = SITE_URL + meta.ogImagePath
+  const ogImage = SITE_URL + (imagePath ? imagePath : meta.ogImagePath)
   const ogDescription = description
     ? description
-    : 'Hi my name is wassim ,im front-end developer '
+    : "Hi 👋 I'm Wassim Nassour, self-taught  developer , I work now as a mobile engineer, also have interested in the web technologies b,& tech in general"
 
   return (
     <Head>
