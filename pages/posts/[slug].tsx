@@ -5,10 +5,9 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-
 import { Thumbnail, Layout, Paragraph, CodeBlock } from 'components'
 import { IPost } from '../../types/post'
-import { SITE_URL } from '../../utils/constants'
+import { SITE_URL } from 'utils'
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 import Title from 'components/Post/Title'
 

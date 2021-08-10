@@ -2,7 +2,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'theme-ui'
-import { theme } from '../ui/theme'
+import { theme } from 'ui/theme'
 import { Footer, Nav } from 'components'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

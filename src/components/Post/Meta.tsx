@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { SITE_URL, SITE_NAME, TWITTER_USERNAME } from '../../../utils/constants'
+import { SITE_URL, SITE_NAME, TWITTER_USERNAME } from 'utils'
 
 type Props = {
   pageTitle?: string
@@ -12,7 +12,7 @@ type Props = {
 
 const meta = {
   description: `${SITE_NAME} `,
-  ogImagePath: '/wassim.jpg',
+  ogImagePath: '/assets/wassim.jpg',
 }
 
 export const Meta: React.FC<Props> = ({
