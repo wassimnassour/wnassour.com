@@ -4,8 +4,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { jsx } from 'theme-ui'
-import { ABOUT } from '../../../utils'
-import ProfilePicture from '../../../assets/wassim.jpg'
+import { ABOUT } from 'utils'
 
 export const About = () => {
   return (
@@ -54,7 +53,7 @@ export const About = () => {
               height: [140, 200],
               objectFit: 'cover',
             }}
-            src="/wassim.jpg"
+            src="/assets/wassim.jpg"
             alt="wassim portfolio"
           />
 
