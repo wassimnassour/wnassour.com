@@ -13,7 +13,7 @@ interface Props {
 export default function Home({ featuredPosts }: Props) {
   return (
     <>
-      <Meta pageTitle="Home" />
+      <Meta pageTitle="Wassim | Home" />
 
       <div
         sx={{
