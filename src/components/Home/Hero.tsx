@@ -14,6 +14,7 @@ export const Hero = () => {
       <div
         sx={{
           width: ['90%', '80%', '75%', '60%'],
+          maxWidth: 1100,
           mx: 'auto',
           height: '100%',
           display: 'flex',

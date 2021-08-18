@@ -18,7 +18,7 @@ export const Blog = ({ Posts }: Props) => {
         mt: 4,
       }}
     >
-      <div sx={{ width: ['90%', '90%', '87%', '65%'] }}>
+      <div sx={{ width: ['90%', '90%', 800, '75%'], maxWidth: 1100 }}>
         <div sx={{ display: 'flex', alignItems: 'center' }}>
           <span
             sx={{

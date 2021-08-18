@@ -19,8 +19,9 @@ export const About = () => {
     >
       <div
         sx={{
-          width: ['90%', '90%', 800, 1000],
           display: 'flex',
+          width: ['90%', '90%', 800, '75%'],
+          maxWidth: 1100,
           flexDirection: 'column',
         }}
       >
