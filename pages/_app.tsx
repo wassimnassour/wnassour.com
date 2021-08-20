@@ -4,12 +4,28 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'theme-ui'
 import { theme } from 'ui/theme'
 import { Footer, Nav } from 'components'
+import { DefaultSeo } from 'next-seo'
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function MyApp({ Component, pageProps }: AppProps) {
   const them: any = theme
   return (
     <ThemeProvider theme={them}>
+      <DefaultSeo
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://po2.vercel.app/',
+          site_name: 'Wassim',
+          title: 'Wassim',
+          description:
+            "Hi 👋 I'm Wassim Nassour, self-taught  developer , I work now as a mobile engineer, also have interested in the web technologies b,& tech in general",
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
       <div sx={{ bg: '#0e1630fa', minHeight: '90vh' }}>
         <Nav />
         <Component {...pageProps} />

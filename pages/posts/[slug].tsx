@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import readingTime from 'reading-time'
 import { Thumbnail, Layout, Paragraph, CodeBlock } from 'components'
 import { IPost } from '../../types/post'
 import { SITE_URL } from 'utils'
@@ -29,12 +30,12 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       <Head>
         <meta
           name="description"
-          content={frontMatter.description}
+          content={frontMatter.excerpt}
           key="description"
         />
         <meta
           property="og:description"
-          content={frontMatter.description}
+          content={frontMatter.excerpt}
           key="ogDescription"
         />
         <meta property="og:image" content={ogImage} key="ogImage" />
@@ -47,9 +48,13 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
 
         <Title>{frontMatter.title}</Title>
 
-        <p className="font-bold">yield: {frontMatter.author.name}</p>
-
-        <p>{frontMatter.description}</p>
+        <p className="font-bold" sx={{ color: 'GrayText' }}>
+          {frontMatter.date} ·{' '}
+          {readingTime(source.toString()).minutes > 1
+            ? readingTime(source.toString()).minutes
+            : 1 + 'min'}{' '}
+          · {frontMatter.author.name}
+        </p>
 
         <MDXRemote {...source} components={components} />
       </article>

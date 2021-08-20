@@ -1,8 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
-import { About, Blog, Contact, Hero, Meta } from 'components'
+import { About, Blog, Contact, Hero } from 'components'
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 
 import { getFeaturedPosts } from '../lib'
 import { IPost } from '../types/post'
@@ -13,8 +12,6 @@ interface Props {
 export default function Home({ featuredPosts }: Props) {
   return (
     <>
-      <Meta pageTitle="Wassim | Home" />
-
       <div
         sx={{
           justifyContent: 'center',
