@@ -20,6 +20,7 @@
     "prism-react-renderer": "^1.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "reading-time": "^1.4.0",
     "theme-ui": "^0.10.0"
   },
   "devDependencies": {
