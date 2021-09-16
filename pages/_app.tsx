@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
         twitter={{
           handle: '@wassimanssour',
-          site: 'https://wnassour.vercel.app/',
           cardType: 'summary_large_image',
         }}
       />
