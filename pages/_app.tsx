@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         openGraph={{
           type: 'website',
           locale: 'en_IE',
-          url: 'https://wnassour.vercel.app/',
+          url: 'https://wnassour.vercel.app',
           site_name: 'Wassim',
           description:
             "Hi 👋 I'm Wassim Nassour, self-taught  developer , I work now as a mobile engineer, also have interested in the web technologies b,& tech in general",

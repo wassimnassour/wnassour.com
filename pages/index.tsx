@@ -18,7 +18,7 @@ export default function Home({ featuredPosts }: Props) {
         title="Wassim | Home"
         openGraph={{
           title: 'Wassim | Home',
-          url: 'https://wnassour.vercel.app/blog',
+          url: 'https://wnassour.vercel.app',
         }}
       />
       <div

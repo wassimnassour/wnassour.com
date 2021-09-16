@@ -31,7 +31,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
         title={frontMatter.title}
         openGraph={{
           title: frontMatter.title,
-          url: 'https://wnassour.vercel.app/blog',
+          url: `https://wnassour.vercel.app/`,
           description: frontMatter.excerpt,
         }}
       />
