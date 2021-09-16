@@ -75,6 +75,7 @@ const Blog = ({ posts }: Props) => {
   return (
     <>
       <NextSeo
+        title="Wassim | Blog"
         openGraph={{
           title: 'Wassim | Blog',
           url: 'https://wnassour.vercel.app/blog',

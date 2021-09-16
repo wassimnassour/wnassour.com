@@ -28,6 +28,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   return (
     <>
       <NextSeo
+        title={frontMatter.title}
         openGraph={{
           title: frontMatter.title,
           url: 'https://wnassour.vercel.app/blog',

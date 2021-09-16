@@ -15,6 +15,7 @@ export default function Home({ featuredPosts }: Props) {
   return (
     <>
       <NextSeo
+        title="Wassim | Home"
         openGraph={{
           title: 'Wassim | Home',
           url: 'https://wnassour.vercel.app/blog',
