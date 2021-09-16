@@ -1,8 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import dynamic from 'next/dynamic'
-import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import readingTime from 'reading-time'
@@ -11,6 +9,8 @@ import { IPost } from '../../types/post'
 import { SITE_URL } from 'utils'
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 import Title from 'components/Post/Title'
+import React from 'react'
+import { NextSeo } from 'next-seo'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -26,39 +26,34 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   const ogImage = SITE_URL + frontMatter.thumbnail
 
   return (
-    <Layout pageTitle={frontMatter.title}>
-      <Head>
-        <meta
-          name="description"
-          content={frontMatter.excerpt}
-          key="description"
-        />
-        <meta
-          property="og:description"
-          content={frontMatter.excerpt}
-          key="ogDescription"
-        />
-        <meta property="og:image" content={ogImage} key="ogImage" />
-      </Head>
+    <>
+      <NextSeo
+        openGraph={{
+          title: frontMatter.title,
+          url: 'https://wnassour.vercel.app/blog',
+          description: frontMatter.excerpt,
+        }}
+      />
+      <Layout pageTitle={frontMatter.title}>
+        <article className="prose prose-green">
+          <div className="mb-4">
+            <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
+          </div>
 
-      <article className="prose prose-green">
-        <div className="mb-4">
-          <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
-        </div>
+          <Title>{frontMatter.title}</Title>
 
-        <Title>{frontMatter.title}</Title>
+          <p className="font-bold" sx={{ color: 'GrayText' }}>
+            {frontMatter.date} ·{' '}
+            {readingTime(source.toString()).minutes > 1
+              ? readingTime(source.toString()).minutes
+              : 1 + 'min'}{' '}
+            · {frontMatter.author.name}
+          </p>
 
-        <p className="font-bold" sx={{ color: 'GrayText' }}>
-          {frontMatter.date} ·{' '}
-          {readingTime(source.toString()).minutes > 1
-            ? readingTime(source.toString()).minutes
-            : 1 + 'min'}{' '}
-          · {frontMatter.author.name}
-        </p>
-
-        <MDXRemote {...source} components={components} />
-      </article>
-    </Layout>
+          <MDXRemote {...source} components={components} />
+        </article>
+      </Layout>
+    </>
   )
 }
 
