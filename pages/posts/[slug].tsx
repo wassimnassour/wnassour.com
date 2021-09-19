@@ -15,6 +15,7 @@ import { NextSeo } from 'next-seo'
 type Props = {
   source: MDXRemoteSerializeResult
   frontMatter: Omit<IPost, 'slug'>
+  slug: string
 }
 
 const components = {
@@ -22,7 +23,7 @@ const components = {
   Paragraph: Paragraph,
   CodeBlock: CodeBlock,
 }
-const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
+const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
   const ogImage = SITE_URL + frontMatter.thumbnail
 
   return (
@@ -31,7 +32,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
         title={frontMatter.title}
         openGraph={{
           title: frontMatter.title,
-          url: `https://wnassour.vercel.app/`,
+          url: `https://wnassour.vercel.app/${slug}`,
           description: frontMatter.excerpt,
         }}
       />
@@ -69,13 +70,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       source: mdxSource,
       frontMatter: data,
+      slug: params?.slug,
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts(['slug'])
-
   const paths = posts.map((post) => ({
     params: {
       slug: post.slug,
