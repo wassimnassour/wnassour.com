@@ -34,6 +34,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
           title: frontMatter.title,
           url: `https://wnassour.vercel.app/${slug}`,
           description: frontMatter.excerpt,
+          article: {},
         }}
       />
       <Layout pageTitle={frontMatter.title}>
