@@ -1,8 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import dynamic from 'next/dynamic'
-import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import readingTime from 'reading-time'
@@ -11,10 +9,13 @@ import { IPost } from '../../types/post'
 import { SITE_URL } from 'utils'
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 import Title from 'components/Post/Title'
+import React from 'react'
+import { NextSeo } from 'next-seo'
 
 type Props = {
   source: MDXRemoteSerializeResult
   frontMatter: Omit<IPost, 'slug'>
+  slug: string
 }
 
 const components = {
@@ -22,43 +23,40 @@ const components = {
   Paragraph: Paragraph,
   CodeBlock: CodeBlock,
 }
-const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
+const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
   const ogImage = SITE_URL + frontMatter.thumbnail
 
   return (
-    <Layout pageTitle={frontMatter.title}>
-      <Head>
-        <meta
-          name="description"
-          content={frontMatter.excerpt}
-          key="description"
-        />
-        <meta
-          property="og:description"
-          content={frontMatter.excerpt}
-          key="ogDescription"
-        />
-        <meta property="og:image" content={ogImage} key="ogImage" />
-      </Head>
+    <>
+      <NextSeo
+        title={frontMatter.title}
+        openGraph={{
+          title: frontMatter.title,
+          url: `https://wnassour.vercel.app/${slug}`,
+          description: frontMatter.excerpt,
+          article: {},
+        }}
+      />
+      <Layout pageTitle={frontMatter.title}>
+        <article className="prose prose-green">
+          <div className="mb-4">
+            <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
+          </div>
 
-      <article className="prose prose-green">
-        <div className="mb-4">
-          <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
-        </div>
+          <Title>{frontMatter.title}</Title>
 
-        <Title>{frontMatter.title}</Title>
+          <p className="font-bold" sx={{ color: 'GrayText' }}>
+            {frontMatter.date} ·{' '}
+            {readingTime(source.toString()).minutes > 1
+              ? readingTime(source.toString()).minutes
+              : 1 + 'min'}{' '}
+            · {frontMatter.author.name}
+          </p>
 
-        <p className="font-bold" sx={{ color: 'GrayText' }}>
-          {frontMatter.date} ·{' '}
-          {readingTime(source.toString()).minutes > 1
-            ? readingTime(source.toString()).minutes
-            : 1 + 'min'}{' '}
-          · {frontMatter.author.name}
-        </p>
-
-        <MDXRemote {...source} components={components} />
-      </article>
-    </Layout>
+          <MDXRemote {...source} components={components} />
+        </article>
+      </Layout>
+    </>
   )
 }
 
@@ -73,13 +71,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       source: mdxSource,
       frontMatter: data,
+      slug: params?.slug,
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts(['slug'])
-
   const paths = posts.map((post) => ({
     params: {
       slug: post.slug,

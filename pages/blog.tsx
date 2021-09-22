@@ -7,7 +7,7 @@ import { getAllPosts } from '../lib/mdxUtils'
 import { IPost } from '../types/post'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Meta } from 'components'
+import { NextSeo } from 'next-seo'
 interface Props {
   posts: IPost[]
 }
@@ -74,7 +74,13 @@ const ArticleCard = ({
 const Blog = ({ posts }: Props) => {
   return (
     <>
-      <Meta pageTitle="Blog" />
+      <NextSeo
+        title="Wassim | Blog"
+        openGraph={{
+          title: 'Wassim | Blog',
+          url: 'https://wnassour.vercel.app/blog',
+        }}
+      />
       <div sx={{ width: ['90%', '95%', '94%', '960px'], mx: 'auto' }}>
         <h1 sx={{ color: 'white', ml: [1], fontSize: 50 }}>Blog</h1>
         <div

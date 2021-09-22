@@ -5,6 +5,8 @@ import { GetStaticProps } from 'next'
 
 import { getFeaturedPosts } from '../lib'
 import { IPost } from '../types/post'
+import React from 'react'
+import { NextSeo } from 'next-seo'
 
 interface Props {
   featuredPosts: IPost[]
@@ -12,6 +14,13 @@ interface Props {
 export default function Home({ featuredPosts }: Props) {
   return (
     <>
+      <NextSeo
+        title="Wassim | Home"
+        openGraph={{
+          title: 'Wassim | Home',
+          url: 'https://wnassour.vercel.app',
+        }}
+      />
       <div
         sx={{
           justifyContent: 'center',
