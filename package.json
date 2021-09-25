@@ -12,6 +12,7 @@
   "dependencies": {
     "@theme-ui/presets": "^0.10.0",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "disqus-react": "^1.1.2",
     "gray-matter": "^4.0.3",
     "next": "11.0.1",
     "next-mdx-remote": "^3.0.4",
