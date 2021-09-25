@@ -11,6 +11,7 @@ import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 import Title from 'components/Post/Title'
 import React from 'react'
 import { NextSeo } from 'next-seo'
+import DisqusComments from 'components/Disqus'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -55,6 +56,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
 
           <MDXRemote {...source} components={components} />
         </article>
+        <DisqusComments post={frontMatter} slug={slug} />
       </Layout>
     </>
   )
