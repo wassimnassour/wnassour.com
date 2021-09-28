@@ -47,7 +47,7 @@ const components = {
   CodeBlock: CodeBlock,
 }
 const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
-  const ogImage = SITE_URL + frontMatter.thumbnail
+  const ogImage = SITE_URL + frontMatter.ogImage.thumbnail
 
   return (
     <>
@@ -55,7 +55,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
         title={frontMatter.title}
         openGraph={{
           title: frontMatter.title,
-          url: `https://wnassour.vercel.app/${slug}`,
+          url: SITE_URL + slug,
           description: frontMatter.excerpt,
           article: {},
           images: [{ url: ogImage }],
@@ -64,7 +64,10 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
       <Layout pageTitle={frontMatter.title}>
         <article className="prose prose-green">
           <div className="mb-4">
-            <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
+            <Thumbnail
+              title={frontMatter.title}
+              src={frontMatter.ogImage.url}
+            />
           </div>
 
           <Title>{frontMatter.title}</Title>

@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://www.wnassour.com'
+export const SITE_URL = 'https://www.wnassour.com/'
 export const SITE_NAME = 'Wassim Blog'
 export const TWITTER_USERNAME = '@wassimnassour'
 

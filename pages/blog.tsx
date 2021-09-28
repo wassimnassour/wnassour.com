@@ -8,6 +8,7 @@ import { IPost } from 'types'
 import Link from 'next/link'
 import Head from 'next/head'
 import { NextSeo } from 'next-seo'
+import { SITE_URL } from 'utils'
 interface Props {
   posts: IPost[]
 }
@@ -78,7 +79,7 @@ const Blog = ({ posts }: Props) => {
         title="Wassim | Blog"
         openGraph={{
           title: 'Wassim | Blog',
-          url: 'https://wnassour.vercel.app/blog',
+          url: `${SITE_URL}/blog`,
         }}
       />
       <div sx={{ width: ['90%', '95%', '94%', '960px'], mx: 'auto' }}>

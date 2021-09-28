@@ -5,6 +5,7 @@ import { ThemeProvider } from 'theme-ui'
 import { theme } from 'ui/theme'
 import { Footer, Nav } from 'components'
 import { DefaultSeo } from 'next-seo'
+import { SITE_URL } from 'utils'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const them: any = theme
@@ -14,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         openGraph={{
           type: 'website',
           locale: 'en_IE',
-          url: 'https://wnassour.vercel.app',
+          url: SITE_URL,
           site_name: 'Wassim',
           description:
             "Hi 👋 I'm Wassim Nassour, self-taught  developer , I work now as a mobile engineer, also have interested in the web technologies b,& tech in general",

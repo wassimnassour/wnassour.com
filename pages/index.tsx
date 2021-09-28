@@ -5,6 +5,7 @@ import { GetStaticProps } from 'next'
 import { IPost } from 'types'
 import { NextSeo } from 'next-seo'
 import { getFeaturedPosts } from '../lib'
+import { SITE_URL } from 'utils'
 
 interface Props {
   featuredPosts: IPost[]
@@ -16,7 +17,7 @@ export default function Home({ featuredPosts }: Props) {
         title="Wassim | Home"
         openGraph={{
           title: 'Wassim | Home',
-          url: 'https://wnassour.vercel.app',
+          url: SITE_URL,
         }}
       />
       <div
