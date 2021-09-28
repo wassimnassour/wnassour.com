@@ -2,11 +2,9 @@
 import { jsx } from 'theme-ui'
 import { About, Blog, Contact, Hero } from 'components'
 import { GetStaticProps } from 'next'
-
-import { getFeaturedPosts } from '../lib'
-import { IPost } from '../types/post'
-import React from 'react'
+import { IPost } from 'types'
 import { NextSeo } from 'next-seo'
+import { getFeaturedPosts } from '../lib'
 
 interface Props {
   featuredPosts: IPost[]

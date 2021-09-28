@@ -4,7 +4,7 @@
 import { jsx } from 'theme-ui'
 import { GetStaticProps } from 'next'
 import { getAllPosts } from '../lib/mdxUtils'
-import { IPost } from '../types/post'
+import { IPost } from 'types'
 import Link from 'next/link'
 import Head from 'next/head'
 import { NextSeo } from 'next-seo'

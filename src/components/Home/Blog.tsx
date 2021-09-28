@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
 import Link from 'next/link'
 import { jsx } from 'theme-ui'
-import { IPost } from '../../../types/post'
+import { IPost } from 'types'
 import Image from 'next/image'
+
 interface Props {
   Posts: IPost[]
 }

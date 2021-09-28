@@ -2,7 +2,7 @@
 import { jsx } from 'theme-ui'
 import { DiscussionEmbed } from 'disqus-react'
 import { SITE_URL } from 'utils'
-import { IPost } from '../../types/post'
+import { IPost } from 'types/post'
 
 interface Props {
   slug: string
