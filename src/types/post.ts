@@ -1,7 +1,6 @@
 export interface IPost {
   slug: string
   date: string
-  thumbnail: string
   title: string
   description: string
   excerpt: string
@@ -9,6 +8,10 @@ export interface IPost {
   ingredients: string[]
   directions: string[]
   tips: string[]
+  ogImage: {
+    thumbnail: string
+    url: string
+  }
   author: {
     name: string
     image: string
