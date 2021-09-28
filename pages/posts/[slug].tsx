@@ -4,6 +4,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import readingTime from 'reading-time'
+import NextImage from 'next/image'
 import { Thumbnail, Layout, Paragraph, CodeBlock, H2, Title } from 'components'
 import { IPost } from '../../src/types/post'
 import { SITE_URL } from 'utils'
@@ -29,6 +30,19 @@ const components = {
   },
   p: ({ styles, children }: MdxComponent) => {
     return <Paragraph styles={styles}>{children}</Paragraph>
+  },
+  Img: ({ src, height = 40, width = '100%', objectFit = 'fill' }: any) => {
+    return (
+      <NextImage
+        layout="responsive"
+        src={src}
+        height={height}
+        width={width}
+        objectFit={objectFit}
+        placeholder="blur"
+        blurDataURL={src}
+      />
+    )
   },
   CodeBlock: CodeBlock,
 }
