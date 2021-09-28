@@ -4,14 +4,15 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import readingTime from 'reading-time'
-import { Thumbnail, Layout, Paragraph, CodeBlock } from 'components'
-import { IPost } from '../../types/post'
+import { Thumbnail, Layout, Paragraph, CodeBlock, H2, Title } from 'components'
+import { IPost } from '../../src/types/post'
 import { SITE_URL } from 'utils'
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
-import Title from 'components/Post/Title'
+import { H1 } from 'components'
 import React from 'react'
 import { NextSeo } from 'next-seo'
 import DisqusComments from 'components/Disqus'
+import { MdxComponent } from 'types'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -20,8 +21,15 @@ type Props = {
 }
 
 const components = {
-  Title: Title,
-  Paragraph: Paragraph,
+  h1: ({ styles, children }: MdxComponent) => {
+    return <H1 styles={styles}>{children}</H1>
+  },
+  h2: ({ styles, children }: MdxComponent) => {
+    return <H2 styles={styles}>{children}</H2>
+  },
+  p: ({ styles, children }: MdxComponent) => {
+    return <Paragraph styles={styles}>{children}</Paragraph>
+  },
   CodeBlock: CodeBlock,
 }
 const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {

@@ -1,13 +1,9 @@
 /** @jsxImportSource theme-ui */
-import { Container, jsx } from 'theme-ui'
-import React from 'react'
+import { jsx } from 'theme-ui'
+import { MdxComponent } from 'types'
 
-const Title: React.FC = ({ children }) => {
+export const Title = ({ children, styles }: MdxComponent) => {
   return (
-    <div>
-      <h1 sx={{ color: 'white', fontSize: [33, 44] }}>{children}</h1>
-    </div>
+    <h1 sx={{ color: 'white', fontSize: [33, 44], ...styles }}>{children}</h1>
   )
 }
-
-export default Title
