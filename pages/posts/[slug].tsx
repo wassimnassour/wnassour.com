@@ -62,7 +62,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
         }}
       />
       <Layout pageTitle={frontMatter.title}>
-        <article className="prose prose-green">
+        <article sx={{ mt: [2, 4] }}>
           <div className="mb-4">
             <Thumbnail
               title={frontMatter.title}
@@ -70,15 +70,16 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
             />
           </div>
 
-          <Title>{frontMatter.title}</Title>
-
-          <p className="font-bold" sx={{ color: 'GrayText' }}>
-            {frontMatter.date} ·{' '}
-            {readingTime(source.toString()).minutes > 1
-              ? readingTime(source.toString()).minutes
-              : 1 + 'min'}{' '}
-            · {frontMatter.author.name}
-          </p>
+          <div sx={{ mb: 4, mt: [3, 5] }}>
+            <Title>{frontMatter.title}</Title>
+            <p sx={{ color: 'GrayText', m: 0 }}>
+              {frontMatter.date} ·{' '}
+              {readingTime(source.toString()).minutes > 1
+                ? readingTime(source.toString()).minutes
+                : 1 + 'min'}{' '}
+              · {frontMatter.author.name}
+            </p>
+          </div>
 
           <MDXRemote {...source} components={components} />
         </article>
