@@ -11,10 +11,10 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <script
-            async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
           <script
+            id="gtag-init"
             dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];
