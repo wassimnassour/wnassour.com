@@ -8,6 +8,7 @@ export interface IPost {
   ingredients: string[]
   directions: string[]
   tips: string[]
+  coverImage: string
   ogImage: {
     thumbnail: string
     url: string
