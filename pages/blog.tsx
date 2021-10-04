@@ -6,9 +6,10 @@ import { GetStaticProps } from 'next'
 import { getAllPosts } from '../lib/mdxUtils'
 import { IPost } from 'types'
 import Link from 'next/link'
-import Head from 'next/head'
 import { NextSeo } from 'next-seo'
+import NextImage from 'next/image'
 import { SITE_URL } from 'utils'
+
 interface Props {
   posts: IPost[]
 }
@@ -18,55 +19,57 @@ const ArticleCard = ({
   date,
   slug,
   excerpt,
+  image,
 }: {
   title: string
   date: string
   slug: string
   excerpt: string
+  image: string
 }) => {
   return (
     <Link href={`/posts/${slug}`}>
       <a
         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
           cursor: 'pointer',
           flexGrow: 0,
-          flexBasis: ['100%', '100%', '45%'],
-          bg: '#49536b',
-          px: 3,
-          py: 3,
-          mx: ['auto', 'auto', 3],
+          flexBasis: ['100%', '100%', '31%', '30%'],
+          px: 2,
+          mx: ['auto', 'auto', 1],
+          bg: ['#49536b', '#49536b', 'transparent'],
           ml: 0,
-          my: [2, 2, 4],
+          my: [2, 2, 5],
           borderRadius: 3,
         }}
       >
-        <img
+        <div
           sx={{
+            width: '100%',
+            position: 'relative',
             display: ['none', 'none', 'block'],
             mx: 'auto',
             mb: [1, 2, 0],
-            transform: [
-              'translateY(0px)',
-              'translateY(0px)',
-              'translateY(-25px)',
-            ],
             borderRadius: 7,
-            width: ['100%'],
             height: [140, 200],
           }}
-          src="https://picsum.photos/400/400"
-          alt="A photograph of sliced kiwifruit on a while plate"
-        />
-        <span sx={{ color: 'gainsboro', mb: [0.6, 1, 1] }}>{date}</span>
-        <h1 sx={{ fontSize: 22, color: 'white' }}>{title}</h1>
-        <p sx={{ mb: 3, fontSize: [14, 14, 16], color: 'whitesmoke' }}>
-          {excerpt}
-        </p>
-        <span
-          sx={{ color: 'white', mb: 1, fontWeight: 700, cursor: 'pointer' }}
         >
-          Read More
-        </span>
+          <NextImage src={image} layout="fill" objectFit="cover" alt={title} />
+        </div>
+
+        <h1 sx={{ fontSize: 22, m: 0, mt: 2, color: 'white' }}>{title}</h1>
+        <p sx={{ mb: 3, fontSize: [14, 14, 16], color: 'whitesmoke' }}>
+          {excerpt.substring(1, 189)}...
+        </p>
+        <div
+          sx={{
+            color: 'gainsboro',
+          }}
+        >
+          <span sx={{ mb: 1 }}>{date}</span>
+        </div>
       </a>
     </Link>
   )
@@ -82,27 +85,35 @@ const Blog = ({ posts }: Props) => {
           url: `${SITE_URL}/blog`,
         }}
       />
-      <div sx={{ width: ['90%', '95%', '94%', '960px'], mx: 'auto' }}>
+      <div
+        sx={{
+          width: ['90%', '95%', '94%', '90%'],
+          mx: 'auto',
+        }}
+      >
         <h1 sx={{ color: 'white', ml: [1], fontSize: 50 }}>Blog</h1>
         <div
           sx={{
             display: ['flex'],
             flexWrap: ['wrap'],
-            alignItems: 'center',
-            justifyContent: ['center', 'center', 'flex-start'],
+            alignItems: ['center', 'flex-start'],
+            justifyContent: ['center', 'center', 'space-between'],
             mx: 'auto',
             width: '100%',
           }}
         >
-          {posts.map((post) => (
-            <ArticleCard
-              key={post.title + post.slug}
-              title={post.title}
-              excerpt={post.excerpt}
-              date={post.date}
-              slug={post.slug}
-            />
-          ))}
+          {posts.map((post) => {
+            return (
+              <ArticleCard
+                image={post.coverImage}
+                key={post.title + post.slug}
+                title={post.title}
+                excerpt={post.excerpt}
+                date={post.date}
+                slug={post.slug}
+              />
+            )
+          })}
         </div>
       </div>
     </>
@@ -119,6 +130,7 @@ export const getStaticProps: GetStaticProps = async () => {
     'featured',
     'date',
     'excerpt',
+    'coverImage',
   ])
   return {
     props: {
