@@ -23,7 +23,7 @@ export const Hero = () => {
           alignItems: 'flex-start',
         }}
       >
-        <span sx={{ color: 'gainsboro' }}>Software developer</span>
+        <span sx={{ color: 'gainsboro' }}>Software Engineer</span>
         <h2
           sx={{
             color: 'white',
