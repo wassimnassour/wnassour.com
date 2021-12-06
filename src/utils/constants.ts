@@ -1,6 +1,9 @@
 export const SITE_URL = 'https://www.wnassour.com/'
 export const SITE_NAME = 'Wassim Blog'
 export const TWITTER_USERNAME = '@wassimnassour'
+export const PHONE_NUMBER = '+212641327128'
+export const EMAIL = 'nassourwassim@gmail.com'
+export const TWITTER_URL = 'https:www.twitter.com/wassimnassour'
 
 export const ABOUT =
   ' Hi ,Im wassim self-taught developer ,I work now as React Native engineer at @Obyets , I’ve been passionate about technology since I was a kid. im  someone friendly and ambition to learn and grow and gain more experience and knowledge . at daily basis try to be good engineer by writing clean and readable also high-quality code using current best practices in web development ,by using many technologies such us ,React , React Native ,NextJs ,Gatsby .... ,In my downtime, I enjoy reading about tech, or watching some tutorials addition i write articles in my Blog . if you are looking for help or consulting you can Reach out to me , I will be very happy '

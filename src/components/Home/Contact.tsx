@@ -2,6 +2,7 @@
 /** @jsxImportSource theme-ui */
 import Link from 'next/link'
 import { jsx } from 'theme-ui'
+import { EMAIL, PHONE_NUMBER, TWITTER_URL } from 'utils'
 
 export const Contact = () => {
   return (
@@ -28,9 +29,20 @@ export const Contact = () => {
         you
       </p>
       <div sx={{ mb: 3, display: 'flex', flexDirection: ['column', 'row'] }}>
-        <button sx={styles.button}>Contact me Via Twitter </button>
-        <button sx={styles.button}>Contact me Via Email </button>
-        <button sx={styles.button}>Contact me Via Number </button>
+        <a
+          sx={styles.button}
+          href={TWITTER_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Contact me Via Twitter{' '}
+        </a>
+        <a href={`mailto:${EMAIL}`} sx={styles.button}>
+          Contact me Via Email{' '}
+        </a>
+        <a href={`tel:${PHONE_NUMBER}`} sx={styles.button}>
+          Contact me Via Number{' '}
+        </a>
       </div>
     </div>
   )
