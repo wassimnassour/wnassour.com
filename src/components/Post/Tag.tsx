@@ -3,8 +3,6 @@ import { jsx } from 'theme-ui'
 import { blockQuoteProps } from 'types'
 
 export const Tag = ({ children, styles }: blockQuoteProps) => {
-  console.log(children)
-
   return (
     <div
       sx={{
