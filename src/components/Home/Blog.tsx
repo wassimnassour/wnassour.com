@@ -65,15 +65,24 @@ export const Blog = ({ Posts }: Props) => {
           {Posts.map((post) => (
             // eslint-disable-next-line @next/next/link-passhref
             <Link href={`/posts/${post.slug}`} key={post.title}>
-              <a sx={{ cursor: 'pointer' }}>
+              <a
+                sx={{
+                  cursor: 'pointer',
+                  flex: [1, 1 / 2, 1 / 3],
+                  height: ['auto', 'auto', 'auto', 'auto', 315],
+                }}
+              >
                 <div
                   sx={{
-                    flex: [1, 1 / 2, 1 / 3],
+                    height: '100%',
                     mr: [0, 0, 3, 3],
                     my: [2, 2, 0],
-                    p: 2,
+                    p: 3,
                     borderRadius: 2,
                     bg: '#49536b',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
                   }}
                 >
                   <h1 sx={{ fontSize: 22, color: 'white' }}>{post.title}</h1>

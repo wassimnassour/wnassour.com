@@ -39,3 +39,5 @@ jspm_packages
 .env.developments
 .env.productions
 .env
+*.DS_Store
+*/.DS_Store
