@@ -1,5 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
+import React from 'react'
+import { LinkProps, MdxComponent } from 'types'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
@@ -14,15 +16,15 @@ import {
   Title,
   Tag,
   BlockQuote,
+  Li,
+  Link,
 } from 'components'
 import { IPost } from '../../src/types/post'
 import { SITE_URL } from 'utils'
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 import { H1 } from 'components'
-import React from 'react'
 import { NextSeo } from 'next-seo'
 import DisqusComments from 'components/Disqus'
-import { MdxComponent } from 'types'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -53,6 +55,12 @@ const components = {
       />
     )
   },
+  li: Li,
+  a: ({ children, styles, href }: LinkProps) => (
+    <Link href={href} styles={styles}>
+      {children}
+    </Link>
+  ),
   Tag: ({ children, styles }: MdxComponent) => <Tag>{children}</Tag>,
   BlockQuote: ({ children, styles }: MdxComponent) => (
     <BlockQuote>{children}</BlockQuote>
