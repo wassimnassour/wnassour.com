@@ -40,7 +40,7 @@ server-side rendering is a rendering technique, rebuild the pages for each reque
 <h2 styles={{ color: 'secondary' }}> ISG: Increment site generation</h2>
 
 ISG came to solve an issue with SSG, wish is if we want to build some specific pages or update some of them you will need to rebuild the entire app, and this is an issue because it will take a lot of time if you have many pages or you have an e-commerce website and you are adding products to it, you will have to solve this issue, also we can’t use SSR because we will lose the performance benefit from SSG. ISG came between SSG and SSR, with ISG you rebuild the pages after a period of time that you can control, without the need to manually trigger the rebuild of the site.
-Next.js defines which pages to generate at build-time based on the paths returned by,[getStaticPaths](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation)
+Next.js defines which pages to generate at build-time based on the paths returned by, [getStaticPaths](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation)
 
 For example, you can generate the most popular 1,000 products at build-time by returning the paths for the top 1,000 product IDs in getStaticPaths.
 
@@ -68,7 +68,7 @@ The router will automatically route files named `index` to the root of the dir
 
 - <Tag>pages/blog/index.js</Tag> →  <Tag>/blog</Tag>
 
-### **[Nested routes](https://nextjs.org/docs/routing/introduction#nested-routes)**
+<h2 styles={{ color: 'secondary' }}> Nested routes</h2>
 
 The router supports nested files. If you create a nested folder structure, files will automatically be routed in the same way still.
 
@@ -78,7 +78,7 @@ The router supports nested files. If you create a nested folder structure, files
     /dashboard/settings/username
   </Tag>
 
-### **[Dynamic route segments](https://nextjs.org/docs/routing/introduction#dynamic-route-segments)**
+<h2 styles={{ color: 'secondary' }}> Dynamic route segments</h2>
 
 To match a dynamic segment, you can use the bracket syntax. This allows you
 to match named parameters.
