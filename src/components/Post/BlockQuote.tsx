@@ -1,15 +1,13 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
-import { blockQuoteProps } from 'types'
+import { MdxComponent } from 'types'
 
-export const BlockQuote = ({ children, styles }: blockQuoteProps) => {
-  console.log(children)
-
+export const BlockQuote = ({ children, styles }: MdxComponent) => {
   return (
     <blockquote
       sx={{
         bg: '#656c7a',
-        px: [2],
+        px: [3],
         py: [1],
         mx: [1],
         color: 'white',

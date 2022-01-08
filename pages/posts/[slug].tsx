@@ -5,7 +5,16 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import readingTime from 'reading-time'
 import NextImage from 'next/image'
-import { Thumbnail, Layout, Paragraph, CodeBlock, H2, Title } from 'components'
+import {
+  Thumbnail,
+  Layout,
+  Paragraph,
+  CodeBlock,
+  H2,
+  Title,
+  Tag,
+  BlockQuote,
+} from 'components'
 import { IPost } from '../../src/types/post'
 import { SITE_URL } from 'utils'
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
@@ -44,6 +53,10 @@ const components = {
       />
     )
   },
+  Tag: ({ children, styles }: MdxComponent) => <Tag>{children}</Tag>,
+  BlockQuote: ({ children, styles }: MdxComponent) => (
+    <BlockQuote>{children}</BlockQuote>
+  ),
   CodeBlock: CodeBlock,
 }
 const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {

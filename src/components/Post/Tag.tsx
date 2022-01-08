@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
 import { jsx } from 'theme-ui'
-import { blockQuoteProps } from 'types'
+import { MdxComponent } from 'types'
 
-export const Tag = ({ children, styles }: blockQuoteProps) => {
+export const Tag = ({ children, styles }: MdxComponent) => {
   return (
     <div
       sx={{
