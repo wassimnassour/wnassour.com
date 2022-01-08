@@ -88,6 +88,7 @@ const Blog = ({ posts }: Props) => {
       <div
         sx={{
           width: ['90%', '95%', '94%', '90%'],
+          maxWidth: 1200,
           mx: 'auto',
         }}
       >
