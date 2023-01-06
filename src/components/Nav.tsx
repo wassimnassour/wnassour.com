@@ -8,16 +8,32 @@ export const Nav = () => {
   const toggleBackDrop = () => {
     setBackDrop(!isBackDropOpen)
   }
-  console.log('isBackDropOpen', isBackDropOpen)
 
   return (
-    <div className="h-24 sticky top-0 w-full px-5 sm:px-0  flex items-center md:justify-between lg:justify-around bg-primary  shadow-md">
-      <div className="max-w-5xl">
-        <Link href="/">
-          <h1 className="font-bold italic text-3xl">
-            <span className="text-secondary">W</span>N
-          </h1>
-        </Link>
+    <div className="sticky top-0 z-20 flex items-center w-full h-24 px-8 shadow-md md:px-0 md:justify-between lg:justify-around bg-primary">
+      <div className="flex items-center justify-between w-11/12 max-w-5xl mx-auto md:9/12">
+        <div className="max-w-5xl">
+          <Link href="/">
+            <h1 className="text-3xl italic font-bold text-white">
+              <span className="text-secondary">W</span>N
+            </h1>
+          </Link>
+        </div>
+        <nav className="flex-row items-center hidden md:flex">
+          <ul className="flex flex-row">
+            {NAV_LINKS.map((_item) => (
+              <li
+                key={_item.name}
+                className="mx-3 text-white cursor-pointer"
+                onClick={() => setBackDrop(false)}
+              >
+                <Link href={_item.url} className="my-3">
+                  {_item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
       <SideBar
@@ -26,27 +42,11 @@ export const Nav = () => {
       />
 
       <button
-        className="block ml-auto  md:hidden "
+        className="block ml-auto md:hidden "
         onClick={() => toggleBackDrop()}
       >
-        <Menu />
+        <Menu className="fill-white" />
       </button>
-
-      <nav className=" hidden  flex-row  items-center md:flex">
-        <ul className="flex flex-row">
-          {NAV_LINKS.map((_item) => (
-            <li
-              key={_item.name}
-              className="mx-3 cursor-pointer"
-              onClick={() => setBackDrop(false)}
-            >
-              <Link href={_item.url} className="my-3">
-                {_item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </div>
   )
 }

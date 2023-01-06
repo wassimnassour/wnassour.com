@@ -22,9 +22,9 @@ export const SideBar = ({ isBackDropOpen, toggleBackDrop }: Props) => {
         onClick={() => toggleBackDrop()}
         className="w-1/2 md:w-2/3 fixed h-full bg-[#1a1a1b7d]"
       />
-      <div className="fixed pt-6 top-0 right-0 bottom-0 w-3/5 md:w-2/6 flex flex-col bg-blue-700 h-full">
+      <div className="fixed top-0 bottom-0 right-0 flex flex-col w-3/5 h-full pt-6 md:w-2/6 bg-secondary">
         <button
-          className="block md:hidden text-white pl-2 "
+          className="block pl-2 text-white md:hidden "
           onClick={() => toggleBackDrop()}
         >
           <Close />
@@ -34,10 +34,10 @@ export const SideBar = ({ isBackDropOpen, toggleBackDrop }: Props) => {
           {NAV_LINKS.map((_item) => (
             <li
               key={_item.name}
-              className="mx-2 text-white cursor-pointer list-none my-3"
+              className="mx-2 my-3 text-white list-none cursor-pointer"
               onClick={() => toggleBackDrop()}
             >
-              <Link href={_item.url} className=" ">
+              <Link href={_item.url} className="">
                 {_item.name}
               </Link>
             </li>

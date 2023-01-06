@@ -21,10 +21,10 @@ export default function Home({ featuredPosts }: Props) {
 
       <div>
         <Hero />
-        <div className="bg-red-400">fef</div>
+
         <About />
-        {/* // <Blog Posts={featuredPosts} />
-        // <Contact /> */}
+        <Blog Posts={featuredPosts} />
+        <Contact />
       </div>
     </>
   )

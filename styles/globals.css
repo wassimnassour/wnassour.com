@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #0e1630fa;
 }
 
 a {
@@ -25,7 +26,7 @@ h2,
 h3 {
   font-family: 'Playfair Display', serif;
 }
+
 p {
   font-family: 'Fira Sans', sans-serif;
-  color: black !important;
 }
