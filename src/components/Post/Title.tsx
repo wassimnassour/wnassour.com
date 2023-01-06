@@ -1,10 +1,13 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
+// /** @jsxImportSource  */
+// import { jsx } from ''
 import { MdxComponent } from 'types'
 
-export const Title = ({ children, styles }: MdxComponent) => {
+export const Title = ({ children }: MdxComponent) => {
   return (
-    <h1 sx={{ color: 'white', mb: 1, fontSize: [33, 44], ...styles }}>
+    <h1
+
+    // sx={{ color: 'white', mb: 1, fontSize: [33, 44], ...styles }}
+    >
       {children}
     </h1>
   )

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   scroll-behavior: smooth;
@@ -14,4 +18,14 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+}
+p {
+  font-family: 'Fira Sans', sans-serif;
+  color: black !important;
 }

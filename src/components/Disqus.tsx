@@ -1,5 +1,3 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
 import { DiscussionEmbed } from 'disqus-react'
 import { SITE_URL } from 'utils'
 import { IPost } from 'types/post'

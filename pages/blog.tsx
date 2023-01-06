@@ -1,7 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
 import { GetStaticProps } from 'next'
 import { getAllPosts } from '../lib/mdxUtils'
 import { IPost } from 'types'
@@ -29,7 +25,7 @@ const ArticleCard = ({
 }) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <a
+      {/* <a
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -44,33 +40,33 @@ const ArticleCard = ({
           my: [2, 2, 5],
           borderRadius: 3,
         }}
+      > */}
+      <div
+        sx={{
+          width: '100%',
+          position: 'relative',
+          display: ['none', 'none', 'block'],
+          mx: 'auto',
+          mb: [1, 2, 0],
+          borderRadius: 7,
+          height: [140, 200],
+        }}
       >
-        <div
-          sx={{
-            width: '100%',
-            position: 'relative',
-            display: ['none', 'none', 'block'],
-            mx: 'auto',
-            mb: [1, 2, 0],
-            borderRadius: 7,
-            height: [140, 200],
-          }}
-        >
-          <NextImage src={image} layout="fill" objectFit="cover" alt={title} />
-        </div>
+        <NextImage src={image} layout="fill" objectFit="cover" alt={title} />
+      </div>
 
-        <h1 sx={{ fontSize: 22, m: 0, mt: 2, color: 'white' }}>{title}</h1>
-        <p sx={{ mb: 3, fontSize: [14, 14, 16], color: 'whitesmoke' }}>
-          {excerpt.substring(1, 189)}...
-        </p>
-        <div
-          sx={{
-            color: 'gainsboro',
-          }}
-        >
-          <span sx={{ mb: 1 }}>{date}</span>
-        </div>
-      </a>
+      <h1 sx={{ fontSize: 22, m: 0, mt: 2, color: 'white' }}>{title}</h1>
+      <p sx={{ mb: 3, fontSize: [14, 14, 16], color: 'whitesmoke' }}>
+        {excerpt.substring(1, 189)}...
+      </p>
+      <div
+        sx={{
+          color: 'gainsboro',
+        }}
+      >
+        <span sx={{ mb: 1 }}>{date}</span>
+      </div>
+      {/* </a> */}
     </Link>
   )
 }

@@ -1,5 +1,3 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
 import React from 'react'
 import { LinkProps, MdxComponent } from 'types'
 import { GetStaticProps, GetStaticPaths } from 'next'

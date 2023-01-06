@@ -1,9 +1,9 @@
-/** @jsxImportSource theme-ui */
 import Link from 'next/link'
 import React from 'react'
-import { jsx, MenuButton } from 'theme-ui'
+
 import { NAV_LINKS } from 'utils'
 import { Close } from 'ui/icons'
+import cx from 'utils/cx'
 
 interface Props {
   isBackDropOpen: boolean
@@ -13,66 +13,32 @@ interface Props {
 export const SideBar = ({ isBackDropOpen, toggleBackDrop }: Props) => {
   return (
     <div
-      sx={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        display: isBackDropOpen ? ['flex', 'flex', 'none'] : 'none',
-      }}
+      className={cx(
+        'absolute top-0 left-0  ',
+        isBackDropOpen ? 'flex md:hidden' : 'hidden'
+      )}
     >
       <div
         onClick={() => toggleBackDrop()}
-        sx={{
-          bg: '#1a1a1b7d',
-          height: '100%',
-          width: ['50%', '70%'],
-          position: 'fixed',
-        }}
+        className="w-1/2 md:w-2/3 fixed h-full bg-[#1a1a1b7d]"
       />
-      <div
-        sx={{
-          position: 'fixed',
-          right: 0,
-          top: 0,
-          bottom: 0,
-          height: '100%',
-          width: ['60%', '40%', '30%'],
-          bg: 'secondary',
-
-          flexDirection: 'column',
-        }}
-      >
+      <div className="fixed pt-6 top-0 right-0 bottom-0 w-3/5 md:w-2/6 flex flex-col bg-blue-700 h-full">
         <button
-          sx={{
-            p: 4,
-            display: ['block', 'block', 'none'],
-            left: 0,
-            pl: 4,
-            bg: 'transparent',
-            border: 'none',
-            color: 'white',
-          }}
+          className="block md:hidden text-white pl-2 "
           onClick={() => toggleBackDrop()}
         >
           <Close />
         </button>
 
-        <ul sx={{ display: 'flex', flexDirection: 'column' }}>
+        <ul className="pt-5 pl-4">
           {NAV_LINKS.map((_item) => (
             <li
               key={_item.name}
-              sx={{
-                listStyle: 'none',
-                cursor: 'pointer',
-                mx: 3,
-                color: 'white',
-              }}
+              className="mx-2 text-white cursor-pointer list-none my-3"
               onClick={() => toggleBackDrop()}
             >
-              <Link href={_item.url}>
-                <a sx={{ color: 'whitesmoke', my: 3, display: 'block' }}>
-                  {_item.name}
-                </a>
+              <Link href={_item.url} className=" ">
+                {_item.name}
               </Link>
             </li>
           ))}

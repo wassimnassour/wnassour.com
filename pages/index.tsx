@@ -1,5 +1,3 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
 import { About, Blog, Contact, Hero } from 'components'
 import { GetStaticProps } from 'next'
 import { IPost } from 'types'
@@ -20,16 +18,13 @@ export default function Home({ featuredPosts }: Props) {
           url: SITE_URL,
         }}
       />
-      <div
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+
+      <div>
         <Hero />
+        <div className="bg-red-400">fef</div>
         <About />
-        <Blog Posts={featuredPosts} />
-        <Contact />
+        {/* // <Blog Posts={featuredPosts} />
+        // <Contact /> */}
       </div>
     </>
   )
