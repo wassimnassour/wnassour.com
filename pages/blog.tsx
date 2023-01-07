@@ -10,67 +10,6 @@ interface Props {
   posts: IPost[]
 }
 
-const ArticleCard = ({
-  title,
-  date,
-  slug,
-  excerpt,
-  image,
-}: {
-  title: string
-  date: string
-  slug: string
-  excerpt: string
-  image: string
-}) => {
-  return (
-    <Link href={`/posts/${slug}`}>
-      {/* <a
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          cursor: 'pointer',
-          flexGrow: 0,
-          flexBasis: ['100%', '100%', '31%', '30%'],
-          px: 2,
-          mx: ['auto', 'auto', 1],
-          bg: ['#49536b', '#49536b', 'transparent'],
-          ml: 0,
-          my: [2, 2, 5],
-          borderRadius: 3,
-        }}
-      > */}
-      <div
-        sx={{
-          width: '100%',
-          position: 'relative',
-          display: ['none', 'none', 'block'],
-          mx: 'auto',
-          mb: [1, 2, 0],
-          borderRadius: 7,
-          height: [140, 200],
-        }}
-      >
-        <NextImage src={image} layout="fill" objectFit="cover" alt={title} />
-      </div>
-
-      <h1 sx={{ fontSize: 22, m: 0, mt: 2, color: 'white' }}>{title}</h1>
-      <p sx={{ mb: 3, fontSize: [14, 14, 16], color: 'whitesmoke' }}>
-        {excerpt.substring(1, 189)}...
-      </p>
-      <div
-        sx={{
-          color: 'gainsboro',
-        }}
-      >
-        <span sx={{ mb: 1 }}>{date}</span>
-      </div>
-      {/* </a> */}
-    </Link>
-  )
-}
-
 const Blog = ({ posts }: Props) => {
   return (
     <>
@@ -81,24 +20,9 @@ const Blog = ({ posts }: Props) => {
           url: `${SITE_URL}/blog`,
         }}
       />
-      <div
-        sx={{
-          width: ['90%', '95%', '94%', '90%'],
-          maxWidth: 1200,
-          mx: 'auto',
-        }}
-      >
-        <h1 sx={{ color: 'white', ml: [1], fontSize: 50 }}>Blog</h1>
-        <div
-          sx={{
-            display: ['flex'],
-            flexWrap: ['wrap'],
-            alignItems: ['center', 'flex-start'],
-            justifyContent: ['center', 'center', 'space-between'],
-            mx: 'auto',
-            width: '100%',
-          }}
-        >
+      <div className="w-10/12 max-w-6xl min-h-screen mx-auto mt-16">
+        <h1 className="my-5 mb-16 text-5xl text-white">Blog</h1>
+        <div className="flex flex-wrap items-start justify-center w-full md:justify-between">
           {posts.map((post) => {
             return (
               <ArticleCard
@@ -134,4 +58,46 @@ export const getStaticProps: GetStaticProps = async () => {
       posts,
     },
   }
+}
+
+const ArticleCard = ({
+  title,
+  date,
+  slug,
+  excerpt,
+  image,
+}: {
+  title: string
+  date: string
+  slug: string
+  excerpt: string
+  image: string
+}) => {
+  return (
+    <Link
+      href={`/posts/${slug}`}
+      className="flex flex-col w-full  mt-10  border  h-[460px] justify-between   rounded-md cursor-pointer md:w-[32%]"
+    >
+      <div className="w-full h-36 md:h-52">
+        <div className="w-full h-full overflow-hidden">
+          <NextImage
+            src={image}
+            className="object-cover w-full h-full"
+            quality={100}
+            width={200}
+            height={200}
+            alt={title}
+          />
+        </div>
+      </div>
+
+      <h1 className="px-2 my-5 text-2xl text-white line-clamp-2">{title}</h1>
+      <p className="px-2 mb-4 text-base text-gray-300 line-clamp-4">
+        {excerpt.substring(0, 189)}...
+      </p>
+      <div className="flex justify-between px-2 text-gray-300">
+        <span className="mb-3">{date}</span>
+      </div>
+    </Link>
+  )
 }
