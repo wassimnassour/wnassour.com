@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "autoprefixer": "^10.4.13",
     "disqus-react": "^1.1.2",
