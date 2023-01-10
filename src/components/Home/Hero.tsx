@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { TWITTER_URL } from 'utils'
+
 /* eslint-disable react/no-unescaped-entities */
 export const Hero = () => {
   return (
@@ -15,7 +18,14 @@ export const Hero = () => {
           passionate about the Tech world, skilled at writing clean and readable
           Code, by using current best practices in web development
         </p>
-        <p className="border-b border-secondary">Let's have Chat</p>
+        <a
+          target="_blank"
+          href={TWITTER_URL}
+          className="border-b border-secondary"
+          rel="noreferrer"
+        >
+          Let's have Chat
+        </a>
       </div>
     </div>
   )
