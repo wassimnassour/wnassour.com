@@ -20,7 +20,7 @@ const Blog = ({ posts }: Props) => {
           url: `${SITE_URL}/blog`,
         }}
       />
-      <div className="w-10/12 max-w-6xl min-h-screen pb-4 mx-auto mt-16">
+      <div className="w-11/12 max-w-6xl min-h-screen pb-4 mx-auto mt-16 md:w-10/12">
         <h1 className="my-5 mb-16 text-5xl text-white">Blog</h1>
         <div className="flex flex-wrap items-start justify-center w-full md:justify-between">
           {posts.map((post) => {
@@ -92,7 +92,9 @@ const ArticleCard = ({
         </div>
       </div>
 
-      <h1 className="px-2 my-5 text-2xl text-white line-clamp-2">{title}</h1>
+      <h1 className="px-2 my-1 text-2xl text-white md:my-5 line-clamp-2">
+        {title}
+      </h1>
       <p className="px-2 mb-4 text-base text-gray-300 line-clamp-4">
         {excerpt.substring(0, 189)}...
       </p>
