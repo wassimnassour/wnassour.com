@@ -3,11 +3,7 @@ import { MdxComponent } from 'types'
 export const Paragraph = ({ children }: MdxComponent) => {
   return (
     <div>
-      <p
-      // sx={{ color: 'white', fontSize: [15, 17], ...styles }}
-      >
-        {children}
-      </p>
+      <p className="leading-7 text-gray-300 ">{children}</p>
     </div>
   )
 }

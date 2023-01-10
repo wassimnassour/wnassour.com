@@ -83,6 +83,7 @@ const ArticleCard = ({
           <NextImage
             src={image}
             className="object-cover w-full h-full"
+            // sizes="100vw"
             quality={100}
             width={200}
             height={200}

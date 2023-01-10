@@ -15,7 +15,7 @@ const DisqusComments = ({ post, slug }: Props) => {
     title: post.title,
   }
   return (
-    <div sx={{ my: 5 }}>
+    <div className="my-4">
       <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
     </div>
   )

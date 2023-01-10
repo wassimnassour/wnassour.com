@@ -21,12 +21,10 @@ a {
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3 {
-  font-family: 'Playfair Display', serif;
-}
-
 p {
   font-family: 'Fira Sans', sans-serif;
+}
+
+pre {
+  margin: 20px 0;
 }

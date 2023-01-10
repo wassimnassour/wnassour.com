@@ -1,8 +1,8 @@
-import { ReactChild } from 'react'
+import { CSSProperties, ReactChild } from 'react'
 
 export interface MdxComponent {
   children: ReactChild
-  // styles?: CSSProperties
+  className?: string
 }
 
 export interface LinkProps extends MdxComponent {
