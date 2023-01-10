@@ -20,7 +20,7 @@ const Blog = ({ posts }: Props) => {
           url: `${SITE_URL}/blog`,
         }}
       />
-      <div className="w-10/12 max-w-6xl min-h-screen mx-auto mt-16">
+      <div className="w-10/12 max-w-6xl min-h-screen pb-4 mx-auto mt-16">
         <h1 className="my-5 mb-16 text-5xl text-white">Blog</h1>
         <div className="flex flex-wrap items-start justify-center w-full md:justify-between">
           {posts.map((post) => {
@@ -76,9 +76,9 @@ const ArticleCard = ({
   return (
     <Link
       href={`/posts/${slug}`}
-      className="flex flex-col w-full  mt-10  border  h-[460px] justify-between   rounded-md cursor-pointer md:w-[32%]"
+      className="flex flex-col w-full  mt-10  border h-[500px]  md:h-[460px] justify-between   rounded-md cursor-pointer md:w-[32%]"
     >
-      <div className="w-full h-36 md:h-52">
+      <div className="w-full h-56 md:h-52">
         <div className="w-full h-full overflow-hidden">
           <NextImage
             src={image}

@@ -11,7 +11,7 @@ export function Menu(props: React.SVGProps<SVGSVGElement>) {
     >
       <path
         d="M3.75 15h22.5M3.75 7.5h22.5M3.75 22.5h22.5"
-        stroke="#000"
+        stroke="#fff"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
