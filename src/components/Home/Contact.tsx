@@ -7,19 +7,18 @@ export const Contact = () => {
   return (
     <div
       id="contactMe"
-      className="w-11/12 md:w-10/12 max-w-5xl flex  flex-col items-center justify-center mx-auto my-36"
+      className="flex flex-col items-center justify-center w-11/12 max-w-5xl mx-auto md:w-10/12 my-36"
     >
-      <h2 className="text-4xl mb-5 text-white ">
+      <h2 className="mb-5 text-4xl text-white ">
         Contact Me
         <span className="text-secondary">!</span>
       </h2>
-      <p className="text-center text-white my-3">
-        Hi, i'm happy cuz your are visiting my portfolio , i hope u like it and
-        if you're looking for semoan to convert your ideas to real project or
-        consulting , also if u need help plz reach me i will be happy to help
-        you
+      <p className="my-3 text-center text-white">
+        Hi, I'm happy cuz you are visiting my portfolio, I hope u like it and if
+        you're looking for a someone to convert your ideas to a real project or
+        consulting, also if u need help plz reach me I will be happy to help you
       </p>
-      <div className="flex flex-col md:flex-row mb-3 mt-3">
+      <div className="flex flex-col mt-3 mb-3 md:flex-row">
         <a
           className={button}
           href={TWITTER_URL}

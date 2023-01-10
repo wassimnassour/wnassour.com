@@ -8,13 +8,13 @@ export const About = () => {
     <div id="about" className="flex items-center justify-center my-16 mb-28">
       <div className="flex flex-col items-start justify-start w-11/12 max-w-5xl md:9/12 ">
         <div className="flex items-center justify-center">
-          <span className="mr-1 w-9 h-1 bg-secondary "></span>
+          <span className="h-1 mr-1 w-9 bg-secondary "></span>
           <h2 className="text-3xl text-white"> About Me</h2>
         </div>
 
-        <div className="flex flex-col md:flex-row mt-8">
+        <div className="flex flex-col items-center mt-8 md:flex-row">
           <img
-            className="w-36 h-36 md:w-56 h-56 object-cover hidden md:block rounded-full"
+            className="hidden object-cover h-56 rounded-full w-36 h-36 md:w-56 md:block"
             src="/assets/wassim.jpg"
             alt="wassim portfolio"
           />
