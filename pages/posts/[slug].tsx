@@ -39,7 +39,7 @@ const components = {
   h1: H1,
   h2: H2,
   p: Paragraph,
-  Img: ({ src, alt, height = 40, width = 100 }: any) => {
+  Img: ({ src, alt, className }: any) => {
     return (
       <Image
         alt={alt}
@@ -49,7 +49,7 @@ const components = {
         sizes="(max-width: 768px) 100vw,
         (max-width: 1200px) 50vw,
         33vw"
-        className="w-full h-auto my-8"
+        className={cx('w-full h-auto my-7', className)}
       />
     )
   },
@@ -79,7 +79,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
         }}
       />
       <Layout pageTitle={frontMatter.title}>
-        <article className="w-10/12 max-w-4xl mx-auto mt-4 md:8/12">
+        <article className="max-w-4xl px-10 mx-auto mt-4 sm:w-11/12 md:w-8/10 ">
           <div className="mb-4">
             <Thumbnail
               title={frontMatter.title}
