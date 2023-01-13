@@ -76,7 +76,7 @@ const ArticleCard = ({
   return (
     <Link
       href={`/posts/${slug}`}
-      className="flex flex-col w-full  mt-10  border h-[500px]  md:h-[460px] justify-between   rounded-md cursor-pointer md:w-[32%]"
+      className="flex flex-col w-full  mt-10  border   md:h-[460px] justify-between   rounded-md cursor-pointer md:w-[32%]"
     >
       <div className="w-full h-56 md:h-52">
         <div className="w-full h-full overflow-hidden">
@@ -92,7 +92,7 @@ const ArticleCard = ({
         </div>
       </div>
 
-      <h1 className="px-2 my-1 text-2xl text-white md:my-5 line-clamp-2">
+      <h1 className="px-2 my-5 text-2xl text-white sm:my-1 md:my-5 line-clamp-2">
         {title}
       </h1>
       <p className="px-2 mb-4 text-base text-gray-300 line-clamp-4">

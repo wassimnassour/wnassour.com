@@ -37,9 +37,7 @@ export const SideBar = ({ isBackDropOpen, toggleBackDrop }: Props) => {
               className="mx-2 my-3 text-white list-none cursor-pointer"
               onClick={() => toggleBackDrop()}
             >
-              <Link href={_item.url} className="">
-                {_item.name}
-              </Link>
+              <Link href={_item.url}>{_item.name}</Link>
             </li>
           ))}
         </ul>

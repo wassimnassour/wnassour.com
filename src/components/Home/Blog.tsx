@@ -35,7 +35,7 @@ const ArticleCard = ({ post }: { post: IPost }) => {
     <Link
       href={`/posts/${post.slug}`}
       className="flex w-full mt-6 cursor-pointer md:w-1/2 lg:w-1/3 "
-      key={post.title}
+      passHref
     >
       <div className="flex flex-col justify-between bg-[#49536b] rounded-sm p-3 mr md:mr-3 ">
         <h1 className="my-4 text-2xl text-white">{post.title}</h1>
