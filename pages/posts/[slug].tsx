@@ -1,17 +1,16 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { LinkProps, MdxComponent } from 'types'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import rehypePrism from 'rehype-prism-plus'
+import rehypeCodeTitles from 'rehype-code-titles'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import readingTime from 'reading-time'
-import NextImage from 'next/image'
+
 import {
   Thumbnail,
   Layout,
   Paragraph,
-  CodeBlock,
   H2,
   Title,
   Tag,
@@ -25,6 +24,10 @@ import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 import { H1 } from 'components'
 import { NextSeo } from 'next-seo'
 import DisqusComments from 'components/Disqus'
+import Image from 'next/image'
+
+import rehypeHighlight from 'rehype-highlight'
+import cx from 'utils/cx'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -33,40 +36,33 @@ type Props = {
 }
 
 const components = {
-  h1: ({ styles, children }: MdxComponent) => {
-    return <H1 styles={styles}>{children}</H1>
-  },
-  h2: ({ styles, children }: MdxComponent) => {
-    return <H2 styles={styles}>{children}</H2>
-  },
-  p: ({ styles, children }: MdxComponent) => {
-    return <Paragraph styles={styles}>{children}</Paragraph>
-  },
-  Img: ({ src, height = 40, width = '100%', objectFit = 'fill' }: any) => {
+  h1: H1,
+  h2: H2,
+  p: Paragraph,
+  Img: ({ src, alt, className }: any) => {
     return (
-      <NextImage
-        layout="responsive"
+      <Image
+        alt={alt}
         src={src}
-        height={height}
-        width={width}
-        objectFit={objectFit}
-        placeholder="blur"
-        blurDataURL={src}
+        width={500}
+        height={500}
+        sizes="(max-width: 768px) 100vw,
+        (max-width: 1200px) 50vw,
+        33vw"
+        className={cx('w-full h-auto my-7', className)}
       />
     )
   },
   li: Li,
-  a: ({ children, styles, href }: LinkProps) => (
-    <Link href={href} styles={styles}>
+  a: ({ children, href, ...props }: LinkProps) => (
+    <Link href={href} {...props}>
       {children}
     </Link>
   ),
-  Tag: ({ children, styles }: MdxComponent) => <Tag>{children}</Tag>,
-  BlockQuote: ({ children, styles }: MdxComponent) => (
-    <BlockQuote>{children}</BlockQuote>
-  ),
-  CodeBlock: CodeBlock,
+  Tag: Tag,
+  BlockQuote,
 }
+
 const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
   const ogImage = SITE_URL + frontMatter.ogImage.thumbnail
 
@@ -83,7 +79,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
         }}
       />
       <Layout pageTitle={frontMatter.title}>
-        <article sx={{ mt: [2, 4] }}>
+        <article className="max-w-4xl px-10 mx-auto mt-4 sm:w-11/12 md:w-8/10 ">
           <div className="mb-4">
             <Thumbnail
               title={frontMatter.title}
@@ -91,20 +87,23 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
             />
           </div>
 
-          <div sx={{ mb: 4, mt: [3, 5] }}>
+          <div className="my-7">
             <Title>{frontMatter.title}</Title>
-            <p sx={{ color: 'GrayText', m: 0 }}>
-              {frontMatter.date} ·{' '}
-              {readingTime(source.toString()).minutes > 1
-                ? readingTime(source.toString()).minutes
-                : 1 + 'min'}{' '}
-              · {frontMatter.author.name}
+            <p className="mt-10 text-gray-200">
+              {frontMatter.date} · {frontMatter.author.name}
             </p>
           </div>
 
-          <MDXRemote {...source} components={components} />
+          <MDXRemote
+            components={
+              components as unknown as Record<string, React.ReactNode>
+            }
+            {...source}
+          />
         </article>
-        <DisqusComments post={frontMatter} slug={slug} />
+        <div className="w-11/12 max-w-4xl mx-auto mt-20 md:8/12">
+          <DisqusComments post={frontMatter} slug={slug} />
+        </div>
       </Layout>
     </>
   )
@@ -115,7 +114,12 @@ export default PostPage
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { content, data } = getPost(params?.slug as string)
 
-  const mdxSource = await serialize(content, { scope: data })
+  const mdxSource = await serialize(content, {
+    scope: data,
+    mdxOptions: {
+      rehypePlugins: [rehypeHighlight],
+    },
+  })
   getFeaturedPosts()
   return {
     props: {

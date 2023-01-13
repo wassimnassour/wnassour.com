@@ -1,22 +1,13 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
 import { MdxComponent } from 'types'
+import cx from 'utils/cx'
 
-export const BlockQuote = ({ children, styles }: MdxComponent) => {
+export const BlockQuote = ({ children, className }: MdxComponent) => {
   return (
     <blockquote
-      sx={{
-        bg: '#656c7a',
-        px: [3],
-        py: [1],
-        mx: [1],
-        color: 'white',
-        borderRadius: 6,
-        borderLeft: '4px solid ',
-        borderColor: 'secondary',
-        width: '100%',
-        ...styles,
-      }}
+      className={cx(
+        'p-4 my-4 text-white border-l-4 border-secondary bg-gray-50 dark:bg-gray-800',
+        !!className && className
+      )}
     >
       <p>{children}</p>
     </blockquote>

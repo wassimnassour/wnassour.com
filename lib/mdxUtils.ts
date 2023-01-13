@@ -72,6 +72,7 @@ export function getFeaturedPosts() {
     'featured',
     'date',
     'excerpt',
+    'content',
   ])
   const featuredPosts = allposts.filter((_t) => _t.featured)
   return featuredPosts

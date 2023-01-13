@@ -1,64 +1,28 @@
-/* eslint-disable @next/next/no-img-element */
-/** @jsxImportSource theme-ui */
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { jsx } from 'theme-ui'
+
 import { ABOUT } from 'utils'
 
 export const About = () => {
   return (
-    <div
-      id="about"
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        my: 5,
-      }}
-    >
-      <div
-        sx={{
-          display: 'flex',
-          width: ['90%', '90%', 800, '75%'],
-          maxWidth: 1100,
-          flexDirection: 'column',
-        }}
-      >
-        <div sx={{ display: 'flex', alignItems: 'center' }}>
-          <span
-            sx={{
-              display: 'inline-block',
-              bg: 'secondary',
-              height: 2,
-              width: 30,
-              mr: 3,
-            }}
-          ></span>
-          <h2 sx={{ color: 'white', fontSize: 32 }}> About Me</h2>
+    <div id="about" className="flex items-center justify-center my-16 mb-28">
+      <div className="flex flex-col items-start justify-start w-11/12 max-w-5xl md:9/12 ">
+        <div className="flex items-center justify-center">
+          <span className="h-1 mr-1 w-9 bg-secondary "></span>
+          <h2 className="text-3xl text-white"> About Me</h2>
         </div>
 
-        <div
-          sx={{
-            display: 'flex',
-            flexDirection: ['column', 'row'],
-            width: '100%',
-            alignItems: ['flex-start', 'center'],
-          }}
-        >
-          <img
-            sx={{
-              borderRadius: '50%',
-              display: ['none', 'block'],
-              width: [140, 200],
-              height: [140, 200],
-              objectFit: 'cover',
-            }}
-            src="/assets/wassim.jpg"
-            alt="wassim portfolio"
-          />
-
-          <p sx={{ color: 'white', ml: [0, 4] }}>{ABOUT}</p>
+        <div className="flex flex-col items-center mt-8 md:flex-row">
+          {/* <div className="relative hidden w-56 h-48 overflow-hidden rounded-full md:block">
+            <Image
+              src="/assets/wassim.jpg"
+              alt="Picture of the author wassim portfolio"
+              layout="fill"
+              objectFit="cover" // change to suit your needs
+              className="w-full h-full rounded-full " // just an example
+            />
+          </div> */}
+          <p className="ml-6 text-white w-fit">{ABOUT}</p>
         </div>
       </div>
     </div>

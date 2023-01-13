@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   scroll-behavior: smooth;
@@ -5,6 +9,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #0e1630fa;
 }
 
 a {
@@ -14,4 +19,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+p {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+pre {
+  margin: 20px 0;
 }

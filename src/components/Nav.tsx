@@ -1,6 +1,3 @@
-/** @jsxImportSource theme-ui */
-import { Button, jsx } from 'theme-ui'
-import { Box } from 'theme-ui'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Close, Menu } from 'ui/icons'
@@ -13,66 +10,44 @@ export const Nav = () => {
   }
 
   return (
-    <Box
-      sx={{
-        height: 90,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: ['space-between', 'space-between', 'space-around'],
-        px: [3, 3, 0],
-        bg: 'primary',
-        zIndex: 333,
-        width: '100%',
-        boxShadow: '0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px #0d142b',
-        position: 'sticky',
-        top: 0,
-      }}
-    >
-      <div sx={{ maxWidth: 1100 }}>
-        <Link href="/">
-          <a>
-            <h1 sx={{ color: 'white' }}>
-              <span sx={{ color: 'secondary' }}>W</span>N
+    <div className="sticky top-0 z-20 flex items-center w-full h-24 px-8 shadow-md md:px-0 md:justify-between lg:justify-around bg-primary">
+      <div className="flex items-center justify-between w-11/12 max-w-5xl mx-auto md:9/12">
+        <div className="max-w-5xl">
+          <Link href="/">
+            <h1 className="text-3xl italic font-bold text-white">
+              <span className="text-secondary">W</span>N
             </h1>
-          </a>
-        </Link>
+          </Link>
+        </div>
+        <nav className="flex-row items-center hidden md:flex">
+          <ul className="flex flex-row">
+            {NAV_LINKS.map((_item) => (
+              <li
+                key={_item.name}
+                className="mx-3 text-white cursor-pointer"
+                onClick={() => setBackDrop(false)}
+              >
+                <Link href={_item.url} className="my-3">
+                  {_item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-      {
-        <SideBar
-          isBackDropOpen={isBackDropOpen}
-          toggleBackDrop={toggleBackDrop}
-        />
-      }
+
+      <SideBar
+        isBackDropOpen={isBackDropOpen}
+        toggleBackDrop={toggleBackDrop}
+      />
 
       <button
-        sx={{
-          display: ['block', 'block', 'none'],
-          border: 'none',
-          bg: 'transparent',
-        }}
+        className="block ml-auto md:hidden "
         onClick={() => toggleBackDrop()}
       >
-        <Menu />
+        <Menu className="fill-white" />
       </button>
-
-      <nav sx={{ display: ['none', 'none', 'block'] }}>
-        <ul sx={{ display: 'flex', flexDirection: 'row' }}>
-          {NAV_LINKS.map((_item) => (
-            <li
-              key={_item.name}
-              sx={styles.item}
-              onClick={() => setBackDrop(false)}
-            >
-              <Link href={_item.url}>
-                <a sx={{ color: 'whitesmoke', my: 3, display: 'block' }}>
-                  {_item.name}
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </Box>
+    </div>
   )
 }
 

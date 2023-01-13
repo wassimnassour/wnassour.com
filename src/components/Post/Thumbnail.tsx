@@ -20,7 +20,10 @@ export const Thumbnail: React.FC<Props> = ({ title, src, slug }: Props) => {
     <>
       {slug && (
         <Link href={`/posts/${slug}`}>
-          <a aria-label={title}>{image}</a>
+          {/* <a aria-label={title}> */}
+
+          {image}
+          {/* </a> */}
         </Link>
       )}
     </>

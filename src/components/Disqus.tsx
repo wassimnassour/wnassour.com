@@ -1,5 +1,3 @@
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
 import { DiscussionEmbed } from 'disqus-react'
 import { SITE_URL } from 'utils'
 import { IPost } from 'types/post'
@@ -17,7 +15,7 @@ const DisqusComments = ({ post, slug }: Props) => {
     title: post.title,
   }
   return (
-    <div sx={{ my: 5 }}>
+    <div className="my-4">
       <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
     </div>
   )

@@ -1,47 +1,31 @@
-/* eslint-disable react/no-unescaped-entities */
-/** @jsxImportSource theme-ui */
-import { jsx } from 'theme-ui'
+import Link from 'next/link'
+import { TWITTER_URL } from 'utils'
 
+/* eslint-disable react/no-unescaped-entities */
 export const Hero = () => {
   return (
     <div
-      sx={{
-        bg: 'primary',
-        clipPath: 'polygon(0 0, 100% 0, 100% 74%, 0 100%)',
-        height: 450,
-      }}
+      className="h-[450px]  bg-primary "
+      style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)' }}
     >
-      <div
-        sx={{
-          width: ['90%', '80%', '75%', '60%'],
-          maxWidth: 1100,
-          mx: 'auto',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-        }}
-      >
-        <span sx={{ color: 'gainsboro' }}>Software Engineer</span>
-        <h2
-          sx={{
-            color: 'white',
-            fontSize: [34, 54],
-            fontWeight: '700',
-            lineHeight: 0.3,
-          }}
-        >
+      <div className="flex flex-col items-start justify-center w-10/12 h-full max-w-5xl mx-auto text-white sm:w-10/12 md:9/12">
+        <span className="text-gray-400 ">Software Engineer</span>
+        <h2 className="mt-3 text-4xl font-medium md:text-6xl ">
           Wassim Nassour
         </h2>
-        <p sx={{ color: 'GrayText' }}>
+        <p className="font-normal text-gray-400 my-7">
           I'm a Self-taught JavaScript Developer, proficient in Front-End, I'm
           passionate about the Tech world, skilled at writing clean and readable
           Code, by using current best practices in web development
         </p>
-        <p sx={{ color: 'white', borderBottom: '1px solid red' }}>
+        <a
+          target="_blank"
+          href={TWITTER_URL}
+          className="border-b border-secondary"
+          rel="noreferrer"
+        >
           Let's have Chat
-        </p>
+        </a>
       </div>
     </div>
   )
