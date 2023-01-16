@@ -19,7 +19,8 @@ In this article, we will write a test for our useNotes hook, a simple hook where
 
 To test this custom hook, we have two approaches: one is recommended by the author of the library we are using, which is to write the test as an integration test and test the hook with the component it's using. This will avoid abstraction and unnecessary tests for our hook.
 
-The other approach is to test the hook in isolation, if our hook is more general and we want to write a unit test on it. For this approach, we will use the renderHook function so we can test our custom hook. If we call our hook directly inside the test, it will break the rules of React hooks, "you can't call a hook outside of a React component."
+The other approach is to test the hook in isolation, if our hook is more general and we want to write a unit test on it.
+For this approach, we will use the renderHook utlity from the library for test our custom hook. because we can't call our hook directly inside the test, it will break the rules of React hooks, "you can't call a hook outside of a React component."
 
 ## useNote
 
@@ -158,18 +159,19 @@ const Note = ({ note }: { note: NoteShape }) => {
 
 ## pre-required to start
 
-To be able to progress in this tutorial , make make sure to install some packages <Tag>react-tesing/libary</Tag> <Tag>react-dom/test-utils</Tag>
+To be able to progress in this tutorial , make make sure to install some packages
 
 ```tsx
 yarn add react-tesing/libary react-dom/test-utils
 ```
 
-so we have hook hold notes and functions for updating the notes ,so we have some use cases to test
+useNotes is hook hold notes and functions for updating the notes, so we have some use cases to test
 
 <li> initial data of the notes.</li>
 <li> adding notes</li>
-<li>removing note </li>
+<li> removing note </li>
 <li> serach for note by titile</li>
+<li> update note</li>
 
 ## Testing the hook in isolation :
 
@@ -215,12 +217,12 @@ describe('Testing useNotes hook', () => {
   })
 
   // 4) update note using id
-  test('search  for specific note by title', async () => {
+  test('Update specific note by title', async () => {
     const { result } = renderHook(useNotes)
     expect(result.current?.searchResults).toStrictEqual(undefined)
+    // update function from hook recive note object and extract id from it
     act(() => result.current.updateNote(noteForTest))
     act(() => result.current.searchForNote(noteForTest.title))
-
     act(() => expect(result.current.searchResults).toStrictEqual([noteForTest]))
   })
 })
