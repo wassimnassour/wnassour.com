@@ -22,6 +22,22 @@ To test this custom hook, we have two approaches: one is recommended by the auth
 The other approach is to test the hook in isolation, if our hook is more general and we want to write a unit test on it.
 For this approach, we will use the renderHook utlity from the library for test our custom hook. because we can't call our hook directly inside the test, it will break the rules of React hooks, "you can't call a hook outside of a React component."
 
+## pre-required to start
+
+all packages we used in the tutorial have come with the boilerplate of <a href='https://create-react-app.dev/'>create-react-app</a>, but if you have an old version or you found the packages missing you can add them with this commend
+
+<BlockQuote>
+  {' '}
+  yarn add @testing-library/react @testing-library/user-event
+</BlockQuote>
+
+useNotes is hook hold notes and functions for updating the notes, so we have some use cases to test
+
+<li> initial data of the notes.</li>
+<li> adding notes</li>
+<li> removing note </li>
+<li> serach for note by titile</li>
+
 ## useNote
 
 ```tsx
@@ -181,22 +197,6 @@ const Note = ({
   )
 }
 ```
-
-## pre-required to start
-
-all packages we used in the tutorial have come with the boilerplate of <a href='https://create-react-app.dev/'>create-react-app</a>, but if you have an old version or you found the packages missing you can add them with this commend
-
-```tsx
- yarn add  @testing-library/react @testing-library/user-event
-
-```
-
-useNotes is hook hold notes and functions for updating the notes, so we have some use cases to test
-
-<li> initial data of the notes.</li>
-<li> adding notes</li>
-<li> removing note </li>
-<li> serach for note by titile</li>
 
 ## Testing the hook in isolation :
 
