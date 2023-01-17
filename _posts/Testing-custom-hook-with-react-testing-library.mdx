@@ -83,20 +83,30 @@ type NoteShape = {
 }
 
 export const Notes = () => {
-  const [searchQuery, setSearchQuery] = React.useState<string | undefined>()
-  const { notes, searchResults, AddNote, searchForNote } = useNotes()
+  const {
+    searchQuery,
+    setSearchQuery,
+    notes,
+    searchResults,
+    AddNote,
+    searchForNote,
+    removeNote,
+  } = useNotes()
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const elements = e.currentTarget.elements
-    if ('note' in elements && 'title' in elements) {
-      const noteValue = elements?.note?.value
-      const title = elements?.title?.value
-      AddNote({ id: title, note: noteValue, title: title })
-    }
+
+    const elements = e.currentTarget.elements as unknown as Record<
+      'title' | 'note',
+      { value: string }
+    >
+    const noteValue = elements?.note?.value
+    const title = elements?.title?.value
+
+    AddNote({ id: title, note: noteValue, title: title })
   }
 
-  const searchFn = (e) => {
+  const searchFn = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
     searchForNote(e.target.value)
   }
@@ -128,19 +138,34 @@ export const Notes = () => {
           <p>No Notes Founded</p>
         ) : searchResults && searchResults?.length >= 1 ? (
           searchResults?.map((note) => (
-            <Note note={note} key={note?.title + 'note'} />
+            <Note
+              removeNote={removeNote}
+              note={note}
+              key={note?.title + 'search_note'}
+            />
           ))
         ) : (
           notes?.length >= 1 &&
-          notes.map((note) => <Note note={note} key={note?.title + 'note'} />)
+          notes.map((note) => (
+            <Note
+              note={note}
+              removeNote={removeNote}
+              key={note?.title + 'note'}
+            />
+          ))
         )}
       </div>
     </div>
   )
 }
 
-const Note = ({ note }: { note: NoteShape }) => {
-  const { removeNote } = useNotes()
+const Note = ({
+  note,
+  removeNote,
+}: {
+  note: NoteShape
+  removeNote: (n: NoteShape) => void
+}) => {
   return (
     <div
       style={{
@@ -171,7 +196,6 @@ useNotes is hook hold notes and functions for updating the notes, so we have som
 <li> adding notes</li>
 <li> removing note </li>
 <li> serach for note by titile</li>
-<li> update note</li>
 
 ## Testing the hook in isolation :
 
@@ -184,7 +208,7 @@ import { useNotes } from '../hooks/useNotes'
 
 const noteForTest = { id: 'test', title: 'test', note: 'test' }
 
-describe('Testing useNotes hook', () => {
+describe('Testing useNotes hook in isolation', () => {
   // test to check if the intial value of the hook is []
   test('accept initial value', async () => {
     const { result } = renderHook(useNotes)
@@ -215,16 +239,6 @@ describe('Testing useNotes hook', () => {
     act(() => result.current.searchForNote(noteForTest.title))
     act(() => expect(result.current.searchResults).toStrictEqual([noteForTest]))
   })
-
-  // 4) update note using id
-  test('Update specific note by title', async () => {
-    const { result } = renderHook(useNotes)
-    expect(result.current?.searchResults).toStrictEqual(undefined)
-    // update function from hook recive note object and extract id from it
-    act(() => result.current.updateNote(noteForTest))
-    act(() => result.current.searchForNote(noteForTest.title))
-    act(() => expect(result.current.searchResults).toStrictEqual([noteForTest]))
-  })
 })
 ```
 
@@ -240,7 +254,7 @@ import { useNotes } from '../hooks/useNotes'
 const noteForTest = { id: 'test', title: 'test', note: 'test' }
 
 test('useNotes inside a component', async () => {
-  render(<NotesComponent />)
+  render(<Notes />)
 
   const submitFunction = await screen.findByText(/add note/i)
 
@@ -255,20 +269,19 @@ test('useNotes inside a component', async () => {
   await screen.findByText(noteForTest.title)
   await screen.findByText(noteForTest.note)
 
-  //  Remove Note from document
-  userEvent.click(screen.getByText(/delete/i))
-
-  // search for specific  note ("Best Case found search is working")
+  // // search for specific  note ("Best Case found search is working")
   fireEvent.change(await screen.findByRole('search'), {
     target: { value: noteForTest.title },
   })
   await screen.findByText(noteForTest.title)
 
+  //  Remove Note from document
+  userEvent.click(screen.getByText(/delete/i))
+
   // search for specific  note ("bad Case not found anything ")
   fireEvent.change(await screen.findByRole('search'), {
     target: { value: 'Nothing should be founded' },
   })
-
   // check zero note
   await screen.findByText(/no notes founded/i)
 })
