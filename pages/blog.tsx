@@ -95,7 +95,7 @@ const ArticleCard = ({
       <h1 className="px-2 my-5 text-2xl text-white sm:my-1 md:my-5 line-clamp-2">
         {title}
       </h1>
-      <p className="px-2 mb-4 text-base text-gray-300 line-clamp-4">
+      <p className="px-2 mb-4 text-sm text-gray-300 lg:text-base line-clamp-4">
         {excerpt.substring(0, 189)}...
       </p>
       <div className="flex justify-between px-2 text-gray-300">
