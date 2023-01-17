@@ -57,7 +57,7 @@ const components = {
       target="_blank"
       {...props}
       rel="noreferrer"
-      className="text-secondary"
+      className="underline text-secondary"
     >
       {children}
     </a>
@@ -83,7 +83,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
         }}
       />
       <Layout pageTitle={frontMatter.title}>
-        <article className="max-w-4xl px-10 mx-auto mt-4 sm:w-11/12 md:w-8/10 ">
+        <article className="max-w-4xl px-4 mx-auto mt-4 md:px-10 sm:w-11/12 md:w-8/10 ">
           <div className="mb-4">
             <Thumbnail
               title={frontMatter.title}

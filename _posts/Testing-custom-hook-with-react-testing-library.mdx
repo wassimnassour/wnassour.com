@@ -184,10 +184,11 @@ const Note = ({
 
 ## pre-required to start
 
-To be able to progress in this tutorial , make make sure to install some packages
+all packages we used in the tutorial have come with the boilerplate of <a href='https://create-react-app.dev/'>create-react-app</a>, but if you have an old version or you found the packages missing you can add them with this commend
 
 ```tsx
-yarn add react-tesing/libary react-dom/test-utils
+ yarn add  @testing-library/react @testing-library/user-event
+
 ```
 
 useNotes is hook hold notes and functions for updating the notes, so we have some use cases to test
@@ -259,8 +260,8 @@ test('useNotes inside a component', async () => {
   const submitFunction = await screen.findByText(/add note/i)
 
   // type title and note input
-  userEvent.type(await screen.findByLabelText(/title/i), noteForTest.title)
-  userEvent.type(await screen.findByLabelText(/note/i), noteForTest.note)
+  await userEvent.type(screen.getByLabelText(/title/i), noteForTest?.title)
+  await userEvent.type(screen.getByLabelText(/note/i), noteForTest.note)
 
   // click on the submit button
   userEvent.click(submitFunction)
