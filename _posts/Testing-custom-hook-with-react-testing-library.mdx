@@ -15,7 +15,7 @@ ogImage:
 
 For writing a custom hook, we will need <Tag>React@>=16.8.</Tag> We will write a test for our custom hook to make sure it does not break or get bugs in the future, so we can maintain confidence that as we make changes, it will not break or get bugs.
 
-In this article, we will write a test for our useNotes hook, a simple hook where you can perform some actions like add, remove, and search for a note by title. We will use <Tag>react-testing/library</Tag> to test the app since the author of Enzyme said that Enzyme will not support React 18 (**[https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl](https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl)**).
+In this article, we will write a test for our useNotes hook, a simple hook where you can perform some actions like add, remove, and search for a note by title. We will use <Tag>react-testing/library</Tag> to test the app since the author of Enzyme said that Enzyme will not support React 18 <a href='https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl'>https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl</a>.
 
 To test this custom hook, we have two approaches: one is recommended by the author of the library we are using, which is to write the test as an integration test and test the hook with the component it's using. This will avoid abstraction and unnecessary tests for our hook.
 
