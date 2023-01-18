@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react'
-import { LinkProps, MdxComponent } from 'types'
+import React from 'react'
+import { LinkProps } from 'types'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import rehypePrism from 'rehype-prism-plus'
-import rehypeCodeTitles from 'rehype-code-titles'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import readingTime from 'reading-time'
+import rehypeHighlight from 'rehype-highlight'
+import { NextSeo } from 'next-seo'
+import Image from 'next/image'
 
 import {
   Thumbnail,
@@ -18,16 +18,13 @@ import {
   Li,
   Link,
 } from 'components'
-import { IPost } from '../../src/types/post'
-import { SITE_URL } from 'utils'
-import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
-import { H1 } from 'components'
-import { NextSeo } from 'next-seo'
-import DisqusComments from 'components/Disqus'
-import Image from 'next/image'
-
-import rehypeHighlight from 'rehype-highlight'
 import cx from 'utils/cx'
+import { SITE_URL } from 'utils'
+import { H1 } from 'components'
+import DisqusComments from 'components/Disqus'
+import { IPost } from 'types/post'
+
+import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/mdxUtils'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -54,12 +51,19 @@ const components = {
     )
   },
   li: Li,
-  a: ({ children, href, ...props }: LinkProps) => (
-    <Link href={href} {...props}>
+  a: ({ href, children, ...props }: LinkProps) => (
+    <a
+      href={href}
+      target="_blank"
+      {...props}
+      rel="noreferrer"
+      className="underline text-secondary"
+    >
       {children}
-    </Link>
+    </a>
   ),
-  Tag: Tag,
+  Link,
+  Tag,
   BlockQuote,
 }
 
@@ -79,7 +83,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter, slug }: Props) => {
         }}
       />
       <Layout pageTitle={frontMatter.title}>
-        <article className="max-w-4xl px-10 mx-auto mt-4 sm:w-11/12 md:w-8/10 ">
+        <article className="max-w-4xl px-4 mx-auto mt-4 md:px-10 sm:w-11/12 md:w-8/10 ">
           <div className="mb-4">
             <Thumbnail
               title={frontMatter.title}

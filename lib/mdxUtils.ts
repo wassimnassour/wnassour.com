@@ -60,7 +60,11 @@ export function getAllPosts(fields: string[] = []): Items[] {
   const posts = filePaths
     .map((filePath) => getPostItems(filePath, fields))
     // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+    .sort((a, b) => {
+      const aa = a.date?.split('/').reverse().join(),
+        bb = b.date?.split('/').reverse().join()
+      return aa < bb ? 1 : aa > bb ? -1 : 0
+    })
   return posts
 }
 
