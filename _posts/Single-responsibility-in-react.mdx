@@ -1,0 +1,341 @@
+---
+title: 'Single responsibility in react'
+excerpt: 'The single responsibility principle is created by Robert C. Martin , and the main goal and idea behind it is that every class, module, component, and hook …, should have only one responsibility/purpose, and the reason for making a module or component… have single responsibility will help us in a lot of things'
+coverImage: '/assets/blog/Benefits-from-using-nextjs/cover.png'
+date: '26/01/2022'
+featured: true
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+
+ogImage:
+  url: '/assets/blog/Benefits-from-using-nextjs/cover.png'
+  thumbnail: '/assets/blog/Benefits-from-using-nextjs/cover.png'
+---
+
+The single responsibility principle is created by Robert C. Martin , and the main goal and idea behind it is that every class, module, component, and hook …, should have only one responsibility/purpose, and the reason for making a module or component… have single responsibility will help us in a lot of things
+
+<li>reduce the number of bugs</li>
+<li>improve our development experience</li>
+<li>avoid unexpected bugs</li>
+<li>
+  writing test will be extremely fast and easy because our code has only one
+  responsibility
+</li>
+---
+
+if we have a component that renders a list of users I see no reason, that component should hold information about users
+
+as well, when our requirement in a component or hook changes the surface of changes and affected code will be small, opposite if we have conflicted code a component does a lot of things that can lead to some side effects or changes
+
+writing tests will be easy too, and this principle can help us also when writing TDD cuz you wrote a small component that requires less test, also building our component, and hooks independently, and composing them together, Reuse will become an obvious citizen of your systems.
+
+I will write an example of a component that doesn’t use this principle and I will apply it to see the difference and how it can help us
+
+this is our component called Users fetches users from the backend listing all of them and filter
+
+```tsx
+import axios from 'axios'
+import { useEffect, useMemo, useState } from 'react'
+
+const api = 'https://jsonplaceholder.typicode.com/users'
+
+interface User {
+  id: string
+  name: string
+  username: 'Bret'
+  email: string
+  address: Object
+  phone: string
+  website: string
+  company: {
+    name: string
+    catchPhrase: string
+    bs: string
+  }
+}
+
+export function Users() {
+  const [users, setUsers] = useState<User[]>([])
+  const [searchKeyword, setSearchKeyword] = useState('')
+
+  const fetchProducts = async () => {
+    const response = await axios.get(api)
+    if (response && response.data) setUsers(response.data)
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
+  const filterUsers = useMemo(
+    () =>
+      users.filter((user: User) =>
+        user.name.toLowerCase().includes(searchKeyword?.toLowerCase())
+      ),
+    [users, searchKeyword]
+  )
+
+  return (
+    <div className="flex flex-col h-full w-full">
+      <div className="flex flex-col justify-center items-center">
+        <input
+          className="border"
+          placeholder="search for user"
+          onChange={(e) => setSearchKeyword(e.target.value)}
+        />
+      </div>
+      <div className="h-full flex mt-10  flex-wrap justify-center">
+        {filterUsers?.map((user) => (
+          <div className="max-w-md mr-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex justify-end px-4 pt-4">
+              <div
+                id="dropdown"
+                className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              >
+                <ul className="py-2" aria-labelledby="dropdownButton">
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Edit
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Export Data
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Delete
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="flex flex-col items-center pb-10">
+              <img
+                className="w-24 h-24 mb-3 rounded-full shadow-lg"
+                src="https://i.pravatar.cc/300"
+                alt={user?.id}
+              />
+              <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                {user?.name}
+              </h5>
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {user?.company?.name}
+              </span>
+              <div className="flex mt-4 space-x-3 md:mt-6">
+                <a
+                  href="#"
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Add friend
+                </a>
+                <a
+                  href="#"
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+                >
+                  Message
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+our Users Components have more than one responsibility, fetch users, list users, and search for user, let’s use the SRP principle to clean and organize this code based on the responsibilities
+
+<Img src={'/assets/blog/Single-responsibility-in-react/1.png'} />
+
+this is our code after using the principle, created a Component for listing users and move our fetching from the backend logic to separate hook, do the same with the search separate search logic from the search component
+
+```tsx
+import { useState } from 'react'
+import { User } from '../types/user'
+import { useFetchUsers, useSearchUser } from './hooks'
+import { UserCard } from './UserCard'
+import { SearchUserComponent } from './SearchUser'
+
+export function Users() {
+  const [searchKeyword, setSearchKeyword] = useState('')
+  const { users } = useFetchUsers()
+  const { filterUsers } = useSearchUser({ searchKeyword, users })
+
+  return (
+    <div className="flex flex-col h-full w-full">
+      <SearchUserComponent setSearchKeyword={setSearchKeyword} />
+      <div className="h-full flex mt-10  flex-wrap justify-center">
+        {filterUsers?.map((user: User) => (
+          <UserCard user={user} />
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+useFetchUsers fetch all users
+
+```tsx
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
+import { User } from '../../types/user'
+
+const api = 'https://jsonplaceholder.typicode.com/users'
+
+export const useFetchUsers = () => {
+  const [users, setUsers] = useState<User[]>([])
+
+  const fetchProducts = async () => {
+    const response = await axios.get(api)
+    if (response && response.data) setUsers(response.data)
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
+  return {
+    users,
+  }
+}
+```
+
+useFilterUsers hook for search for specific user
+
+```tsx
+import { useMemo } from 'react'
+import { User } from '../../types/user'
+
+interface Params {
+  users: User[]
+  searchKeyword: string
+}
+
+export const useSearchUser = ({ searchKeyword, users }: Params) => {
+  const filterUsers = useMemo(
+    () =>
+      users.filter((user: User) =>
+        user.name.toLowerCase().includes(searchKeyword?.toLowerCase())
+      ),
+    [users, searchKeyword]
+  )
+
+  return {
+    filterUsers,
+  }
+}
+```
+
+UserCard component display only the user information only
+
+```tsx
+import { User } from '../../types/user'
+
+interface Props {
+  user: User
+}
+
+export const UserCard = ({ user }: Props) => (
+  <div className="max-w-md mr-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex justify-end px-4 pt-4">
+      <div
+        id="dropdown"
+        className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+      >
+        <ul className="py-2" aria-labelledby="dropdownButton">
+          <li>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Edit
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Export Data
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Delete
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div className="flex flex-col items-center pb-10">
+      <img
+        className="w-24 h-24 mb-3 rounded-full shadow-lg"
+        src="https://i.pravatar.cc/300"
+        alt={user?.id}
+      />
+      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+        {user?.name}
+      </h5>
+      <span className="text-sm text-gray-500 dark:text-gray-400">
+        {user?.company?.name}
+      </span>
+      <div className="flex mt-4 space-x-3 md:mt-6">
+        <a
+          href="#"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Add friend
+        </a>
+        <a
+          href="#"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+        >
+          Message
+        </a>
+      </div>
+    </div>
+  </div>
+)
+```
+
+search input component
+
+```tsx
+interface Props {
+  setSearchKeyword: (keyword: string) => void
+}
+
+export const SearchUserComponent = ({ setSearchKeyword }: Props) => (
+  <div className="flex flex-col justify-center items-center">
+    <input
+      className="border"
+      placeholder="search for user"
+      onChange={(e) => setSearchKeyword(e.target.value)}
+    />
+  </div>
+)
+```
+
+we separate the code based on the responsibility , and this as i said before will be very help full in reading code , finding\bugs quickly write test , also writing TDD with this approach will be easy
+
+<a href="https://codesandbox.io/s/srp-article2-fzbuox?file=/src/App.tsx">
+  Check the code in the sandbox
+</a>
