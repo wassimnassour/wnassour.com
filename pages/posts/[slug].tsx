@@ -36,17 +36,18 @@ const components = {
   h1: H1,
   h2: H2,
   p: Paragraph,
-  Img: ({ src, alt, className }: any) => {
+  Img: ({ src, alt, className, ...props }: any) => {
+    console.log(props, 'props')
     return (
       <Image
         alt={alt}
         src={src}
         width={500}
-        height={500}
+        height={100}
         sizes="(max-width: 768px) 100vw,
         (max-width: 1200px) 50vw,
         33vw"
-        className={cx('w-full h-auto my-7', className)}
+        className={cx('w-full  my-7', className)}
       />
     )
   },
