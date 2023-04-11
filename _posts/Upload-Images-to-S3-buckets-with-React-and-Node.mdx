@@ -1,0 +1,125 @@
+---
+title: 'Upload Images to S3 buckets with React and Node in scalable way , using getSignedUrl'
+excerpt: 'This article explains how to upload images to S3 buckets using the `getSignedUrl` method. This method enables direct uploading of images to S3 without having to first upload them to your server.'
+coverImage: '/assets/blog/Upload-Images-to-S3-buckets-with-React-and-Node/1.png'
+date: '08/04/2023'
+featured: true
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+
+ogImage:
+  url: '/assets/blog/Upload-Images-to-S3-buckets-with-React-and-Node/1.png'
+  thumbnail: '/assets/blog/Upload-Images-to-S3-buckets-with-React-and-Node/1.png'
+---
+
+This article explains how to upload images to S3 buckets using the <Tag>getSignedUrl</Tag> method. This method enables direct uploading of images to S3 without having to first upload them to your server.
+
+## How it’s work and why this way is more scalable:
+
+<br />
+
+One of the ways to upload images to S3 buckets is to handle the image on the server before sending it to S3. However, this requires more resources on the backend, which can result in slower processing times. An alternative approach is to upload the image with a signed URL. This method requires fewer resources because with <Tag>getSignedUrl</Tag>, we only need to specify the operation name and some parameter objects.
+
+After using the <Tag>getSignedUrl</Tag> method to upload images to S3 buckets on the server, we are returned a URL as results. We can utilize the URL to perform a PUT request with the image on the React client. This approach enables direct uploading of the image to S3 without passing through the server. Consequently, the approach is more scalable, as it reduces the backend's load and improves processing times.
+
+This image explains the full flow.
+
+<Img
+  className="w-full"
+  alt="Upload Images to S3 buckets with React and Node in scalable way , using getSignedUrl"
+  src="/assets/blog/Upload-Images-to-S3-buckets-with-React-and-Node/flow.png"
+/>
+
+## Security :
+
+<li> Users cannot spam our S3 bucket with many files.</li>
+<li> Users cannot request</li>
+<li> a URL for one file and then upload a different one. </li>
+<li> URLs can expire.</li>
+<li>
+  URLs are generated securely through a request between our server and AWS.
+</li>
+
+<li>URLs can only work for the specific S3 bucket they were created for.</li>
+
+## implementations :
+
+this is the backend implementation
+
+```javascript
+const AWS = require('aws-sdk')
+
+const s3 = new AWS.S3()
+
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+})
+
+app.post('/upload-image', async (req, res) => {
+  const { fileName, fileType } = req.query
+
+  const s3Params = {
+    // name_of_your_bucket_here
+    Bucket: process.env.S3_BUCKET,
+    // define name of the resource in the s3 bucket it’s better to use it like this
+    // way resourseName +’/’+ random id better to use UID
+    Key: fileName,
+    // file type Image/Jpeg...
+    ContentType: fileType,
+    // Expiration Date of the url
+    Expires: 60,
+  }
+
+  try {
+    const signedUrl = await getSignedUrl(s3, s3Params, { expiresIn: 60 })
+    console.log(signedUrl)
+    res.json({ signedUrl })
+  } catch (err) {
+    console.error(err)
+    next(err)
+  }
+})
+```
+
+## React Implementation:
+
+Let's consider that you have created a form and are now in the function that will upload an image to your backend.
+
+```javascript
+async function uploadImage({ fileName, fileType }) {
+  const options = { fileName, fileType }
+
+  const response = await axios.post('/upload-image', options)
+
+  if (response?.url) {
+    axios.put(response?.url, file, options)
+  }
+}
+```
+
+<h2 styles={{ color: 'secondary' }}>Handling CORS</h2>
+
+<li>S3 Bucket setting</li>
+<li>Create a DNS compliant bucket name</li>
+<li>Set default encryption</li>
+<li>Give appropriate read and write permissions</li>
+<li>Add following CORS rules </li>
+
+```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+        <AllowedOrigin>/ origins allowed to upload image /</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>PUT</AllowedMethod>
+        <AllowedMethod>HEAD</AllowedMethod>
+        <AllowedMethod>DELETE</AllowedMethod>
+        <MaxAgeSeconds>3000</MaxAgeSeconds>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+  </CORSConfiguration>
+
+```

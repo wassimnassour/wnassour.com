@@ -45,9 +45,10 @@ const components = {
         width={500}
         height={100}
         sizes="(max-width: 768px) 100vw,
-        (max-width: 1200px) 50vw,
-        33vw"
-        className={cx('w-full  my-7', className)}
+          (max-width: 1200px) 50vw,
+          33vw"
+        quality="100"
+        className={cx('w-full object-contain my-7', className)}
       />
     )
   },
