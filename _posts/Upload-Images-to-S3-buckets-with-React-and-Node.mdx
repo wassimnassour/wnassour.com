@@ -13,16 +13,11 @@ ogImage:
   thumbnail: '/assets/blog/Upload-Images-to-S3-buckets-with-React-and-Node/1.png'
 ---
 
-This article explains how to upload images to S3 buckets using the <Tag>getSignedUrl</Tag> method. This method enables direct uploading of images to S3 without having to first upload them to your server.
+Hi folks, we will discuss how to upload images to S3 buckets using the <Tag>getSignedUrl</Tag> method. This method enables direct uploading of images to S3 without having to first upload them to your server.
 
 ## How it’s work and why this way is more scalable:
 
 <br />
-
-One of the ways to upload images to S3 buckets is to handle the image on the server before sending it to S3. However, this requires more resources on the backend, which can result in slower processing times. An alternative approach is to upload the image with a signed URL. This method requires fewer resources because with <Tag>getSignedUrl</Tag>, we only need to specify the operation name and some parameter objects.
-
-After using the <Tag>getSignedUrl</Tag> method to upload images to S3 buckets on the server, we are returned a URL as results. We can utilize the URL to perform a PUT request with the image on the React client. This approach enables direct uploading of the image to S3 without passing through the server. Consequently, the approach is more scalable, as it reduces the backend's load and improves processing times.
-
 This image explains the full flow.
 
 <Img
@@ -30,6 +25,10 @@ This image explains the full flow.
   alt="Upload Images to S3 buckets with React and Node in scalable way , using getSignedUrl"
   src="/assets/blog/Upload-Images-to-S3-buckets-with-React-and-Node/flow.png"
 />
+
+One of the ways to upload images to S3 buckets is to handle the image on the server before sending it to S3. However, this requires more resources on the backend, which can result in slower processing times. An alternative approach is to upload the image with a signed URL. This method requires fewer resources because with <Tag>getSignedUrl</Tag>, we only need to specify the operation name and some parameter objects.
+
+After using the <Tag>getSignedUrl</Tag> method to upload images to S3 buckets on the server, we are returned a URL as results. We can utilize the URL to perform a PUT request with the image on the React client. This approach enables direct uploading of the image to S3 without passing through the server. Consequently, the approach is more scalable, as it reduces the backend's load and improves processing times.
 
 ## Security :
 
@@ -68,12 +67,12 @@ app.post('/upload-image', async (req, res) => {
     Key: fileName,
     // file type Image/Jpeg...
     ContentType: fileType,
-    // Expiration Date of the url
+    // expires in 60 seconds
     Expires: 60,
   }
 
   try {
-    const signedUrl = await getSignedUrl(s3, s3Params, { expiresIn: 60 })
+    const signedUrl = await getSignedUrl(s3, s3Params)
     console.log(signedUrl)
     res.json({ signedUrl })
   } catch (err) {
@@ -105,7 +104,7 @@ async function uploadImage({ fileName, fileType }) {
 <li>Create a DNS compliant bucket name</li>
 <li>Set default encryption</li>
 <li>Give appropriate read and write permissions</li>
-<li>Add following CORS rules </li>
+<li>Add the following CORS rules</li>
 
 ```xml
   <?xml version="1.0" encoding="UTF-8"?>
@@ -131,3 +130,5 @@ async function uploadImage({ fileName, fileType }) {
 >
   full code
 </a>
+
+{/_ dwedwe---------- _/}
