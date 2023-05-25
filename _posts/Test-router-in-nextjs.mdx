@@ -78,7 +78,7 @@ test('test navigation with push', () => {
 })
 ```
 
-# Second approach: Create a fake context for the useRouter hook to use
+# Second approach: mock the context for the useRouter hook
 
 we will create helper function that generates a mocked router object with necessary methods and values . also create MockRouterWrapper component that provides the router object as a value to the RouterContext. We can then use this wrapper in our test to render the component and simulate the button click.
 
