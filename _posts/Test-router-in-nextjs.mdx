@@ -1,0 +1,143 @@
+---
+title: 'Test routing in nextjs'
+excerpt: 'Hi friends, this article shows how you can test your <Tag>next/router</Tag>  in different ways. To test push or any method from next/router'
+coverImage: '/assets/blog/Test-router-in-nextjs/cover.png'
+date: '25/05/2023'
+featured: true
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+
+ogImage:
+  url: '/assets/blog/Test-router-in-nextjs/cover.png'
+  thumbnail: '/assets/blog/Test-router-in-nextjs/cover.png'
+---
+
+Hi friends, this article shows how you can test your <Tag>next/router</Tag> in different ways. To test push or any method from <Tag>next/router</Tag> , I found two approaches: mocking the <Tag>next/router</Tag> , and creating a router context inside your test and wrapping your app with it. We will dig deep into both approaches.
+
+If you try to run <Tag>next/router</Tag> in isolation, you will encounter an issue. To understand this issue, you need to know how <Tag>useRouter</Tag> from <Tag>next/router</Tag> works.
+
+<Img
+  src={'/assets/blog/Test-router-in-nextjs/ErrorMessage.png'}
+  quality={100}
+/>
+
+this is the internal code of <Tag>useRouter</Tag> as you see it just consumes the routerContext that’s setup when you run the app
+
+<Img
+  className="w-full object-cover"
+  src={'/assets/blog/Test-router-in-nextjs/rourterInternal.png'}
+/>
+
+To avoid this issue in our app, we have two approaches. The first is to mock <Tag>next/router</Tag> ,
+while the second is to create the context for <Tag>useRouter</Tag> in the component we are testing.
+
+The component we are testing is a simple one, with a push method from <Tag>useRouter</Tag> . However, with this approach, we are testing the methods of <Tag>next/router</Tag> . You will see that we are only checking the methods now, because we have fixed the error that <Tag>useRouter</Tag> throws.
+
+```jsx
+const Component = () => {
+  const router = useRouter()
+  const navigateToNext = () => {
+    router.push('/next-page?name=test')
+  }
+  return (
+    <div>
+      <button onClick={navigateToNext}>Navigate to Other page</button>
+    </div>
+  )
+}
+```
+
+# First approach: mock useRouter from the next/router
+
+The first approach involves mocking <Tag>next/router</Tag> using the <Tag>jest.mock</Tag> method. By creating a mock implementation of <Tag>useRouter</Tag> , you can simulate routing behavior in your tests. You can render your component, simulate the button click, and then verify that the push method is called with the expected URL
+
+```jsx
+import Home from '../pages/index'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { useRouter } from 'next/router'
+
+jest.mock('next/router', () => {
+  const router = {
+    push: jest.fn(),
+    query: {},
+  }
+  return {
+    useRouter: jest.fn().mockReturnValue(router),
+  }
+})
+
+test('test navigation with push', () => {
+  render(<Home />)
+  const button = screen.getByRole('button', {
+    name: 'Navigate to Other page',
+  })
+  fireEvent.click(button)
+  expect(useRouter().push).toHaveBeenCalledTimes(1)
+  expect(useRouter().push).toHaveBeenCalledWith('/next-page?name=test')
+})
+```
+
+# Second approach: Create a fake context for the useRouter hook to use
+
+we will create helper function that generates a mocked router object with necessary methods and values . also create MockRouterWrapper component that provides the router object as a value to the RouterContext. We can then use this wrapper in our test to render the component and simulate the button click.
+
+```jsx
+import Home from '../pages/index'
+import { RouterContext } from 'next/dist/shared/lib/router-context'
+
+export function createMockRouter(router) {
+  return {
+    basePath: '',
+    pathname: '/',
+    route: '/',
+    query: {},
+    asPath: '/',
+    back: jest.fn(),
+    beforePopState: jest.fn(),
+    prefetch: jest.fn(),
+    push: jest.fn(),
+    reload: jest.fn(),
+    replace: jest.fn(),
+    events: {
+      on: jest.fn(),
+      off: jest.fn(),
+      emit: jest.fn(),
+    },
+    isFallback: false,
+    isLocaleDomain: false,
+    isReady: true,
+    defaultLocale: 'en',
+    domainLocales: [],
+    isPreview: false,
+    ...router,
+  }
+}
+
+const MockRouterWrapper = ({ children, router }) => {
+  return (
+    <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
+  )
+}
+```
+
+Finally, after we created our Wrapper and function helper , we can once again check that the push method is called with the correct URL an.
+
+```jsx
+test('test navigation with push', () => {
+  // create wrapper object
+  const router = createMockRouter()
+  render(<Home />, {
+    // pass wrapper router options
+    wrapper: (props) => <MockRouterWrapper {...props} router={router} />,
+  })
+  const button = screen.getByRole('button', {
+    name: 'Navigate to Other page',
+  })
+  fireEvent.click(button)
+  expect(router.push).toHaveBeenCalledTimes(1)
+  expect(router.push).toHaveBeenCalledWith('/next-page?name=test')
+})
+```
+
+In summary, both approaches allow you to focus on testing the <Tag>useRouter</Tag> methods. We chose to test only the push method because the main idea is to be able to test the methods from userRouter. With the function helper or the mocking version, you can check or simulate any method from useRouter

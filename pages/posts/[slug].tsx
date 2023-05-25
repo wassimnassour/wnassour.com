@@ -40,15 +40,17 @@ const components = {
     console.log(props, 'props')
     return (
       <Image
-        alt={alt}
+        height={400}
+        width={800}
+        quality={100}
         src={src}
-        width={500}
-        height={100}
+        alt={alt}
         sizes="(max-width: 768px) 100vw,
-          (max-width: 1200px) 50vw,
-          33vw"
-        quality="100"
+        (max-width: 1200px) 50vw,
+        33vw"
+        priority
         className={cx('w-full object-contain my-7', className)}
+        {...props}
       />
     )
   },
