@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { IPost } from 'types'
-import Image from 'next/image'
 
 interface Props {
   Posts: IPost[]
@@ -20,7 +19,7 @@ export const Blog = ({ Posts }: Props) => {
             Read more &gt;
           </Link>
         </div>
-        <div className="flex flex-col mt-6 md:flex-row">
+        <div className="grid grid-col-1 md:grid-cols-3  mt-6 ">
           {Posts.map((post) => (
             <ArticleCard key={post.slug} post={post} />
           ))}
@@ -34,7 +33,7 @@ const ArticleCard = ({ post }: { post: IPost }) => {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="flex w-full mt-6 cursor-pointer md:w-1/2 lg:w-1/3 "
+      className="flex w-full mt-6 cursor-pointer  "
       passHref
     >
       <div className="flex flex-col justify-between bg-[#49536b] rounded-sm p-3 mr md:mr-3 ">
