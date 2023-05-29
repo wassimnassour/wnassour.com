@@ -24,6 +24,10 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
           ></link>
+          <meta
+            name="google-site-verification"
+            content="wIl0o-8xCq31APjqwuVU0ZoIrOFi141bPpz7P9bVVyU"
+          />
         </Head>
         <body>
           <Main />
