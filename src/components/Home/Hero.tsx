@@ -12,10 +12,11 @@ export const Hero = () => {
       <div className="flex flex-col items-start justify-center w-11/12 h-full max-w-5xl mx-auto text-white sm:w-10/12 md:9/12">
         <div className="flex  flex-col  md:flex-row  justify-between md:items-center w-full  ">
           <div className="flex">
-            <div className="h-24 w-24 rounded-md overflow-hidden  relative">
+            <div className="h-28 w-28 rounded-md  overflow-hidden  relative">
               <Image
-                src="/assets/wassim.jpg"
+                src="/assets/nassour.jpg"
                 fill
+                className="bg-contain h-auto object-contain "
                 alt="wassim personal picture "
               />
             </div>
