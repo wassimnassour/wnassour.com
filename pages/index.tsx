@@ -22,7 +22,7 @@ export default function Home({ featuredPosts }: Props) {
       <div>
         <Hero />
 
-        <About />
+        {/* <About /> */}
         <Blog Posts={featuredPosts} />
         <Contact />
       </div>
