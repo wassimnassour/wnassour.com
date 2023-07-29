@@ -109,11 +109,16 @@ const AboutMe = () => {
     <>
       <h1 className="text-3xl text-white my-3 lg:hidden">About</h1>
       <p className=" mb-24 lg:mb-36 leading-7 text-gray-300" id="About">
-        I”m wassim , 24 years old , a self-taught full stack developer ,I use
-        amazing like technologies React , NodeJs , Golang ….
-        <br />I live in Casablanca , Morocco , currenctly working as Front-end
-        developer at Obytes , I hade some experience working with other clients
-        and I was co-founder at other compony for selling used cars
+        My name is Wassim Nassour and I am a self-taught JavaScript Developer
+        with a passion for the tech world. I specialize in Front-End
+        development, and I take pride in writing clean and readable code using
+        the latest best practices in web development. With 3 years of experience
+        as a full-stack engineer, I currently work as a Front-End developer at
+        Obytes. Outside of work, I keep up with programming and technology
+        trends and enjoy writing blogs in my free time. My ultimate goal is to
+        create high-performance applications using the latest technologies and
+        share my knowledge with the community. Thank you for visiting my
+        website!
       </p>
     </>
   )

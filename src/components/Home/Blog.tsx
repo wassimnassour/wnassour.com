@@ -36,7 +36,7 @@ const ArticleCard = ({ post }: { post: IPost }) => {
       className="flex w-full mt-6 cursor-pointer  "
       passHref
     >
-      <div className="flex flex-col justify-between bg-[#2c3345] rounded-sm p-3 mr md:mr-3 rounded-md ">
+      <div className="flex flex-col justify-between bg-[#2c3345]  p-3 mr md:mr-3 rounded-md ">
         <h1 className="my-4 text-2xl font-Alegreya_Sans md:text-3xl text-white">
           {post.title}
         </h1>

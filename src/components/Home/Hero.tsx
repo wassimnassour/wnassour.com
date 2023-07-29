@@ -1,8 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
-
-import MobileDevelopmentIcon from 'ui/icons/MobileDev'
-import { EMAIL, LINKED_IN_URL, TWITTER_URL, socialLinks } from 'utils'
+import { TWITTER_URL, socialLinks } from 'utils'
 
 /* eslint-disable react/no-unescaped-entities */
 export const Hero = () => {
@@ -44,9 +41,18 @@ export const Hero = () => {
         </div>
 
         <p className="font-normal text-gray-300 my-7 text-lg">
-          I'm a Self-taught JavaScript Developer, proficient in Front-End, I'm
-          passionate about the Tech world, skilled at writing clean and readable
-          Code, by using current best practices in web development
+          Hi there! I am a self-taught Fullstack Engineer with a passion for the
+          tech world. Currently, I work as a Front-End developer at{' '}
+          <a
+            className="text-secondary inline-block relative before:duration-200 before:z-0 before:transition-all before:w-full before:h-1   hover:text-white before:bg-secondary hover:before:h-full  before:absolute before:bottom-0 before:left-0"
+            href="https://www.obytes.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="z-10 relative">Obytes</span>
+          </a>
+          , with 3 years of experience. I always strive to write clean and
+          readable code using the latest best practices in web development.
         </p>
         <h3 className="font-extrabold text-gray-400 text-xl">Quick intro 👋🏻</h3>
         <ul className="mb-4 pl-1 space-y-1 mt-2 text-lg">
