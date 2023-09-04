@@ -1,6 +1,7 @@
 import { EmailIcon, GithubIcon, TwitterIcon } from 'ui/icons'
 import { LinkedInIcon } from 'ui/icons/LinkedIn'
-
+export const RESUME_URL =
+  'https://docs.google.com/document/d/1yPVQfaxMkXqPNVjwvSNAPk3mVgfZ0vvFr2d_qZoyS9c/edit'
 export const SITE_URL = 'https://www.wnassour.com/'
 export const SITE_NAME = 'Wassim Blog'
 export const TWITTER_USERNAME = '@wassimnassour'

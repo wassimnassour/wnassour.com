@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { TWITTER_URL, socialLinks } from 'utils'
+import { RESUME_URL, TWITTER_URL, socialLinks } from 'utils'
 
 /* eslint-disable react/no-unescaped-entities */
 export const Hero = () => {
@@ -44,16 +44,10 @@ export const Hero = () => {
         <p className="font-normal text-gray-300 my-7 text-lg">
           Hi there! I am a self-taught Fullstack Engineer with a passion for the
           tech world. Currently, I work as a Front-End developer at{' '}
-          <a
-            className="text-secondary inline-block relative before:duration-200 before:z-0 before:transition-all before:w-full before:h-1   hover:text-white before:bg-secondary hover:before:h-full  before:absolute before:bottom-0 before:left-0"
-            href="https://www.obytes.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span className="z-10 relative">Obytes</span>
-          </a>
-          , with 3 years of experience. I always strive to write clean and
-          readable code using the latest best practices in web development.
+          <ExternalLink url="https://www.obytes.com/" title="Obytes" />, with 3
+          years of experience. I always strive to write clean and readable code
+          using the latest best practices in web development. you can download
+          my <ExternalLink url={RESUME_URL} title="Resume" />
         </p>
         <h3 className="font-extrabold text-gray-400 text-xl">Quick intro 👋🏻</h3>
         <ul className="mb-4 pl-1 space-y-1 mt-2 text-lg">
@@ -75,3 +69,14 @@ export const Hero = () => {
     </div>
   )
 }
+
+const ExternalLink = ({ title, url }: { title: string; url: string }) => (
+  <a
+    className="text-secondary inline-block relative before:duration-200 before:z-0 before:transition-all before:w-full before:h-1   hover:text-white before:bg-secondary hover:before:h-full  before:absolute before:bottom-0 before:left-0"
+    href={url}
+    target="_blank"
+    rel="noreferrer"
+  >
+    <span className="z-10 relative">{title}</span>
+  </a>
+)
