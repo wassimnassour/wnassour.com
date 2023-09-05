@@ -42,12 +42,15 @@ export const Hero = () => {
         </div>
 
         <p className="font-normal text-gray-300 my-7 text-lg">
-          Hi there! I am a self-taught Fullstack Engineer with a passion for the
-          tech world. Currently, I work as a Front-End developer at{' '}
-          <ExternalLink url="https://www.obytes.com/" title="Obytes" />, with 3
-          years of experience. I always strive to write clean and readable code
-          using the latest best practices in web development. you can download
-          my <ExternalLink url={RESUME_URL} title="Resume" />
+          Hello! I am a self-taught Fullstack Engineer with a strong passion for
+          the world of technology. Currently, I am employed as a Front-End
+          Developer at{' '}
+          <ExternalLink url="https://www.obytes.com/" title="Obytes" /> , where
+          I have accumulated 3 years of valuable experience. I am dedicated to
+          crafting clean and maintainable code, following the latest industry
+          best practices in web development. Feel free to download my{' '}
+          <ExternalLink url={RESUME_URL} title="Resume" />, as I am currently
+          open to new career opportunities
         </p>
         <h3 className="font-extrabold text-gray-400 text-xl">Quick intro 👋🏻</h3>
         <ul className="mb-4 pl-1 space-y-1 mt-2 text-lg">
