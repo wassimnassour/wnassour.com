@@ -1,0 +1,201 @@
+---
+title: 'Mapped Types in Typescript '
+excerpt: 'Mapped types are one of the best tools in TypeScript for transforming types. It takes a type and turns it into another type in an organized and deliberate way. You can think of the mapped type as Array.map – iterating over it to create new types.'
+coverImage: '/assets/blog/Mapped-types-in-typescript/mapped-types.png'
+date: '15/09/2023'
+featured: true
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+
+ogImage:
+  url: '/assets/blog/Mapped-types-in-typescript/mapped-types.png'
+  thumbnail: '/assets/blog/Mapped-types-in-typescript/mapped-types.png'
+---
+
+Mapped types are one of the best tools in TypeScript for transforming types. It takes a type and turns it into another type in an organized and deliberate way. You can think of the mapped type as Array.map – iterating over it to create new types. This is the same pattern used to create utilities in TypeScript, such as Pick Partial, and Required. We will see examples of how to create your own Pick, Omit … with custom conditions.
+
+Mapped types Syntax
+
+```tsx
+[P in K]: T
+```
+
+Here, <Tag>P</Tag> is a variable that represents a property key of the original type <Tag>K</Tag>. We can customize <Tag>P</Tag> as we want; we can use <Tag>as</Tag> to convert it to sommthing else or create new key using literal strings. <Tag>T</Tag> is the type that the property will be transformed into. Here, we can use it to create a new type.
+
+# Create mapped type
+
+Let’s imagine we have a static union
+
+```tsx
+type union = 'firstname' | 'lastname'
+```
+
+or we can create a union from an object we have already, using keyof and typeof
+
+```tsx
+// typeof: returns the  object with key and values as the type
+// keyof: return union from keys of the object
+
+const obj = {
+  firstname: 'wassim',
+  lastname: 'nassour',
+}
+
+type keys = keyof typeof obj
+```
+
+Let’s create a mapped type that switches all strings in the obj to a boolean
+
+```tsx
+const obj = {
+  firstname: string,
+  lastname: string,
+}
+
+type objBolean = {
+  [k in obj]: boolean
+}
+
+// using generics
+type objBoolean<T extends {}> = {
+  //  T extends {} is a conditional check to check if T is the Object first
+  [k in keyof typeof T]: boolean
+}
+```
+
+Now if you use objBoolean on obj you will get
+
+```tsx
+{
+  firstname:boolean,
+  lastname:boolean
+}
+```
+
+# implement your Own Pick, Recod ….
+
+## Implementation of Record :
+
+```tsx
+type MyRecod<K extends string | number | symbol, T> = {
+  [P in K]: T
+}
+```
+
+<Tag>P in K</Tag>, <P className="inline text-white">means, that the key property in an object will match one of the K arguments and T is the type of value can object has T can be anything in this example but we can put some constraints</P>
+
+## Implementation of Pick :
+
+```typescript
+//This is how Pick is implemented, Pick will try to pick only the matched keys with K
+// and T is the Object
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P]
+}
+
+//We can implement Pick with optional keys
+type PickOptional<T, K extends keyof T> = {
+  [P in K]?: T[P]
+}
+
+//We can implement Pick with read-only  keys
+type PickWithReadOnly<T, K extends keyof T> = {
+  readonly [P in K]?: T[P]
+}
+```
+
+# Key Remapping with String Litterlale
+
+With the feature of key mapping in typescript and the help of <Tag>as</Tag> You can leverage features like [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) to create new property names from prior ones:
+
+example we have a normal typescript object type containing data like this :
+
+```tsx
+const dataState = {
+  game: number,
+  player: number,
+}
+```
+
+and we want to create another type containing actions like setPlayer and setGame , we can simply do this
+
+```tsx
+type dataState = {
+  game: number
+  player: number
+}
+
+type dataActions = {
+  [K in keyof dataState as `set${Capitalize<K>}`]: (
+    arg: dataState[K]
+  ) => dataState[K]
+}
+
+function methods(actions: dataActions) {
+  actions.setGame(3)
+  // if we try to run setGame with string we will get this error
+  // argument of type 'string' is not assignable to the parameter of type 'number'.(2345)
+}
+```
+
+# Filtering out Properties
+
+In TypeScript, you can filter properties out of an object type using the Omit utility type, or you can create a custom type that excludes specific properties. In this explanation, we will implement our custom Omit type, which will allow us to perform more advanced filtering, such as excluding properties based on string literals or specific conditions, like excluding all properties that are functions or numbers, or any other criteria you require.
+
+This is an example of normal Omit without any typescript utility
+
+```tsx
+interface Obj {
+  name: string
+  lastname: string
+  age: string
+}
+type MyOmit<T, K extends keyof T> = {
+  [Key in keyof T as Key extends K ? never : Key]: T[Key]
+}
+
+type TestOmit = MyOmit<Obj, 'name' | 'age'>
+```
+
+# Filtering using String Litterlal
+
+This is an example of normal Omit without any typescript utility
+
+```tsx
+interface Obj {
+  name: string
+  nameAgain: string
+  age: string
+}
+
+//We removed the extends here because will provide a
+//key that the typescript can't know
+type MyOmit<T extends {}, K> = {
+  [Key in keyof T as Key extends K ? never : Key]: T[Key]
+}
+
+type TestOmit = MyOmit<Obj, `name${string}`>
+```
+
+using <Tag>name${string}</Tag> will exclude all properties that start with a name and follow a string
+
+# Filtering based on values
+
+```typescript
+interface Obj {
+  name: string
+  nameAgain: string
+  age: string
+}
+
+type OmitFunction<T, K> = {
+  [Key in keyof T as T[Key] extends () => void ? never : Key]: T[Key]
+}
+
+type TestOmit = OmitFunction<Obj>
+```
+
+this OmitFunction will exclude all properties that have a value of function that returns void
+
+Thank you for reading this article, See you in the next article chuss 👋
