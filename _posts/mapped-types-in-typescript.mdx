@@ -21,7 +21,7 @@ Mapped types Syntax
 [P in K]: T
 ```
 
-Here, <Tag>P</Tag> is a variable that represents a property key of the original type <Tag>K</Tag>. We can customize <Tag>P</Tag> as we want; we can use it as is or create literal strings. <Tag>T</Tag> is the type that the property will be transformed into. Here, we can use it to create a new type.
+Here, <Tag>P</Tag> is a variable that represents a property key of the original type <Tag>K</Tag>. We can customize <Tag>P</Tag> as we want; we can use <Tag>as</Tag> to convert it to sommthing else or create new key using literal strings. <Tag>T</Tag> is the type that the property will be transformed into. Here, we can use it to create a new type.
 
 # Create mapped type
 
@@ -34,6 +34,9 @@ type union = 'firstname' | 'lastname'
 or we can create a union from an object we have already, using keyof and typeof
 
 ```tsx
+// typeof: returns the  object with key and values as the type
+// keyof: return union from keys of the object
+
 const obj = {
   firstname: 'wassim',
   lastname: 'nassour',
@@ -53,9 +56,6 @@ const obj = {
 type objBolean = {
   [k in obj]: boolean
 }
-
-// typeof: returns the  object with key and values as the type
-// keyof: return union from keys of the object
 
 // using generics
 type objBoolean<T extends {}> = {
@@ -83,7 +83,7 @@ type MyRecod<K extends string | number | symbol, T> = {
 }
 ```
 
-P in K means, that the key property in an object will match one of the K arguments and T is the type of value can object has T can be anything in this example but we can put some constraints
+<Tag>P in K</Tag>, <P className="inline text-white">means, that the key property in an object will match one of the K arguments and T is the type of value can object has T can be anything in this example but we can put some constraints</P>
 
 ## Implementation of Pick :
 
