@@ -1,15 +1,17 @@
 import { GetStaticProps } from 'next'
-import { getAllPosts } from '../lib/blogUtils'
+import { getAllNotes } from '../lib/notesUtility'
 import { IPost } from 'types'
 import { NextSeo } from 'next-seo'
 import { SITE_URL } from 'utils'
 import { ArticleCard } from 'components/blog/ArticleCard/indext'
+import { getAllContent } from '../lib/mdxUtils'
+import { join } from 'path'
 
 interface Props {
   posts: IPost[]
 }
 
-const Blog = ({ posts }: Props) => {
+const Notes = ({ posts }: Props) => {
   return (
     <>
       <NextSeo
@@ -20,7 +22,7 @@ const Blog = ({ posts }: Props) => {
         }}
       />
       <div className="w-11/12 max-w-6xl min-h-screen pb-4 mx-auto mt-16 md:w-10/12">
-        <h1 className="my-5 mb-16 text-5xl text-white">Blog</h1>
+        <h1 className="my-5 mb-16 text-5xl text-white">Notes</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 w-full ">
           {posts.map((post) => {
             return (
@@ -40,10 +42,10 @@ const Blog = ({ posts }: Props) => {
   )
 }
 
-export default Blog
+export default Notes
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts([
+  const posts = getAllNotes([
     'slug',
     'image',
     'title',

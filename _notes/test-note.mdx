@@ -1,0 +1,110 @@
+---
+title: 'BTest note'
+excerpt: 'I will assume you already heard about nextjs , in video or conference or article …., but maybe you don’t understand what is it and why it’s so much popular, we will discover in this article, why next js is the best production framework right now and what is the benefits from using it?'
+coverImage: '/assets/blog/Benefits-from-using-nextjs/cover.png'
+date: '20/12/2021'
+featured: false
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+
+ogImage:
+  url: '/assets/blog/Benefits-from-using-nextjs/cover.png'
+  thumbnail: '/assets/blog/Benefits-from-using-nextjs/cover.png'
+---
+
+import { Tag, BlockQuote } from 'components'
+
+# **Introduction :**
+
+<Img
+  className="w-full"
+  src={'/assets/blog/Benefits-from-using-nextjs/cover.png'}
+/>
+
+I will assume you already heard about Nextjs, in video or conference or article …., but maybe you don’t understand what is it and why it’s so much popular, that’s exactly what we will see in this article, why Nextjs is your best choice for your next React project right now and what are the benefits of using it?
+
+# What is next js
+
+it's a framework built on top of React, that gives you the flexibility of building scalable apps by allowing you to render content on the server. also, it's the full-stack framework you won't build the frontend of your app, you can write the backend as well cuz next js provide us with node server out of the box, besides its full-stack framework, it comes with a lot of amazing things, for example, code-splitting, good performance, file-based route. , Seo, serverless functions, different rendering techniques, server-side rendering, static site generation increment site regeneration, don't freeze by those names we will dig deeper into all of them.
+
+# Rendering techniques
+
+With Next.js, you can choose how to render content whether you want to render content on the server or the client, whereas React (CRA) render only on the client-side aside from server components that are coming to React, Nextjs give you the options to decide where you want to render the content using 3 different technique that Nextjs supports, and yeah you can combine them all in one application, each page has different rendering techniques, and solve Performance, and SEO issues.
+
+<h2 styles={{ color: 'secondary' }}> SSG: Static site generation</h2>
+
+SSG or static site generation is a rendering technique for That HTML is generated at the built time, If there is fetching from API in the page it will fetch all the data in advance and once this data is available Nextjs generate a static HTML which we can cache on a CDN server, to provide the user with a high-performance, which also makes it easy for the search engine crawlers to crawl our pages therefor better SEO but this technique has a downside, let’s imagine you have news app with thousands of pages, and you want to add hot news immediately, you will face the issue of how much time you will wait before the app, is done with building the page with the latest data and this is a serious issue with those types of websites next.js solve this with two different techniques SSI and SSR
+
+<h2 styles={{ color: 'secondary' }}> SSR : Server Side Rendreing</h2>
+
+server-side rendering is a rendering technique, rebuild the pages for each request and do fetching from APIs if they exist, and you can use this by implementing the getServerSideProps function inside your page, you can learn more about that here
+
+<h2 styles={{ color: 'secondary' }}> ISG: Increment site generation</h2>
+
+ISG came to solve an issue with SSG, wish is if we want to build some specific pages or update some of them you will need to rebuild the entire app, and this is an issue because it will take a lot of time if you have many pages or you have an e-commerce website and you are adding products to it, you will have to solve this issue, also we can’t use SSR because we will lose the performance benefit from SSG. ISG came between SSG and SSR, with ISG you rebuild the pages after a period of time that you can control, without the need to manually trigger the rebuild of the site.
+Next.js defines which pages to generate at build-time based on the paths returned by, [getStaticPaths](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation)
+
+For example, you can generate the most popular 1,000 products at build-time by returning the paths for the top 1,000 product IDs in getStaticPaths.
+
+# Image Optimisation :
+
+The Next.js , Image component, <a href='https://nextjs.org/docs/api-reference/next/image'><Tag>next/image</Tag></a>, is an extension built top <Tag>`<img>`</Tag>
+element, evolved for the modern web. It includes a variety of built-in performance optimizations to help you achieve good [Core Web Vitals](https://nextjs.org/learn/seo/web-performance). These scores are an important measurement of user experience on your website and are [factored into Google's search rankings](https://nextjs.org/learn/seo/web-performance/seo-impact).
+
+Some of the optimizations built into the Image component include:
+
+- **Improved Performance:** Always serve correctly sized images for each device, using modern image formats. For example, if you are on a mobile phone it will serve minified images for the mobile app.
+- **Visual Stability:** Prevent [Cumulative Layout Shift](https://nextjs.org/learn/seo/web-performance/cls) automatically.
+- **Faster Page Loads:** Images are only loaded when they enter the viewport, with optional blur-up placeholders
+- **Asset Flexibility:** On-demand image resizing, even for images stored on remote servers
+
+# Routing :
+
+next has file based routing feature ,you don't need to install additional package for this , means if you create pages directory , you are having routes ,
+
+and next js has 3 difrents routing thechenique index routes , nested routes , dynamic routes :
+
+The router will automatically route files named `index` to the root of the directory.
+
+- <Tag>pages/index.js</Tag> → <Tag>/</Tag>
+
+- <Tag>pages/blog/index.js</Tag> →  <Tag>/blog</Tag>
+
+<h2 styles={{ color: 'secondary' }}> Nested routes</h2>
+
+The router supports nested files. If you create a nested folder structure, files will automatically be routed in the same way still.
+
+- <Tag>pages/blog/first-post.js</Tag> →  <Tag>/blog/first-post</Tag>
+
+- <Tag>pages/dashboard/settings/username.js</Tag> →  <Tag>
+    /dashboard/settings/username
+  </Tag>
+
+<h2 styles={{ color: 'secondary' }}> Dynamic route segments</h2>
+
+To match a dynamic segment, you can use the bracket syntax. This allows you
+to match named parameters.
+
+- <Tag>pages/blog/[slug].js</Tag> →  <Tag>/blog/:slugt</Tag>
+  <Tag>(/blog/hello-world)</Tag>
+
+- <Tag>pages/[username]/settings.js</Tag> →  <Tag>/:username/settings</Tag>
+  <Tag>(/foo/settings)</Tag>
+
+- <Tag>pages/post/[...all].js</Tag> →  <Tag>/post/\*</Tag>
+  <Tag>(/post/2020/id/title)</Tag>
+
+# ServerLess Functions
+
+ServersLess functions basically is just javascript functions , has two arguments req stand for request , and res stand for response ,it's look like express controller , the great thing about ServersLess functions , is that you can have endpoint without care about hoisting a server somewhere or dealing with cors 🤯 , and do things quickly like authentication form contactus working with cms ...... what you need to do to have sever less function , is just create folder <Tag>api</Tag> inside <Tag>pages</Tag> directory
+
+<BlockQuote styles={{  p: [3] }}>
+ 
+   pages / <br />
+    &emsp;&emsp; api / <br />
+             &emsp; &emsp; &emsp;  Login.tsx <br />
+
+</BlockQuote>
+
+if you follow this structure you will have endpoint with apil url /code `https://www.localhost:3000/api/login` inside this file you can write your server less function which takes req and return response .
