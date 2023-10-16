@@ -4,8 +4,6 @@ import { IPost } from 'types'
 import { NextSeo } from 'next-seo'
 import { SITE_URL } from 'utils'
 import { ArticleCard } from 'components/blog/ArticleCard/indext'
-import { getAllContent } from '../lib/mdxUtils'
-import { join } from 'path'
 
 interface Props {
   posts: IPost[]
