@@ -13,28 +13,34 @@ type Post = {
   content: string
 }
 
-const POSTS_PATH = join(process.cwd(), '_posts')
-
-function getPostFilePaths(): string[] {
+export function getFilePaths(directoryFileName: string): string[] {
   return (
     fs
-      .readdirSync(POSTS_PATH)
+      .readdirSync(directoryFileName)
       // Only include md(x) files
       .filter((path) => /\.mdx?$/.test(path))
   )
 }
 
-export function getPost(slug: string): Post {
-  const fullPath = join(POSTS_PATH, `${slug}.mdx`)
+export function getContent(directoryFile: string, slug: string): Post {
+  const fullPath = join(directoryFile, `${slug}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
   return { data, content }
 }
 
-export function getPostItems(filePath: string, fields: string[] = []): Items {
+export function getContentItems({
+  directoryName,
+  fields = [],
+  filePath,
+}: {
+  directoryName: string
+  filePath: string
+  fields: string[]
+}): Items {
   const slug = filePath.replace(/\.mdx?$/, '')
-  const { data, content } = getPost(slug)
+  const { data, content } = getContent(directoryName, slug)
 
   const items: Items = {}
 
@@ -55,10 +61,15 @@ export function getPostItems(filePath: string, fields: string[] = []): Items {
   return items
 }
 
-export function getAllPosts(fields: string[] = []): Items[] {
-  const filePaths = getPostFilePaths()
+export function getAllContent(
+  directoryFileName: string,
+  fields: string[] = []
+): Items[] {
+  const filePaths = getFilePaths(directoryFileName)
   const posts = filePaths
-    .map((filePath) => getPostItems(filePath, fields))
+    .map((filePath) =>
+      getContentItems({ directoryName: directoryFileName, filePath, fields })
+    )
     // sort posts by date in descending order
     .sort((a, b) => {
       const aa = a.date?.split('/').reverse().join(),
@@ -68,8 +79,8 @@ export function getAllPosts(fields: string[] = []): Items[] {
   return posts
 }
 
-export function getFeaturedPosts() {
-  const allposts = getAllPosts([
+export function getFeaturedContent(directoryFileName: string) {
+  const all = getAllContent(directoryFileName, [
     'slug',
     'image',
     'title',
@@ -78,6 +89,6 @@ export function getFeaturedPosts() {
     'excerpt',
     'content',
   ])
-  const featuredPosts = allposts.filter((_t) => _t.featured)
-  return featuredPosts
+  const featuredContent = all.filter((_t) => _t.featured)
+  return featuredContent
 }

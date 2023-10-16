@@ -26,6 +26,10 @@ export const NAV_LINKS = [
     url: '/blog',
     name: 'Blog',
   },
+  // {
+  //   url: '/notes',
+  //   name: 'Notes',
+  // },
   {
     url: '/about',
     name: 'About',

@@ -1,1 +1,1 @@
-export * from './mdxUtils'
+export * from './blogUtils'
