@@ -52,7 +52,7 @@ export const jobs = [
     role: 'Front-end Engineer',
     description:
       "I'm working at Obytes as Front end developer, I use many amazing technologies, on a daily basis such as React, React Native, Next js, Styled-components, react-query ...., I Contributed to some existing projects, by adding new features and fixing some issues, also I had the chance to start working on new apps, on my own, where I faced many problems and learn a lot by solving themes.",
-    date: '2022 – Present / Casablanca ',
+    date: '2021 – 2023 / Casablanca ',
     projects: [
       {
         name: ' Vieva Care',
@@ -104,30 +104,30 @@ export const jobs = [
     ],
     url: 'http://www.awto.com',
   },
-  // {
-  //   name: 'Rantt',
-  //   role: 'Full-stack',
-  //   date: '2021 - 2022 / New York / Remote',
-  //   description:
-  //     'Rantt is social media app, with the approach of communities, I worked as a full stack developer at Rantt i build two  apps one is a web portal for a mobile app and the other one is to create the same functionality in the  mobile the app',
-  //   tasks: [
-  //     'Build a backend using Express.js and connect it to another gRPC server.',
-  //     'Create a subscription in Stripe',
-  //     'Develop an endpoint for subscribing to the created subscription.',
-  //     'Enable updating of user credit card information.',
-  //     'Allow cancellation of a subscription at the end of the billing period.',
-  //     'Enable immediate cancellation of a subscription.',
-  //     'Allow updating of subscription price.',
-  //     'Develop a social media app and web portal using React.',
-  //   ],
-  //   technologies: [
-  //     'Tailwind CSS',
-  //     'React',
-  //     'TypeScript',
-  //     'Stripe',
-  //     'Nodejs',
-  //     'Grpc',
-  //   ],
-  //   url: 'http://www.Rantt.com',
-  // },
+  {
+    name: 'Rantt',
+    role: 'Full-stack',
+    date: '2020 - 2021 / New York / Remote',
+    description:
+      'Rantt is social media app, with the approach of communities, I worked as a full stack developer at Rantt i build two  apps one is a web portal for a mobile app and the other one is to create the same functionality in the  mobile the app',
+    tasks: [
+      'Build a backend using Express.js and connect it to another gRPC server.',
+      'Create a subscription in Stripe',
+      'Develop an endpoint for subscribing to the created subscription.',
+      'Enable updating of user credit card information.',
+      'Allow cancellation of a subscription at the end of the billing period.',
+      'Enable immediate cancellation of a subscription.',
+      'Allow updating of subscription price.',
+      'Develop a social media app and web portal using React.',
+    ],
+    technologies: [
+      'Tailwind CSS',
+      'React',
+      'TypeScript',
+      'Stripe',
+      'Nodejs',
+      'Grpc',
+    ],
+    url: 'http://www.Rantt.com',
+  },
 ]
