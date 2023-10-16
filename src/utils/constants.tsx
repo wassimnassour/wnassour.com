@@ -7,7 +7,7 @@ export const SITE_NAME = 'Wassim Blog'
 export const TWITTER_USERNAME = '@wassimnassour'
 export const PHONE_NUMBER = '+212641327128'
 export const EMAIL = 'nassourwassim@gmail.com'
-export const TWITTER_URL = 'https:www.twitter.com/wassimnassour'
+export const TWITTER_URL = 'https://www.twitter.com/wassimnassour'
 export const LINKED_IN_URL =
   'https://www.linkedin.com/in/wassim-nassour-a21b53138/'
 export const ABOUT =
