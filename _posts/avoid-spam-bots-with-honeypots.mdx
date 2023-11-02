@@ -1,0 +1,76 @@
+---
+title: 'Avoid spam bots With Honeypots'
+excerpt: 'Hey Folks, I think every app has a form that is public and anyone can fill the form without any token, so some guys try to do bad things with those forms, they create bots that fill these forms for purposes like SEO purposes to provide backlinks...'
+coverImage: '/assets/blog/avoid-spam-bots-with-honeypots/cover.png'
+date: '2/11/2023'
+featured: false
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+
+ogImage:
+  url: '/assets/blog/avoid-spam-bots-with-honeypots/cover.png'
+  thumbnail: '/assets/blog/avoid-spam-bots-with-honeypots/cover.png'
+---
+
+# What is Honeypots
+
+Hello everyone! When it comes to building applications, everything seems fine until we tackle forms. The challenge lies in creating robust validation with a user-friendly experience. Speaking of users, we're all aware that not all of them are genuine; some might just be bots. that fill these forms for purposes like SEO purposes to provide backlinks or add malware as well as check for the site vulnerabilities upload, there are some solutions like recaptcha, but guys we all agree that captcha sucks
+![https://media1.giphy.com/media/5iMytBFfMvGhduYMDn/giphy.gif?cid=7941fdc6hvei699o6xozvb7ccnknbq32mvngb07mr79cqnmo&ep=v1_gifs_search&rid=giphy.gif&ct=g](https://media1.giphy.com/media/5iMytBFfMvGhduYMDn/giphy.gif?cid=7941fdc6hvei699o6xozvb7ccnknbq32mvngb07mr79cqnmo&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+
+There are alternatives. Honeypots are additional inputs you put on a form to make bots think they are submitting the correct info. The thing is that we create inputs that look legit and hide them with CSS, and we check if these inputs are filled or not. If they're filled, it means there's a bot here. It's not a guaranteed solution, but with rate limiting on the server and some other methods, I think it's serving the purpose.
+
+## Avoid spam bots With Honeypots Example
+
+Let’s check how we would do it in form using code examples in React,
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <input type="text" name="firstname" placeholder="firstname" />
+  <input
+    type="text"
+    name="firstname_confirm"
+    value=""
+    className="honey_input"
+    tabindex="-1"
+  />
+  <input type="email" name="email" placeholder="Email" />
+  <textarea name="message" placeholder="Message" />
+  <button type="submit">Submit</button>
+</form>
+```
+
+we have a form with inputs first name and email and email message and honeypot input <Tag>firstname_confirm</Tag> with <Tag>tabindex=’-1’</Tag> to avoid screen reader, I saw some solution by trying to hide the input with <Tag>{display:’none’}</Tag>, but I have another solution
+
+```tsx
+.honey_input{
+ opacity: 0;
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 0;
+ width: 0;
+ z-index: -1;
+}
+```
+
+and then we need to check if the bot fills the honeypot input
+
+```tsx
+const handleSubmit = (e) => {
+  e.preventDefault()
+  const formData = new FormData(e.target)
+  if (formData.get('favorite_color') !== '') {
+    // Form submission is spam
+    //You can set an Error like "submitting Form is "
+    return
+  }
+  // Form submission is valid, proceed with processing
+}
+```
+
+Here in the handleSubmit function, we checked if the hidden input is filled. If it is, then it means it has been filled with a bot, and therefore we can handle it displaying an error message or you know.
+
+## Conclusion
+
+Honeypots are great, but they are not perfect they have some drawbacks like if _JavaScript is not enabled in the client browser .., but with the extra validation like rate limiting and bot trap, IP Reputation ..., you are good_
