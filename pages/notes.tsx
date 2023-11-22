@@ -11,7 +11,6 @@ interface Props {
 }
 
 const Notes = ({ notes }: Props) => {
-  console.log('post', notes)
   return (
     <>
       <NextSeo

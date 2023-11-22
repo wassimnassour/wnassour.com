@@ -47,7 +47,7 @@ export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
           <div className="my-7">
             <Title>{frontMatter.title}</Title>
             <p className="mt-10 text-gray-200">
-              {frontMatter.date} · {frontMatter.author.name}
+              {frontMatter.date} {frontMatter?.author?.name}
             </p>
           </div>
 
@@ -71,7 +71,6 @@ const components = {
   h2: H2,
   p: Paragraph,
   Img: ({ src, alt, className, ...props }: any) => {
-    console.log(props, 'props')
     return (
       <Image
         height={400}

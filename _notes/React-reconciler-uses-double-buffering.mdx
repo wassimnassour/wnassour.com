@@ -1,0 +1,12 @@
+---
+title: 'Do you know that React Reconciler uses double buffering'
+excerpt: 'Have you ever wondered why primitive values have methods directly associated with them? '
+date: '20/12/2021'
+featured: false
+bgColor: 'blue'
+---
+
+Do you know that React Reconciler uses double buffering, a technique previously used in game development to reduce flickering and enhance performance? It is commonly used in computer graphics and video processing to create an initial image or frame. While the first buffer is being displayed, the second buffer is updated with new data or images (or frames). When the second buffer is ready, it is switched with the first buffer, and this process continues at regular intervals to display the final image or video (or frame).
+
+So, how does React Reconciler make use of this technique? In React Fiber's reconciliation process, the virtual DOM is updated in small steps using a work loop. Each iteration of the loop handles a portion of the virtual DOM tree. Instead of immediately updating the real DOM with each change, the fiber reconciler creates a new Fiber node that represents the update and stores it in a 'work-in-progress tree'. This tree acts as a temporary copy of the real DOM, helping to avoid unnecessary updates and improving performance by reducing flickering. Once the work loop is complete, the fiber reconciler swaps the real DOM with the work-in-progress tree.
+This technique helps React to render updates efficiently and smoothly, without causing unnecessary flickering or performance degradation
