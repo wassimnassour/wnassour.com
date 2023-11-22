@@ -1,4 +1,4 @@
-import { socialLinks } from 'utils'
+import { socialLinks } from 'constant'
 
 export const LeftSection = () => (
   <aside className=" col-span-1 p-3 md:p-0 md:col-span-2 w-full my-8 lg:my-0   h-full ">
