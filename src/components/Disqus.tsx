@@ -1,5 +1,5 @@
 import { DiscussionEmbed } from 'disqus-react'
-import { SITE_URL } from 'utils'
+import { SITE_URL } from 'constant'
 import { IPost } from 'types/post'
 
 interface Props {

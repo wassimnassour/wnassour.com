@@ -9,7 +9,7 @@ import { Paragraph, H2, Tag, BlockQuote, Li, Link } from 'components'
 import cx from 'utils/cx'
 import { H1 } from 'components'
 
-import { SITE_URL } from 'utils'
+import { SITE_URL } from 'constant'
 import { Layout, Thumbnail, Title } from './Post'
 import DisqusComments from './Disqus'
 
@@ -20,7 +20,7 @@ type Props = {
 }
 
 export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
-  const ogImage = SITE_URL + frontMatter.ogImage.thumbnail
+  const ogImage = SITE_URL + frontMatter?.ogImage?.thumbnail ?? ''
 
   return (
     <>
@@ -36,13 +36,14 @@ export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
       />
       <Layout pageTitle={frontMatter.title}>
         <article className="max-w-4xl px-4 mx-auto mt-4 md:px-10 sm:w-11/12 md:w-8/10 ">
-          <div className="mb-4">
-            <Thumbnail
-              title={frontMatter.title}
-              src={frontMatter.ogImage.url}
-            />
-          </div>
-
+          {frontMatter.ogImage && (
+            <div className="mb-4">
+              <Thumbnail
+                title={frontMatter.title}
+                src={frontMatter.ogImage.url}
+              />
+            </div>
+          )}
           <div className="my-7">
             <Title>{frontMatter.title}</Title>
             <p className="mt-10 text-gray-200">

@@ -59,5 +59,3 @@ const styles = {
     color: 'white',
   },
 }
-
-

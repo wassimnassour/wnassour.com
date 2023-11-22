@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import { getAllPosts } from '../lib/blogUtils'
 import { IPost } from 'types'
 import { NextSeo } from 'next-seo'
-import { SITE_URL } from 'utils'
+import { SITE_URL } from 'constant'
 import { ArticleCard } from 'components/blog/ArticleCard/indext'
 
 interface Props {
