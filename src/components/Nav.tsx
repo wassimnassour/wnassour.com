@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Close, Menu } from 'ui/icons'
-import { NAV_LINKS } from 'utils'
+import { NAV_LINKS } from 'constant'
 import { SideBar } from 'components'
 export const Nav = () => {
   const [isBackDropOpen, setBackDrop] = useState(false)

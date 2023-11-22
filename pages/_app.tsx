@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Footer, Nav } from 'components'
 import { DefaultSeo } from 'next-seo'
-import { SITE_URL } from 'utils'
+import { SITE_URL } from 'constant'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
 function MyApp({ Component, pageProps }: AppProps) {

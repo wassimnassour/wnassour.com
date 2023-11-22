@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { NAV_LINKS } from 'utils'
+import { NAV_LINKS } from 'constant'
 import { Close } from 'ui/icons'
 import cx from 'utils/cx'
 

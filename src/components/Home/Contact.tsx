@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from 'next/link'
-import { EMAIL, PHONE_NUMBER, TWITTER_URL } from 'utils'
+import { EMAIL, PHONE_NUMBER, TWITTER_URL } from 'constant'
 
 export const Contact = () => {
   return (

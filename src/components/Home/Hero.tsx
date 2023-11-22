@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { RESUME_URL, TWITTER_URL, socialLinks } from 'utils'
+import { RESUME_URL, TWITTER_URL, socialLinks } from 'constant'
 
 /* eslint-disable react/no-unescaped-entities */
 export const Hero = () => {

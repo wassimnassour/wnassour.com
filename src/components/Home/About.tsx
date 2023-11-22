@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { ABOUT } from 'utils'
+import { ABOUT } from 'constant'
 
 export const About = () => {
   return (

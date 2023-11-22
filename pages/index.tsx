@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { IPost } from 'types'
 import { NextSeo } from 'next-seo'
 import { getFeaturedPosts } from '../lib'
-import { SITE_URL } from 'utils'
+import { SITE_URL } from 'constant'
 
 interface Props {
   featuredPosts: IPost[]
