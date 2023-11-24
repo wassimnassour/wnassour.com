@@ -1,6 +1,6 @@
 ---
 title: 'Config PWA in your next app'
-excerpt: 'notes about how to config your manfist and your service workers'
+excerpt: 'notes about how to config your manifest and your service workers'
 date: '20/12/2021'
 featured: false
 bgColor: 'yellow'
@@ -11,7 +11,7 @@ bgColor: 'yellow'
 - <Tag>display</Tag>: this can be standalone or minimal ui or full-screen
   <img
     src="/assets/notes/config-pwa-in-your-next-app/pwa-phone-size.png"
-    alt="Difference between standalone or minimal ui or full screen"
+    alt="Difference between standalone or minimal UI or full screen"
     className="mt-3"
   />
 
@@ -22,11 +22,11 @@ bgColor: 'yellow'
 
 - <Tag>scope</Tag>: The "scope" property defines the navigation scope of the web
   application. It determines which pages are within the app's scope and can be
-  navigated to without leaving the app experience . like if you want to access
-  singing with google it will open new tab like browser in your app
+  navigated without leaving the app experience. like if you want to access
+  singing with Google it will open a new tab like a browser in your app
 
-- <Tag>icons</Tag> : so about icons you should know the supported sizes and types
-  - recommendation Sizes : - at least : 192X192 - 384x384 ,1024x1024 - 🔴 the icons
+- <Tag>icons</Tag> : so about icons, you should know the supported sizes and types
+  - recommendation Sizes : - at least: 192X192 - 384x384 ,1024x1024 - 🔴 the icons
   is not working on ios you should add new meta tag to support ios ```html
   <link rel="apple-touch-icon" sizes="190x190" href="/path/to/your/icon.png" />
   ```
@@ -35,9 +35,9 @@ bgColor: 'yellow'
 
 ## things you should be aware of
 
-- when you build PWA,the user can start selecting things like the text in button or titles , so you want to give the best experience , you can add user-select:none and -webkit-user-select:none to your tag or class to make sure that user can't select this text
+- when you build PWA, the user can start selecting things like the text in the button or titles, so if you want to give the best experience, you can add user-select:none and -webkit-user-select:none to your tag or class to make sure that user can't select this text
 
-- when you use standalone if there’s any button or anything in the safe area , you can’t access cuz the the phone is using it we can use media with display mode
+- when you use standalone if there’s any button or anything in the safe area, you can’t access cuz the the phone is using it we can use media with display mode
 
   ```css
   @media (display-mode: standalone) {
@@ -45,13 +45,16 @@ bgColor: 'yellow'
   }
   ```
 
-  you can also use [env](https://developer.mozilla.org/en-US/docs/Web/CSS/env) from css to fill the screen when you are working with rotation screen
+  you can also use [env](https://developer.mozilla.org/en-US/docs/Web/CSS/env) from CSS to fill the screen when you are working with a rotation screen
 
-- To make sure your Icon will fit and look exactly as you want without any white background or anything , check this
+- To make sure your Icon will fit and look exactly as you want without any white background or anything, check this
   [https://web.dev/articles/maskable-icon](https://web.dev/articles/maskable-icon)
 
-## offline Support
+## Offline Support
 
-- you can add fallback offline page visit this [https://github.com/shadowwalker/next-pwa/tree/master/examples/offline-fallback-v2](https://github.com/shadowwalker/next-pwa/tree/master/examples/offline-fallback-v2)
+- you can add a fallback offline page by visiting this [https://github.com/shadowwalker/next-pwa/tree/master/examples/offline-fallback-v2](https://github.com/shadowwalker/next-pwa/tree/master/examples/offline-fallback-v2)
 
-- also you can register service worker and start cashing the resourses , visit this [https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+- also you can register a service worker and start cashing the resources, visit this [https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+## Publish your app to store 
+Check out this tool on GitHub that helps generate apps for publishing in the store: (PWA Builder)[https://www.pwabuilder.com/].
