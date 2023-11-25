@@ -23,7 +23,7 @@ export const NoteCard: FC<Props> = ({
     <Link
       href={`/note/${slug}`}
       className={cx(
-        'flex flex-col w-full  mr-3 mt-10  border border-gray-600  text-[#2F1931]   p-7 justify-between   rounded-2xl cursor-pointer '
+        'flex flex-col w-full  mr-3 mt-10  border border-gray-600  text-[#2F1931]  p-5 md:p-7   justify-between   rounded-2xl cursor-pointer '
       )}
       style={{ backgroundColor: NoteColors[bgColor || 'blue'] }}
     >

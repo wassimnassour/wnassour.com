@@ -17,16 +17,15 @@ export function getNoteContent(slug: string) {
   return getContent(Notes_PATH, slug)
 }
 
-export function getFeaturedPosts() {
-  const allposts = getAllContent(Notes_PATH, [
+export function getFeaturedNotes() {
+  const allNotes = getAllContent(Notes_PATH, [
     'slug',
-    'image',
     'title',
     'featured',
     'date',
     'excerpt',
-    'content',
+    'bgColor',
   ])
-  const featuredPosts = allposts.filter((_t) => _t.featured)
+  const featuredPosts = allNotes.filter((_t) => _t.featured)
   return featuredPosts
 }

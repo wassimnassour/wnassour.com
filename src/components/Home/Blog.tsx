@@ -7,23 +7,21 @@ interface Props {
 
 export const Blog = ({ Posts }: Props) => {
   return (
-    <div className="flex items-center justify-center my-4 mt-16">
-      <div className="w-11/12 md:w-9-10 lg:max-w-5xl">
-        <div className="flex items-center justify-between font-Alegreya_Sans font-extrabold">
-          <div className="flex items-center justify-center">
-            <span className="w-8 h-1 mr-2 bg-secondary "></span>
-            <h2 className="text-3xl text-white ">Blog</h2>
-          </div>
+    <div className="flex flex-col items-center justify-center my-4 mt-16">
+      <div className="flex items-center w-full justify-between font-Alegreya_Sans font-extrabold">
+        <div className="flex items-center justify-center">
+          <span className="w-8 h-1 mr-2 bg-secondary "></span>
+          <h2 className="text-3xl text-white ">Blog</h2>
+        </div>
 
-          <Link href="/blog" className="text-white ">
-            Read more &gt;
-          </Link>
-        </div>
-        <div className="grid grid-col-1   mt-6 ">
-          {Posts.map((post) => (
-            <ArticleCard key={post.slug} post={post} />
-          ))}
-        </div>
+        <Link href="/blog" className="text-white ">
+          Read more &gt;
+        </Link>
+      </div>
+      <div className="grid grid-col-1   mt-6 ">
+        {Posts.map((post) => (
+          <ArticleCard key={post.slug} post={post} />
+        ))}
       </div>
     </div>
   )
