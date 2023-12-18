@@ -39,7 +39,7 @@ or we can create a union from an object we have already, using keyof and typeof
 
 const obj = {
   firstname: 'wassim',
-  lastname: 'nassour',
+  lastname: 'nassour'
 }
 
 type keys = keyof typeof obj
@@ -50,7 +50,7 @@ Let’s create a mapped type that switches all strings in the obj to a boolean
 ```tsx
 const obj = {
   firstname: string,
-  lastname: string,
+  lastname: string
 }
 
 type objBolean = {
@@ -114,7 +114,7 @@ example we have a normal typescript object type containing data like this :
 ```tsx
 const dataState = {
   game: number,
-  player: number,
+  player: number
 }
 ```
 
@@ -127,9 +127,7 @@ type dataState = {
 }
 
 type dataActions = {
-  [K in keyof dataState as `set${Capitalize<K>}`]: (
-    arg: dataState[K]
-  ) => dataState[K]
+  [K in keyof dataState as `set${Capitalize<K>}`]: (arg: dataState[K]) => dataState[K]
 }
 
 function methods(actions: dataActions) {

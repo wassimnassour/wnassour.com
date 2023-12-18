@@ -18,7 +18,7 @@ export default function Home({ featuredPosts, featuredNotes }: Props) {
         title="Wassim | Home"
         openGraph={{
           title: 'Wassim | Home',
-          url: SITE_URL,
+          url: SITE_URL
         }}
       />
 
@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       featuredPosts,
-      featuredNotes,
-    },
+      featuredNotes
+    }
   }
 }

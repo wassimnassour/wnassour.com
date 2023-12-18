@@ -12,13 +12,7 @@ interface Props {
   bgColor?: keyof typeof NoteColors
 }
 
-export const NoteCard: FC<Props> = ({
-  bgColor,
-  title,
-  date,
-  slug,
-  excerpt,
-}) => {
+export const NoteCard: FC<Props> = ({ bgColor, title, date, slug, excerpt }) => {
   return (
     <Link
       href={`/note/${slug}`}
@@ -29,9 +23,7 @@ export const NoteCard: FC<Props> = ({
     >
       <h1 className=" text-2xl block font-semibold    line-clamp-2">{title}</h1>
       <hr className="h-1  my-4 w-full border-[#2F1931]  " />
-      <p className="px-2 mb-4 text-sm  line-clamp-4 font-light">
-        {excerpt.substring(0, 100)}...
-      </p>
+      <p className="px-2 mb-4 text-sm  line-clamp-4 font-light">{excerpt.substring(0, 100)}...</p>
       <div className="flex justify-between px-2 mt-5   ">
         <span className="mb-3">{date}</span>
       </div>

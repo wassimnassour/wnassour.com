@@ -26,10 +26,7 @@ For this approach, we will use the renderHook utlity from the library for test o
 
 all packages we used in the tutorial have come with the boilerplate of <a href='https://create-react-app.dev/'>create-react-app</a>, but if you have an old version or you found the packages missing you can add them with this commend
 
-<BlockQuote>
-  {' '}
-  yarn add @testing-library/react @testing-library/user-event
-</BlockQuote>
+<BlockQuote> yarn add @testing-library/react @testing-library/user-event</BlockQuote>
 
 useNotes is hook hold notes and functions for updating the notes, so we have some use cases to test
 
@@ -51,26 +48,19 @@ type NoteShape = {
 
 export const useNotes = () => {
   const [notes, setNotes] = React.useState<NoteShape[]>([])
-  const [searchResults, setSearchResults] = React.useState<
-    NoteShape[] | undefined
-  >()
+  const [searchResults, setSearchResults] = React.useState<NoteShape[] | undefined>()
 
-  const AddNote = React.useCallback(
-    (note: NoteShape) => setNotes((prev) => [...prev, note]),
-    []
-  )
+  const AddNote = React.useCallback((note: NoteShape) => setNotes(prev => [...prev, note]), [])
 
   const removeNote = React.useCallback((n: NoteShape) => {
-    const results = notes?.filter((note) => note.id !== n.id)
+    const results = notes?.filter(note => note.id !== n.id)
     setNotes(results)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const searchForNote = React.useCallback(
     (searchValue: string) => {
-      const results = notes?.filter((note) =>
-        note.title.includes(searchValue?.trim())
-      )
+      const results = notes?.filter(note => note.title.includes(searchValue?.trim()))
       setSearchResults(results)
     },
     [notes]
@@ -81,7 +71,7 @@ export const useNotes = () => {
     searchResults,
     searchForNote,
     removeNote,
-    AddNote,
+    AddNote
   }
 }
 ```
@@ -99,15 +89,8 @@ type NoteShape = {
 }
 
 export const Notes = () => {
-  const {
-    searchQuery,
-    setSearchQuery,
-    notes,
-    searchResults,
-    AddNote,
-    searchForNote,
-    removeNote,
-  } = useNotes()
+  const { searchQuery, setSearchQuery, notes, searchResults, AddNote, searchForNote, removeNote } =
+    useNotes()
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -129,65 +112,38 @@ export const Notes = () => {
 
   return (
     <div>
-      <input
-        placeholder="search for specific note by title"
-        onChange={searchFn}
-        role="search"
-      />
+      <input placeholder="search for specific note by title" onChange={searchFn} role="search" />
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Title</label>
 
         <input type="text" id="title" name="title" placeholder="Note Title" />
         <label htmlFor="note">Note</label>
-        <input
-          type="text"
-          name="note"
-          id="note"
-          placeholder="Write your note here"
-        />
+        <input type="text" name="note" id="note" placeholder="Write your note here" />
         <button>Add Note</button>
       </form>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {searchQuery &&
-        searchQuery.length >= 1 &&
-        searchResults?.length === 0 ? (
+        {searchQuery && searchQuery.length >= 1 && searchResults?.length === 0 ? (
           <p>No Notes Founded</p>
         ) : searchResults && searchResults?.length >= 1 ? (
-          searchResults?.map((note) => (
-            <Note
-              removeNote={removeNote}
-              note={note}
-              key={note?.title + 'search_note'}
-            />
+          searchResults?.map(note => (
+            <Note removeNote={removeNote} note={note} key={note?.title + 'search_note'} />
           ))
         ) : (
           notes?.length >= 1 &&
-          notes.map((note) => (
-            <Note
-              note={note}
-              removeNote={removeNote}
-              key={note?.title + 'note'}
-            />
-          ))
+          notes.map(note => <Note note={note} removeNote={removeNote} key={note?.title + 'note'} />)
         )}
       </div>
     </div>
   )
 }
 
-const Note = ({
-  note,
-  removeNote,
-}: {
-  note: NoteShape
-  removeNote: (n: NoteShape) => void
-}) => {
+const Note = ({ note, removeNote }: { note: NoteShape; removeNote: (n: NoteShape) => void }) => {
   return (
     <div
       style={{
         border: '1px solid black ',
         marginTop: 10,
-        width: 200,
+        width: 200
       }}
     >
       <h2>{note?.title}</h2>
@@ -272,7 +228,7 @@ test('useNotes inside a component', async () => {
 
   // // search for specific  note ("Best Case found search is working")
   fireEvent.change(await screen.findByRole('search'), {
-    target: { value: noteForTest.title },
+    target: { value: noteForTest.title }
   })
   await screen.findByText(noteForTest.title)
 
@@ -281,7 +237,7 @@ test('useNotes inside a component', async () => {
 
   // search for specific  note ("bad Case not found anything ")
   fireEvent.change(await screen.findByRole('search'), {
-    target: { value: 'Nothing should be founded' },
+    target: { value: 'Nothing should be founded' }
   })
   // check zero note
   await screen.findByText(/no notes founded/i)

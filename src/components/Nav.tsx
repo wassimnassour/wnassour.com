@@ -21,7 +21,7 @@ export const Nav = () => {
         </div>
         <nav className="flex-row items-center hidden md:flex">
           <ul className="flex flex-row">
-            {NAV_LINKS.map((_item) => (
+            {NAV_LINKS.map(_item => (
               <li
                 key={_item.name}
                 className="mx-3 text-white cursor-pointer"
@@ -36,15 +36,9 @@ export const Nav = () => {
         </nav>
       </div>
 
-      <SideBar
-        isBackDropOpen={isBackDropOpen}
-        toggleBackDrop={toggleBackDrop}
-      />
+      <SideBar isBackDropOpen={isBackDropOpen} toggleBackDrop={toggleBackDrop} />
 
-      <button
-        className="block ml-auto md:hidden "
-        onClick={() => toggleBackDrop()}
-      >
+      <button className="block ml-auto md:hidden " onClick={() => toggleBackDrop()}>
         <Menu className="fill-white" />
       </button>
     </div>
@@ -56,6 +50,6 @@ const styles = {
     listStyle: 'none',
     cursor: 'pointer',
     mx: 3,
-    color: 'white',
-  },
+    color: 'white'
+  }
 }

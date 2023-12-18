@@ -18,10 +18,7 @@ The single responsibility principle is created by Robert C. Martin , and the mai
 <li>reduce the number of bugs</li>
 <li>improve our development experience</li>
 <li>avoid unexpected bugs</li>
-<li>
-  writing test will be extremely fast and easy because our code has only one
-  responsibility
-</li>
+<li>writing test will be extremely fast and easy because our code has only one responsibility</li>
 ---
 
 if we have a component that renders a list of users I see no reason, that component should hold information about users
@@ -70,9 +67,7 @@ export function Users() {
 
   const filterUsers = useMemo(
     () =>
-      users.filter((user: User) =>
-        user.name.toLowerCase().includes(searchKeyword?.toLowerCase())
-      ),
+      users.filter((user: User) => user.name.toLowerCase().includes(searchKeyword?.toLowerCase())),
     [users, searchKeyword]
   )
 
@@ -82,11 +77,11 @@ export function Users() {
         <input
           className="border"
           placeholder="search for user"
-          onChange={(e) => setSearchKeyword(e.target.value)}
+          onChange={e => setSearchKeyword(e.target.value)}
         />
       </div>
       <div className="h-full flex mt-10  flex-wrap justify-center">
-        {filterUsers?.map((user) => (
+        {filterUsers?.map(user => (
           <div className="max-w-md mr-2 mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className="flex justify-end px-4 pt-4">
               <div
@@ -210,7 +205,7 @@ export const useFetchUsers = () => {
   }, [])
 
   return {
-    users,
+    users
   }
 }
 ```
@@ -229,14 +224,12 @@ interface Params {
 export const useSearchUser = ({ searchKeyword, users }: Params) => {
   const filterUsers = useMemo(
     () =>
-      users.filter((user: User) =>
-        user.name.toLowerCase().includes(searchKeyword?.toLowerCase())
-      ),
+      users.filter((user: User) => user.name.toLowerCase().includes(searchKeyword?.toLowerCase())),
     [users, searchKeyword]
   )
 
   return {
-    filterUsers,
+    filterUsers
   }
 }
 ```
@@ -291,12 +284,8 @@ export const UserCard = ({ user }: Props) => (
         src="https://i.pravatar.cc/300"
         alt={user?.id}
       />
-      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-        {user?.name}
-      </h5>
-      <span className="text-sm text-gray-500 dark:text-gray-400">
-        {user?.company?.name}
-      </span>
+      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user?.name}</h5>
+      <span className="text-sm text-gray-500 dark:text-gray-400">{user?.company?.name}</span>
       <div className="flex mt-4 space-x-3 md:mt-6">
         <a
           href="#"
@@ -328,7 +317,7 @@ export const SearchUserComponent = ({ setSearchKeyword }: Props) => (
     <input
       className="border"
       placeholder="search for user"
-      onChange={(e) => setSearchKeyword(e.target.value)}
+      onChange={e => setSearchKeyword(e.target.value)}
     />
   </div>
 )

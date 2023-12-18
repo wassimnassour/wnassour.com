@@ -17,10 +17,7 @@ Hi friends, this article shows how you can test your <Tag>next/router</Tag> in d
 
 If you try to run <Tag>next/router</Tag> in isolation, you will encounter an issue. To understand this issue, you need to know how <Tag>useRouter</Tag> from <Tag>next/router</Tag> works.
 
-<Img
-  src={'/assets/blog/Test-router-in-nextjs/ErrorMessage.png'}
-  quality={100}
-/>
+<Img src={'/assets/blog/Test-router-in-nextjs/ErrorMessage.png'} quality={100} />
 
 this is the internal code of <Tag>useRouter</Tag> as you see it just consumes the routerContext that’s setup when you run the app
 
@@ -60,17 +57,17 @@ import { useRouter } from 'next/router'
 jest.mock('next/router', () => {
   const router = {
     push: jest.fn(),
-    query: {},
+    query: {}
   }
   return {
-    useRouter: jest.fn().mockReturnValue(router),
+    useRouter: jest.fn().mockReturnValue(router)
   }
 })
 
 test('test navigation with push', () => {
   render(<Home />)
   const button = screen.getByRole('button', {
-    name: 'Navigate to Other page',
+    name: 'Navigate to Other page'
   })
   fireEvent.click(button)
   expect(useRouter().push).toHaveBeenCalledTimes(1)
@@ -102,7 +99,7 @@ export function createMockRouter(router) {
     events: {
       on: jest.fn(),
       off: jest.fn(),
-      emit: jest.fn(),
+      emit: jest.fn()
     },
     isFallback: false,
     isLocaleDomain: false,
@@ -110,14 +107,12 @@ export function createMockRouter(router) {
     defaultLocale: 'en',
     domainLocales: [],
     isPreview: false,
-    ...router,
+    ...router
   }
 }
 
 const MockRouterWrapper = ({ children, router }) => {
-  return (
-    <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
-  )
+  return <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
 }
 ```
 
@@ -129,10 +124,10 @@ test('test navigation with push', () => {
   const router = createMockRouter()
   render(<Home />, {
     // pass wrapper router options
-    wrapper: (props) => <MockRouterWrapper {...props} router={router} />,
+    wrapper: props => <MockRouterWrapper {...props} router={router} />
   })
   const button = screen.getByRole('button', {
-    name: 'Navigate to Other page',
+    name: 'Navigate to Other page'
   })
   fireEvent.click(button)
   expect(router.push).toHaveBeenCalledTimes(1)

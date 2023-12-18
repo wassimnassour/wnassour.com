@@ -12,14 +12,10 @@ type Props = {
 
 const meta = {
   description: `${SITE_NAME} `,
-  ogImagePath: '/assets/wassim.jpg',
+  ogImagePath: '/assets/wassim.jpg'
 }
 
-export const Meta: React.FC<Props> = ({
-  imagePath,
-  pageTitle,
-  description,
-}: Props) => {
+export const Meta: React.FC<Props> = ({ imagePath, pageTitle, description }: Props) => {
   const router = useRouter()
   const ogUrl = SITE_URL + router.asPath
   const ogType = router.pathname === '/' ? 'website' : 'article'
@@ -32,29 +28,11 @@ export const Meta: React.FC<Props> = ({
   return (
     <Head>
       <title>{pageTitle}</title>
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicon/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon/favicon-32x32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon/favicon-16x16.png"
-      />
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/favicon/site.webmanifest" />
-      <link
-        rel="mask-icon"
-        href="/favicon/safari-pinned-tab.svg"
-        color="#5bbad5"
-      />
+      <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#00a300" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
@@ -65,11 +43,7 @@ export const Meta: React.FC<Props> = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={ogTitle} />
-      <meta
-        property="og:description"
-        content={ogDescription}
-        key="ogDescription"
-      />
+      <meta property="og:description" content={ogDescription} key="ogDescription" />
       <meta property="og:image" content={ogImage} key="ogImage" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={TWITTER_USERNAME} />

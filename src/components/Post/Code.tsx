@@ -4,18 +4,13 @@ import React, { useState } from 'react'
 
 export const CodeBlock = ({
   language = 'jsx',
-  children,
+  children
 }: {
   children: string
   language: Language
 }) => {
   return (
-    <Highlight
-      {...defaultProps}
-      theme={theme}
-      code={children}
-      language={language}
-    >
+    <Highlight {...defaultProps} theme={theme} code={children} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           // sx={{

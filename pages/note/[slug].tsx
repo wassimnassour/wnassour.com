@@ -26,29 +26,29 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const mdxSource = await serialize(content, {
     scope: data,
     mdxOptions: {
-      rehypePlugins: [rehypeHighlight],
-    },
+      rehypePlugins: [rehypeHighlight]
+    }
   })
 
   return {
     props: {
       source: mdxSource,
       frontMatter: data,
-      slug: params?.slug,
-    },
+      slug: params?.slug
+    }
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllNotes(['slug'])
-  const paths = posts.map((post) => ({
+  const paths = posts.map(post => ({
     params: {
-      slug: post.slug,
-    },
+      slug: post.slug
+    }
   }))
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   }
 }

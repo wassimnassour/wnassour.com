@@ -8,14 +8,7 @@ type Props = {
 }
 
 export const Thumbnail: React.FC<Props> = ({ title, src, slug }: Props) => {
-  const image = (
-    <Image
-      src={src}
-      alt={`Cover Image for ${title}`}
-      width={1280}
-      height={720}
-    />
-  )
+  const image = <Image src={src} alt={`Cover Image for ${title}`} width={1280} height={720} />
   return (
     <>
       {slug && (
