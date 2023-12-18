@@ -31,17 +31,14 @@ export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
           url: SITE_URL + slug,
           description: frontMatter.excerpt,
           article: {},
-          images: [{ url: ogImage }],
+          images: [{ url: ogImage }]
         }}
       />
       <Layout pageTitle={frontMatter.title}>
         <article className="max-w-4xl px-4 mx-auto mt-4 md:px-10 sm:w-11/12 md:w-8/10 ">
           {frontMatter.ogImage && (
             <div className="mb-4">
-              <Thumbnail
-                title={frontMatter.title}
-                src={frontMatter.ogImage.url}
-              />
+              <Thumbnail title={frontMatter.title} src={frontMatter.ogImage.url} />
             </div>
           )}
           <div className="my-7">
@@ -52,9 +49,7 @@ export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
           </div>
 
           <MDXRemote
-            components={
-              components as unknown as Record<string, React.ReactNode>
-            }
+            components={components as unknown as Record<string, React.ReactNode>}
             {...source}
           />
         </article>
@@ -89,17 +84,12 @@ const components = {
   },
   li: Li,
   a: ({ href, children, ...props }: LinkProps) => (
-    <a
-      href={href}
-      target="_blank"
-      {...props}
-      rel="noreferrer"
-      className="underline text-secondary"
-    >
+    <a href={href} target="_blank" {...props} rel="noreferrer" className="underline text-secondary">
       {children}
     </a>
   ),
   Link,
   Tag,
-  BlockQuote,
+  inlineCode: Tag,
+  BlockQuote
 }
