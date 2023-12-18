@@ -25,32 +25,30 @@ In this guide, we will focus on creating a reusable button as example using Reac
 
 while It's a common practice to provide numerous customization options in code, especially when creating reusable components. However, when these options are directly checked within the **`className`** attribute, the codebase can become cluttered and difficult to maintain as it grows.
 
-```jsx
-import clsx from 'clsx';
+```tsx
+import clsx from 'clsx'
+import { PropsWithChildren } from 'react'
 
-import { ButtonOrLink, Props as ButtonOrLinkProps } from '/ButtonOrLink';
-
-export interface Props extends ButtonOrLinkProps {
-  intent?: 'primary' | 'secondary' | 'danger';
+export interface Props extends PropsWithChildren {
+  intent?: 'primary' | 'secondary' | 'danger'
 }
 
 export function Button({ intent = 'primary', ...props }) {
   return (
-    <ButtonOrLink
+    <button
       className={clsx(
         'flex items-center justify-center px-4 py-2 rounded font-medium focus:outline-none',
-        bg-brand-500 text-white,
-        intent === 'primary',
-        "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600",
-        intent === 'secondary',
-        "bg-red-500 text-white focus:ring-red-500",
-        intent === 'danger',
+        // Corrected class names by wrapping them in strings
+        'bg-brand-500 text-white', // Assuming these are valid class names
+        intent === 'primary' && 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600',
+        intent === 'secondary' &&
+          'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 focus:ring-gray-500',
+        intent === 'danger' && 'bg-red-500 text-white focus:ring-red-50' // Example of another class for danger intent
       )}
       {...props}
     />
-  );
+  )
 }
-
 ```
 
 As a solution for this, we will use the `cva` package, which allows you to create and manage variants for your components.
@@ -63,7 +61,7 @@ npm i class-variance-authority
 
 **example of our final code**
 
-```jsx
+```tsx
 import { cva, VariantProps } from 'class-variance-authority'
 import { PropsWithChildren } from 'react'
 
@@ -145,7 +143,7 @@ compoundVariants: [
 
 after creating our reusable button component we can use it like this
 
-```jsx
+```tsx
 <Button intent="primary" fullWidth>
   Submit
 </Button>
@@ -165,22 +163,22 @@ Upon running Storybook, navigate to the specified URL in your browser (usually *
 
 ## Button StoryBook component
 
-```jsx
-import type { Meta, StoryObj } from "@storybook/react"
+```tsx
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from "./button"
+import { Button } from './button'
 
 // More on how to set up stories at: <https://storybook.js.org/docs/writing-stories#default-export>
 const meta = {
   // i used this title to create button under ui folder
-  title: "ui/Button",
+  title: 'ui/Button',
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: <https://storybook.js.org/docs/configure/story-layout>
-    layout: "centered",
+    layout: 'centered'
   },
   // This component will have an automatically generated Autodocs entry: <https://storybook.js.org/docs/writing-docs/autodocs>
-  tags: ["autodocs"],
+  tags: ['autodocs']
 
   // More on argTypes: <https://storybook.js.org/docs/api/argtypes>
 } satisfies Meta<typeof Button>
@@ -191,31 +189,30 @@ type Story = StoryObj<typeof meta>
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
-    children: "Button",
-  },
+    children: 'Button'
+  }
 }
 
 export const Primary: Story = {
   args: {
-    intent: "primary",
-    children: "Primary Button",
-  },
+    intent: 'primary',
+    children: 'Primary Button'
+  }
 }
 
 export const Secondary: Story = {
   args: {
-    intent: "secondary",
-    children: "Secondary button",
-  },
+    intent: 'secondary',
+    children: 'Secondary button'
+  }
 }
 
 export const Danger: Story = {
   args: {
-    intent: "danger",
-    children: "Danger button",
-  },
+    intent: 'danger',
+    children: 'Danger button'
+  }
 }
-
 ```
 
 These stories provide a comprehensive representation of our button component across various configurations, aiding in documentation and visualizing its different states within the design system.
