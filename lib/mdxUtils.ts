@@ -18,7 +18,7 @@ export function getFilePaths(directoryFileName: string): string[] {
     fs
       .readdirSync(directoryFileName)
       // Only include md(x) files
-      .filter((path) => /\.mdx?$/.test(path))
+      .filter(path => /\.mdx?$/.test(path))
   )
 }
 
@@ -33,7 +33,7 @@ export function getContent(directoryFile: string, slug: string): Post {
 export function getContentItems({
   directoryName,
   fields = [],
-  filePath,
+  filePath
 }: {
   directoryName: string
   filePath: string
@@ -45,7 +45,7 @@ export function getContentItems({
   const items: Items = {}
 
   // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
+  fields.forEach(field => {
     if (field === 'slug') {
       items[field] = slug
     }
@@ -61,15 +61,10 @@ export function getContentItems({
   return items
 }
 
-export function getAllContent(
-  directoryFileName: string,
-  fields: string[] = []
-): Items[] {
+export function getAllContent(directoryFileName: string, fields: string[] = []): Items[] {
   const filePaths = getFilePaths(directoryFileName)
   const posts = filePaths
-    .map((filePath) =>
-      getContentItems({ directoryName: directoryFileName, filePath, fields })
-    )
+    .map(filePath => getContentItems({ directoryName: directoryFileName, filePath, fields }))
     // sort posts by date in descending order
     .sort((a, b) => {
       const aa = a.date?.split('/').reverse().join(),
@@ -87,8 +82,8 @@ export function getFeaturedContent(directoryFileName: string) {
     'featured',
     'date',
     'excerpt',
-    'content',
+    'content'
   ])
-  const featuredContent = all.filter((_t) => _t.featured)
+  const featuredContent = all.filter(_t => _t.featured)
   return featuredContent
 }

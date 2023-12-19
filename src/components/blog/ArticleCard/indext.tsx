@@ -6,7 +6,7 @@ export const ArticleCard = ({
   date,
   slug,
   excerpt,
-  image,
+  image
 }: {
   title: string
   date: string

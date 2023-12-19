@@ -20,7 +20,7 @@ export const Notes = ({ notes }: Props) => {
         </Link>
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-x-6 mt-6 ">
-        {notes?.map((note) => (
+        {notes?.map(note => (
           <NoteCard
             key={note.title}
             date={note.date}

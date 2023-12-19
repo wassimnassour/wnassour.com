@@ -37,9 +37,7 @@ After using the <Tag>getSignedUrl</Tag> method to upload images to S3 buckets on
 <li> Users cannot request</li>
 <li> a URL for one file and then upload a different one. </li>
 <li> URLs can expire.</li>
-<li>
-  URLs are generated securely through a request between our server and AWS.
-</li>
+<li>URLs are generated securely through a request between our server and AWS.</li>
 
 <li>URLs can only work for the specific S3 bucket they were created for.</li>
 
@@ -54,7 +52,7 @@ const s3 = new AWS.S3()
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 
 app.post('/upload-image', async (req, res) => {
@@ -69,7 +67,7 @@ app.post('/upload-image', async (req, res) => {
     // file type Image/Jpeg...
     ContentType: fileType,
     // expires in 60 seconds
-    Expires: 60,
+    Expires: 60
   }
 
   try {

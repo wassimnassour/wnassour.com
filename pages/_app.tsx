@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const pageview = (url: any) => {
     const windou2: any = window
     windou2.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-      page_path: url,
+      page_path: url
     })
   }
   useEffect(() => {
@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}}', {
               page_path: window.location.pathname,
             });
-          `,
+          `
         }}
       />
 
@@ -53,11 +53,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           url: SITE_URL,
           site_name: 'Wassim',
           description:
-            "Hi 👋 I'm Wassim Nassour, self-taught  developer , I work now as a mobile engineer, also have interested in the web technologies b,& tech in general",
+            "Hi 👋 I'm Wassim Nassour, self-taught  developer , I work now as a mobile engineer, also have interested in the web technologies b,& tech in general"
         }}
         twitter={{
           handle: '@wassimanssour',
-          cardType: 'summary_large_image',
+          cardType: 'summary_large_image'
         }}
       />
       <div className="min-h-screen bg-re">

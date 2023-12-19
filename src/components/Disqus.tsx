@@ -12,7 +12,7 @@ const DisqusComments = ({ post, slug }: Props) => {
   const disqusConfig = {
     url: SITE_URL + slug,
     identifier: post.title,
-    title: post.title,
+    title: post.title
   }
   return (
     <div className="my-4">

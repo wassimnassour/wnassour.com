@@ -27,13 +27,7 @@ Let’s check how we would do it in form using code examples in React,
 ```tsx
 <form onSubmit={handleSubmit}>
   <input type="text" name="firstname" placeholder="firstname" />
-  <input
-    type="text"
-    name="firstname_confirm"
-    value=""
-    className="honey_input"
-    tabindex="-1"
-  />
+  <input type="text" name="firstname_confirm" value="" className="honey_input" tabindex="-1" />
   <input type="email" name="email" placeholder="Email" />
   <textarea name="message" placeholder="Message" />
   <button type="submit">Submit</button>
@@ -57,7 +51,7 @@ we have a form with inputs first name and email and email message and honeypot i
 and then we need to check if the bot fills the honeypot input
 
 ```tsx
-const handleSubmit = (e) => {
+const handleSubmit = e => {
   e.preventDefault()
   const formData = new FormData(e.target)
   if (formData.get('favorite_color') !== '') {

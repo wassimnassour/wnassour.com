@@ -24,8 +24,8 @@ export function getFeaturedNotes() {
     'featured',
     'date',
     'excerpt',
-    'bgColor',
+    'bgColor'
   ])
-  const featuredPosts = allNotes.filter((_t) => _t.featured)
+  const featuredPosts = allNotes.filter(_t => _t.featured)
   return featuredPosts
 }

@@ -21,7 +21,7 @@ function getPostFilePaths(): string[] {
     fs
       .readdirSync(POSTS_PATH)
       // Only include md(x) files
-      .filter((path) => /\.mdx?$/.test(path))
+      .filter(path => /\.mdx?$/.test(path))
   )
 }
 
@@ -40,7 +40,7 @@ export function getPostItems(filePath: string, fields: string[] = []): Items {
   const items: Items = {}
 
   // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
+  fields.forEach(field => {
     if (field === 'slug') {
       items[field] = slug
     }
@@ -74,8 +74,8 @@ export function getFeaturedPosts() {
     'featured',
     'date',
     'excerpt',
-    'content',
+    'content'
   ])
-  const featuredPosts = allposts.filter((_t) => _t.featured)
+  const featuredPosts = allposts.filter(_t => _t.featured)
   return featuredPosts
 }

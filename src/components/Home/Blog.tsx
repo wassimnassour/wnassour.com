@@ -19,7 +19,7 @@ export const Blog = ({ Posts }: Props) => {
         </Link>
       </div>
       <div className="grid grid-col-1   mt-6 ">
-        {Posts.map((post) => (
+        {Posts.map(post => (
           <ArticleCard key={post.slug} post={post} />
         ))}
       </div>
@@ -29,15 +29,9 @@ export const Blog = ({ Posts }: Props) => {
 
 const ArticleCard = ({ post }: { post: IPost }) => {
   return (
-    <Link
-      href={`/posts/${post.slug}`}
-      className="flex w-full mt-6 cursor-pointer  "
-      passHref
-    >
+    <Link href={`/posts/${post.slug}`} className="flex w-full mt-6 cursor-pointer  " passHref>
       <div className="flex flex-col justify-between bg-[#2c3345]  p-3 mr md:mr-3 rounded-md ">
-        <h1 className="my-4 text-2xl font-Alegreya_Sans md:text-3xl text-white">
-          {post.title}
-        </h1>
+        <h1 className="my-4 text-2xl font-Alegreya_Sans md:text-3xl text-white">{post.title}</h1>
         <p className="text-gray-200">{post.excerpt.substring(1, 260)}...</p>
         <div className="flex justify-between mt-5 text-gray-200">
           <span className="my-1 ">{post.date}</span>

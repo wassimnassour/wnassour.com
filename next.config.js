@@ -1,11 +1,11 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    DISABLE_NEW_JSX_TRANSFORM: process.env.DISABLE_NEW_JSX_TRANSFORM,
+    DISABLE_NEW_JSX_TRANSFORM: process.env.DISABLE_NEW_JSX_TRANSFORM
   },
   images: {
-    domains: ['lh6.googleusercontent.com', 'media.giphy.com'],
+    domains: ['lh6.googleusercontent.com', 'media.giphy.com']
   },
 
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
 }

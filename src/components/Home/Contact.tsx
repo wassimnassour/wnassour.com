@@ -14,17 +14,12 @@ export const Contact = () => {
         <span className="text-secondary">!</span>
       </h2>
       <p className="my-3 text-center text-white">
-        Hi, I'm happy cuz you are visiting my portfolio, I hope u like it and if
-        you're looking for a someone to convert your ideas to a real project or
-        consulting, also if u need help plz reach me I will be happy to help you
+        Hi, I'm happy cuz you are visiting my portfolio, I hope u like it and if you're looking for
+        a someone to convert your ideas to a real project or consulting, also if u need help plz
+        reach me I will be happy to help you
       </p>
       <div className="flex flex-col mt-3 mb-3 md:flex-row">
-        <a
-          className={button}
-          href={TWITTER_URL}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a className={button} href={TWITTER_URL} target="_blank" rel="noreferrer">
           Contact me Via Twitter{' '}
         </a>
         <a href={`mailto:${EMAIL}`} className={button}>
@@ -38,5 +33,4 @@ export const Contact = () => {
   )
 }
 
-const button =
-  'bg-secondary border-none p-3 border rounded-md text-white mx-2 mt-3'
+const button = 'bg-secondary border-none p-3 border rounded-md text-white mx-2 mt-3'
