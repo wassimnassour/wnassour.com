@@ -20,8 +20,7 @@ type Props = {
 }
 
 export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
-  const ogImage = SITE_URL + frontMatter?.ogImage?.thumbnail ?? ''
-
+  const ogImage = SITE_URL + frontMatter?.coverImage ?? ''
   return (
     <>
       <NextSeo
