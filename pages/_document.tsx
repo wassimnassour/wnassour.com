@@ -32,6 +32,8 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="wIl0o-8xCq31APjqwuVU0ZoIrOFi141bPpz7P9bVVyU"
           />
+
+          <link rel="shortcut icon" href="/favicon.png" />
         </Head>
         <body>
           <Main />
