@@ -6,7 +6,7 @@ export const Hero = () => {
   return (
     <div
       className="
-         border-b border-gray-700    font-Alegreya_Sans py-20"
+         border-b border-gray-700 font-Alegreya_Sans py-20"
       // style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)' }}
     >
       <div className="flex flex-col items-start justify-center w-11/12 h-full max-w-5xl mx-auto text-white sm:w-10/12 md:9/12">
@@ -35,13 +35,11 @@ export const Hero = () => {
         </div>
 
         <p className="font-normal text-gray-300 my-7 text-lg">
-          Hello! I am a self-taught Fullstack Engineer with a strong passion for the world of
-          technology. Currently, I am employed as a Front-End Developer at{' '}
-          <ExternalLink url="https://www.obytes.com/" title="Obytes" /> , where I have accumulated 3
-          years of valuable experience. I am dedicated to crafting clean and maintainable code,
-          following the latest industry best practices in web development. Feel free to download my{' '}
-          <ExternalLink url={RESUME_URL} title="Resume" />, as I am currently open to new career
-          opportunities
+          Hey there! I'm a self-taught Fullstack Engineer currently rocking as a Front-End Developer
+          at <ExternalLink url="https://maltem.com/en/" title="Maltem Africa" /> . My passion lies
+          in crafting clean, top-notch code that stays ahead of the curve in web development trends.
+          Check out my <ExternalLink url={RESUME_URL} title="Resume" />, —I'm open to exciting new
+          opportunities!
         </p>
         <h3 className="font-extrabold text-gray-400 text-xl">Quick intro 👋🏻</h3>
         <ul className="mb-4 pl-1 space-y-1 mt-2 text-lg">
