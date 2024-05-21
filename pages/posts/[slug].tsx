@@ -4,6 +4,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import rehypeHighlight from 'rehype-highlight'
+import gfm from 'remark-gfm'
 
 import { getPost, getAllPosts, getFeaturedPosts } from '../../lib/blogUtils'
 import { MdxTemplate } from 'components/MdxTemplate'
@@ -26,7 +27,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const mdxSource = await serialize(content, {
     scope: data,
     mdxOptions: {
-      rehypePlugins: [rehypeHighlight]
+      rehypePlugins: [rehypeHighlight],
+      remarkPlugins: [gfm]
     }
   })
   getFeaturedPosts()

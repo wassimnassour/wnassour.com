@@ -13,6 +13,7 @@ import { SITE_URL } from 'constant'
 import { Layout, Thumbnail, Title } from './Post'
 import DisqusComments from './Disqus'
 import { H3 } from './Post/H3'
+import { Table } from './Post/Table'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -92,5 +93,6 @@ const components = {
   Link,
   Tag,
   inlineCode: Tag,
-  BlockQuote
+  BlockQuote,
+  table: Table
 }
