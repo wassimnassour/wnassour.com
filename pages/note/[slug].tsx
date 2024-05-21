@@ -1,4 +1,3 @@
-import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
