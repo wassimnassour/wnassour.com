@@ -1,0 +1,71 @@
+---
+title: 'Understanding Database Indexes: Boosting App Performance'
+excerpt: 'Discover how indexes improve database performance and responsiveness in our latest article. Learn about the types of indexes (clustered and non-clustered), their structure, and functionality. Understand the B-tree data structure used in indexing and explore practical scenarios for optimizing queries. Additionally, find out when to avoid over-indexing to maintain optimal database performance.'
+coverImage: '/assets/blog/indexes-in-database/cover.png'
+date: '26/02/2024'
+featured: false
+author:
+  name: Wassim Nassour
+  picture: '/assets/wassim.jpg'
+ogImage:
+  url: '/assets/blog/indexes-in-database/cover.png'
+  thumbnail: '/assets/blog/indexes-in-database/cover.png'
+---
+
+# Database indexes, how they work, and why using indexes makes reading very fast
+
+**H**ey friends, our goal as software engineers is to deliver apps that are performant and responsive to user requests. In this article, we will discuss indexes, how they help us achieve great response times, how they work under the hood, and the types of indexes available.
+
+# **What Are Indexes and What Problem Do They Solve?**
+
+Database indexes function like the index of a book: instead of searching through the entire content page by page, we can locate the specific information we need quickly. For example, consider an HR document where employees are sorted and grouped by letter or age. If you need to find an employee who is 40 years old, you can directly access the relevant section without scanning through employees of other ages. This approach replaces querying unorganized data and streamlines the process.
+
+## Types of Indexes
+
+Indexes use a B-tree data structure, allowing efficient lookups without traversing each item sequentially. In relational database management systems (RDBMS), there are two main types of indexes: **Clustered Index** and **Non-clustered Index**. Let’s explore the differences between them.
+
+## Clustered Index
+
+In an RDBMS, the primary key automatically creates a clustered index on a column. A clustered index defines the physical order of the data in the table, significantly impacting query performance. There can be only one clustered index per table. If you choose to change the default primary key, do so with caution to optimize the most common and critical queries for your application, as it may have drawbacks.
+
+### The clustered index is stored this way in the B-tree
+
+<Img alt="Clustered Index" src="/assets/blog/indexes-in-database/indexes-Copy_of_clustred.jpg" />
+
+The diagram consists of three parts: the tree, index rows, and data rows. Let’s define each part:
+
+1. **Index Rows**: These data structures contain only the clustered index.
+2. **Data Rows or Leaf Nodes**: The data rows hold the actual data for the table. Each row corresponds to a record in the table and contains the values for each column of that record.
+
+When you select a user with ID = 11, instead of searching one by one, the system directly navigates to the appropriate section of the tree (between index rows 6 and 12) and then drills down to the specific data row.
+
+<Img
+  alt="Clustered Index in details"
+  src="/assets/blog/indexes-in-database/indexes-clustred-with-red-arrow.drawio.png"
+/>
+
+## Non-Clustered Index
+
+A non-clustered index operates differently from a clustered index. Instead of storing data rows (leaf nodes), a non-clustered index creates a tree structure that stores row locators—pointers to the actual data in memory. The data is stored in one place, and the index is stored in another place. Since the data and non-clustered index are stored separately, you can have multiple non-clustered indexes on a table. A non-clustered index does not dictate the physical order of data in the table; instead, it stores a separate data structure that contains a copy of the indexed columns along with a pointer to the actual data rows.
+
+In the table and image below, there’s a tree explaining each element in the tree:
+
+**Key Values**: Values that are used as keys in the index data structure. These values are typically extracted from one or more columns in the table being indexed and are sorted in alphabetical order.
+
+**Row Locators**: These contain a copy of the index values we created and reference the clustered index that was created by default. In this example, we use the ID of the user because the ID is the primary key, so the cluster ID will look like this:
+
+The tree will look like this:
+
+| ID  | Name   | Company  |
+| --- | ------ | -------- |
+| 1   | wassim | Maltem   |
+| 2   | Jhon   | Github   |
+| 3   | Frenk  | Facebook |
+
+## **Non-clustered Index in Action**
+
+When you request a user with the name 'Wassim' and the name is a non-clustered index, it will search the key values in the tree that start with 'W'. After finding the key value, it will dig deeper into the tree to look in row locators for the non-clustered index. Once the database finds the name in the row locators, it will query the document or table associated with the non-clustered index, along with the clustered index, which is the ID in this case.
+
+## **Attention: When to Avoid Creating Indexes**
+
+Indexes are automatically maintained whenever the table data is modified. They significantly impact query performance and data retrieval efficiency. However, creating too many index keys can hurt database write performance because each time data is written, the indexes must be updated.

@@ -12,6 +12,8 @@ import { H1 } from 'components'
 import { SITE_URL } from 'constant'
 import { Layout, Thumbnail, Title } from './Post'
 import DisqusComments from './Disqus'
+import { H3 } from './Post/H3'
+import { Table } from './Post/Table'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -63,6 +65,7 @@ export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
 const components = {
   h1: H1,
   h2: H2,
+  h3: H3,
   p: Paragraph,
   Img: ({ src, alt, className, ...props }: any) => {
     return (
@@ -90,5 +93,6 @@ const components = {
   Link,
   Tag,
   inlineCode: Tag,
-  BlockQuote
+  BlockQuote,
+  table: Table
 }
