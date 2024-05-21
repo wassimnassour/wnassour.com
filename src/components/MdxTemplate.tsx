@@ -49,10 +49,7 @@ export const MdxTemplate = ({ source, frontMatter, slug }: Props) => {
             </p>
           </div>
 
-          <MDXRemote
-            components={components as unknown as Record<string, React.ReactNode>}
-            {...source}
-          />
+          <MDXRemote components={components as any} {...source} />
         </article>
         <div className="w-11/12 max-w-4xl mx-auto mt-20 md:8/12">
           <DisqusComments post={frontMatter} slug={slug} />
