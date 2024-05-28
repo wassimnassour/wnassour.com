@@ -176,7 +176,7 @@ type MyOmit<T extends {}, K> = {
 type TestOmit = MyOmit<Obj, `name${string}`>
 ```
 
-using <Tag>name${string}</Tag> will exclude all properties that start with a name and follow a string
+using <Tag>`name${string}`</Tag> will exclude all properties that start with a name and follow a string
 
 # Filtering based on values
 
@@ -195,5 +195,8 @@ type TestOmit = OmitFunction<Obj>
 ```
 
 this OmitFunction will exclude all properties that have a value of function that returns void
+
+<br />
+<br />
 
 Thank you for reading this article, See you in the next article chuss 👋

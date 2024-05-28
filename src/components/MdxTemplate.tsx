@@ -1,15 +1,13 @@
 import React from 'react'
-import { IPost, LinkProps } from 'types'
-
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 
-import { Paragraph, H2, Tag, BlockQuote, Li, Link } from 'components'
+import { Paragraph, H1, H2, Tag, BlockQuote, Li, Link } from 'components'
 import cx from 'utils/cx'
-import { H1 } from 'components'
-
 import { SITE_URL } from 'constant'
+import { IPost, LinkProps } from 'types'
+
 import { Layout, Thumbnail, Title } from './Post'
 import DisqusComments from './Disqus'
 import { H3 } from './Post/H3'
@@ -64,6 +62,7 @@ const components = {
   h2: H2,
   h3: H3,
   p: Paragraph,
+  P: Paragraph,
   Img: ({ src, alt, className, ...props }: any) => {
     return (
       <Image

@@ -22,7 +22,7 @@ There are alternatives. Honeypots are additional inputs you put on a form to mak
 
 ## Avoid spam bots With Honeypots Example
 
-Let’s check how we would do it in form using code examples in React,
+Let’s check how we would do it in form using code examples in React
 
 ```tsx
 <form onSubmit={handleSubmit}>
@@ -34,7 +34,11 @@ Let’s check how we would do it in form using code examples in React,
 </form>
 ```
 
-we have a form with inputs first name and email and email message and honeypot input <Tag>firstname_confirm</Tag> with <Tag>tabindex=’-1’</Tag> to avoid screen reader, I saw some solution by trying to hide the input with <Tag>{display:’none’}</Tag>, but I have another solution
+<p>
+  we have a form with inputs first name and email and email message and honeypot input{' '}
+  <Tag>firstname_confirm</Tag> with <Tag>tabindex=’-1’</Tag> to avoid screen reader, I saw some
+  solution by trying to hide the input with <Tag>display:none</Tag>, but I have another solution
+</p>
 
 ```tsx
 .honey_input{
