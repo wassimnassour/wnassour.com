@@ -33,13 +33,12 @@ After using the <Tag>getSignedUrl</Tag> method to upload images to S3 buckets on
 
 ## Security :
 
-<li> Users cannot spam our S3 bucket with many files.</li>
-<li> Users cannot request</li>
-<li> a URL for one file and then upload a different one. </li>
-<li> URLs can expire.</li>
-<li>URLs are generated securely through a request between our server and AWS.</li>
-
-<li>URLs can only work for the specific S3 bucket they were created for.</li>
+<Li> Users cannot spam our S3 bucket with many files.</Li>
+<Li> Users cannot request</Li>
+<Li> a URL for one file and then upload a different one. </Li>
+<Li> URLs can expire.</Li>
+<Li>URLs are generated securely through a request between our server and AWS.</Li>
+<Li>URLs can only work for the specific S3 bucket they were created for.</Li>
 
 ## implementations :
 
@@ -97,13 +96,13 @@ async function uploadImage({ fileName, fileType }) {
 }
 ```
 
-<h2 styles={{ color: 'secondary' }}>Handling CORS</h2>
+### Handling CORS
 
-<li>S3 Bucket setting</li>
-<li>Create a DNS compliant bucket name</li>
-<li>Set default encryption</li>
-<li>Give appropriate read and write permissions</li>
-<li>Add the following CORS rules</li>
+<Li>S3 Bucket setting</Li>
+<Li>Create a DNS compliant bucket name</Li>
+<Li>Set default encryption</Li>
+<Li>Give appropriate read and write permissions</Li>
+<Li>Add the following CORS rules</Li>
 
 ```xml
   <?xml version="1.0" encoding="UTF-8"?>
@@ -122,10 +121,10 @@ async function uploadImage({ fileName, fileType }) {
 
 ```
 
-<a
+<AnchorLink
   href="https://github.com/wassimnassour/Upload-Images-to-S3-buckets-with-React-and-Node-/blob/main/index.js"
   target="_blanc"
   className="text-secondary"
 >
   full code
-</a>
+</AnchorLink>

@@ -80,8 +80,9 @@ const components = {
       />
     )
   },
-  li: Li,
-  a: ({ href, children, ...props }: LinkProps) => (
+  Li: Li,
+
+  AnchorLink: ({ href, children, ...props }: LinkProps) => (
     <a href={href} target="_blank" {...props} rel="noreferrer" className="underline text-secondary">
       {children}
     </a>
