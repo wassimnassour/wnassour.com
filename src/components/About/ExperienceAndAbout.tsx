@@ -4,7 +4,6 @@ import { jobs } from 'constant'
 export const ExperienceAndAbout = () => {
   return (
     <div className="col-span-1  lg:col-span-4  p-4 md:p-0">
-      <AboutMe />
       <ul className="mt-10 " id="Experience">
         {jobs?.map(job => (
           <li className="mb-12" key={job.name}>
@@ -84,26 +83,5 @@ export const ExperienceAndAbout = () => {
         ))}
       </ul>
     </div>
-  )
-}
-
-const AboutMe = () => {
-  return (
-    <>
-      <h1 className="text-3xl text-white my-3 lg:hidden">About</h1>
-      <p className=" mb-24 lg:mb-36 leading-7 text-gray-300" id="About">
-        My name is Wassim Nassour and I am a self-taught JavaScript Developer with a passion for the
-        tech world. I specialize in Front-End development, and I take pride in writing clean and
-        readable code using the latest best practices in web development. With 3 years of experience
-        as a full-stack engineer, I currently work as a Front-End developer at Obytes. Outside of
-        work, I keep up with programming and technology trends and enjoy writing{' '}
-        <Link href="/blog" className="text-secondary">
-          Articles
-        </Link>{' '}
-        in my free time. My ultimate goal is to create high-performance applications using the
-        latest technologies and share my knowledge with the community. Thank you for visiting my
-        website!
-      </p>
-    </>
   )
 }

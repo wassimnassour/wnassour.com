@@ -56,6 +56,28 @@ export const socialLinks = [
 
 export const jobs = [
   {
+    name: 'Maltem Africa',
+    role: 'Front-end Engineer',
+    description:
+      "I'm working at Obytes as Front end developer, I use many amazing technologies, on a daily basis such as React, React Native, Next js, Styled-components, react-query ...., I Contributed to some existing projects, by adding new features and fixing some issues, also I had the chance to start working on new apps, on my own, where I faced many problems and learn a lot by solving themes.",
+    date: '01-2024 -present / Casablanca ',
+    projects: [
+      {
+        name: 'Inwi',
+        description:
+          'working on b2b e-shop application in inwi.ma, also built dashboard application add products and manage sells',
+        tasks: [
+          'Building b2b app with Next. js(14), TypeScript, React Query, material UI, Tailwind CSS, and more in inwi.ma',
+          'Built dashboards to manage products and sells',
+          'Enhance  Docker image ',
+          'Setting up the frontend codebase for dashboard application, configuring unit, integration, and unit integration tests, linting, formatting, pre-commit'
+        ]
+      }
+    ],
+    technologies: ['Tailwind CSS', 'Nextjs', 'TypeScript'],
+    url: 'https://maltem.com/en/'
+  },
+  {
     name: 'Obytes',
     role: 'Front-end Engineer',
     description:
@@ -80,7 +102,7 @@ export const jobs = [
       {
         name: '1Fort',
         description:
-          "    it's a cyber security app, I was the lead on this project I was having the right to decide about used technologies, I used electron + React for the desktop app, and react for the web Version, and also an onBoard new intern with me, helped him with code review and add enhancement to his code"
+          "it's a cyber security app, I was the lead on this project I was having the right to decide about used technologies, I used electron + React for the desktop app, and react for the web Version, and also an onBoard new intern with me, helped him with code review and add enhancement to his code"
       }
     ],
     technologies: ['Tailwind CSS', 'React', 'TypeScript', 'React Native'],
