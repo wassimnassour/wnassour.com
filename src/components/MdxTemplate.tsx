@@ -12,6 +12,7 @@ import { Layout, Thumbnail, Title } from './Post'
 import DisqusComments from './Disqus'
 import { H3 } from './Post/H3'
 import { Table } from './Post/Table'
+import { Ol } from './Post/Ol'
 
 type Props = {
   source: MDXRemoteSerializeResult
@@ -91,5 +92,6 @@ const components = {
   Tag,
   inlineCode: Tag,
   BlockQuote,
-  table: Table
+  table: Table,
+  ol: Ol
 }
