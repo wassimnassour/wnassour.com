@@ -4,48 +4,12 @@ import type { AppProps } from 'next/app'
 import { Footer, Nav } from 'components'
 import { DefaultSeo } from 'next-seo'
 import { SITE_URL } from 'constant'
-import Script from 'next/script'
-import { useRouter } from 'next/router'
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter()
-  const pageview = (url: any) => {
-    const windou2: any = window
-    windou2.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-      page_path: url
-    })
-  }
-  useEffect(() => {
-    const handleRouteChange = (url: any) => {
-      pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+import { GoogleAnalytics } from '@next/third-parties/google'
 
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/*  */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}}', {
-              page_path: window.location.pathname,
-            });
-          `
-        }}
-      />
-
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS as string} />
       <DefaultSeo
         openGraph={{
           type: 'website',
