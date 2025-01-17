@@ -32,6 +32,16 @@ export const Nav = () => {
                 </Link>
               </li>
             ))}
+
+            <li className="mx-3 text-white cursor-pointer" onClick={() => setBackDrop(false)}>
+              <a
+                href="https://docs.google.com/document/d/1yPVQfaxMkXqPNVjwvSNAPk3mVgfZ0vvFr2d_qZoyS9c/edit?tab=t.0"
+                target="_blank"
+                className="my-3"
+              >
+                resume
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
