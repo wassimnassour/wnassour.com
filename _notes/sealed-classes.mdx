@@ -1,0 +1,106 @@
+---
+title: 'Sealed class in java '
+excerpt: 'Learn how to use sealed classes in Java with simple examples. Discover key features, benefits, implementation steps, and limitations of sealed classes in Java 17.'
+date: '12/04/2025'
+featured: true
+bgColor: 'orange'
+---
+
+In Java, a sealed class is a feature introduced in Java 15 (as a preview) and officially in Java 17 (as a standard feature). This feature allows you to restrict and control the inheritance hierarchy by limiting which classes or interfaces can extend or implement a sealed class or interface.
+Sealed classes are especially useful in domain modeling, such as when defining a fixed set of payment methods (e.g., credit card, PayPal, bank transfer) or representing states in a finite state machine. The feature follows specific rules: classes or interfaces extending or implementing the sealed class must be in the same module (or same package if not using modules). If any class or interface not explicitly permitted tries to extend or implement it, the compiler will generate a compile-time error.
+
+### Implementation
+
+```Java
+// Sealed Class
+public sealed interface PaymentMethod
+    permits CreditCardPayment, PayPalPayment, BitcoinPayment {
+    void processPayment(double amount);
+}
+```
+
+```Java
+package com.example.paymentMethod;
+
+// Final: cannot be extended further
+public final class CreditCardPayment implements PaymentMethod {
+    public void processPayment(double amount) {
+        System.out.println("Processing credit card payment of $" + amount);
+    }
+}
+```
+
+```Java
+package com.example.paymentMethod;
+
+// Final subclass of a sealed subclass
+public final class BitcoinPayment implements PaymentMethod {
+    public void processPayment(double amount) {
+        System.out.println("Processing Bitcoin payment of $" + amount);
+    }
+}
+```
+
+```Java
+package com.example.paymentMethod;
+
+package com.example.paymentMethod;
+
+// Non-sealed: removes restriction, anyone can extend
+public non-sealed class PayPalPayment implements PaymentMethod {
+    public void processPayment(double amount) {
+        System.out.println("Processing PayPal payment of $" + amount);
+    }
+}
+```
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        PaymentMethod p1 = new CreditCardPayment();
+        PaymentMethod p2 = new PayPalPayment();
+        PaymentMethod p3 = new BitcoinPayment();
+
+        p1.processPayment(100);
+        p2.processPayment(150);
+        p3.processPayment(200);
+    }
+}
+```
+
+### Summary
+
+<Li>
+  {' '}
+  In this example, the <Tag>PaymentMethod</Tag> interface is declared as <Tag>sealed</Tag>, which means
+  that only the classes explicitly listed in its permits clause <Tag>CreditCardPayment</Tag>, <Tag>
+    PayPalPayment
+  </Tag>, and <Tag>BitcoinPayment </Tag>are allowed to implement it.
+</Li>
+<Li>
+  {' '}
+  <Tag>CreditCardPayment</Tag> and <Tag>BitcoinPayment</Tag> are marked as final, so they cannot be subclassed
+  further.
+</Li>
+<Li>
+  {' '}
+  <Tag>PayPalPayment</Tag> could optionally be declared non-sealed if you want other classes to extend
+  it.
+</Li>
+<br />
+<br />
+
+<Li> Sealed types must follow specific rules : ⬇️</Li>
+
+<Li>
+  Permitted subclasses must be expLicitly Listed in the <Tag>permits</Tag> clause.
+</Li>
+<Li>They must be in the same package or module as the sealed type.</Li>
+<Li>
+  Each permitted subclass must be declared as <Tag>final</Tag>, <Tag>sealed</Tag>, or{' '}
+  <Tag>non-sealed</Tag>.
+</Li>
+<Li>
+  Any class not Listed in <Tag>permits</Tag> clause will trigger a compiler error if it tries to
+  implement or extend the sealed type.
+</Li>
